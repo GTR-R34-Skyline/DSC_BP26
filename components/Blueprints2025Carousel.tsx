@@ -38,7 +38,7 @@ export default function Blueprints2025Carousel() {
         </div>
 
         {/* Aspect-ratio based container instead of fixed height */}
-        <div className="relative w-full aspect-[16/9] bg-black overflow-hidden rounded-xl">
+        <div className="relative w-full aspect-[16/9] overflow-hidden rounded-xl">
           <AnimatePresence>
             <motion.div
               key={currentIndex}
@@ -48,9 +48,6 @@ export default function Blueprints2025Carousel() {
               transition={{ duration: 0.8 }}
               className="absolute inset-0 flex items-center justify-center"
             >
-              {/* Gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10" />
-
               {/* Image */}
               <img
                 src={images[currentIndex]}

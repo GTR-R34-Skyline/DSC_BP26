@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Navbar, NavBody, NavbarLogo, NavItems, MobileNav, MobileNavHeader, MobileNavToggle, MobileNavMenu } from "@/components/Navbar";
+import AppNavbar from "@/components/AppNavbar";
 import DarkVeil from "@/components/DarkVeil";
 import { IconX, IconArrowUpRight, IconBrandLinkedin, IconBrandInstagram } from "@tabler/icons-react";
 
@@ -9,168 +10,254 @@ import { IconX, IconArrowUpRight, IconBrandLinkedin, IconBrandInstagram } from "
 const problemStatements = [
   {
     id: 1,
-    title: "Revolutionizing EdTech: Agentic AI for Personalized and Ethical Learning",
-    domain: "Machine Learning",
-    company: "Revinova",
-    logo: "https://ui-avatars.com/api/?name=Revinova&background=random", // Placeholder
-    shortDescription: "Transforming education with autonomous AI agents for personalized and ethical learning experiences.",
-    overview: "AI is revolutionizing education through autonomous tutoring, adaptive content curation, and predictive analytics. Traditional EdTech platforms need to evolve to remain relevant.",
+    title: "AI-Powered Diabetic Retinopathy Screening for Eye Camps",
+    domain: "Healthcare / Computer Vision",
+    company: "Eye Screening",
+    logo: "https://ui-avatars.com/api/?name=Eye+Screening&background=random",
+    shortDescription: "AI-powered triage assistant to filter retinal images and optimize ophthalmologist time in rural camps.",
+    overview: "In India, diabetic retinopathy (DR) is a leading cause of avoidable blindness. Rural eye screening camps serve hundreds of patients daily with limited specialist availability, creating a critical bottleneck in specialist time.",
     problemStatement: [
-      "Integrate AI as a co-pilot for educators and learners (not a replacement).",
-      "Deliver hyper-personalized learning experiences at scale.",
-      "Ensure ethical AI use (bias mitigation, data privacy).",
-      "Maintain engagement in hybrid human-AI environments."
+      "Design an AI-powered triage assistant that analyzes retinal (fundus) images.",
+      "Estimate Diabetic Retinopathy severity to identify patients needing urgent intervention.",
+      "Function as a high-volume filter: 'Refer' vs 'Monitor'.",
+      "Ensure no severe cases are missed while maintaining speed."
     ],
     keyChallenges: [
-      "Intelligent Tutoring Systems: Implement AI-powered tutoring that provides personalized feedback, answers questions, and guides learners through complex topics (Recommended).",
-      "Autonomous Content Curation: Create AI agents that curate and recommend learning resources based on learner needs.",
-      "Skills Gap Analysis: Implement Agentic AI to identify workforce skill gaps and recommend learning paths.",
-      "Real-time Feedback & Adaptation: Traditional AI requires manual updates—Agentic AI autonomously adapts based on continuous feedback.",
-      "Engagement in Hybrid Learning: Combat AI fatigue by balancing automation with peer collaboration and mentorship."
+      "The Trust Gap: Systems must explain decisions via heatmaps or lesion detection.",
+      "Field Conditions: Must be robust against uneven lighting, blur, and noise typical of mobile camps.",
+      "Throughput: Render decisions quickly to prevent patient queue pile-up."
     ],
     baselineRequirements: [
-      "A prototype demonstrating ONE of the following:",
-      "Intelligent Tutoring Systems (Recommended)",
-      "AI chatbot that answers learner queries like a tutor.",
-      "AI-generated quizzes personalized to learning gaps.",
-      "Human-AI Collaboration",
-      "AI tool automating grading & content recommendations."
+      "Core Classification: Analyze images into standard clinical stages (0-4: No DR to Proliferative).",
+      "Actionable Triage: Map severity to a binary 'Refer' or 'Monitor' recommendation.",
+      "Explainability: Provide visual or textual rationale for predictions.",
+      "Safety Protocol: Interface must state 'Screening Support – Non-Diagnostic'."
     ]
   },
   {
     id: 2,
-    title: "Smart Traffic Management System",
-    domain: "IoT",
-    company: "CityFlow",
-    logo: "https://ui-avatars.com/api/?name=CityFlow&background=random",
-    shortDescription: "Optimizing urban traffic flow using IoT sensors and real-time data analysis.",
-    overview: "Urban congestion is a growing problem. We need smart solutions to manage traffic flow efficiently, reduce waiting times, and lower emissions.",
+    title: "Neuro-Adaptive Workflow: The In-IDE Skill Synthesizer",
+    domain: "EdTech / Software Engineering",
+    company: "IDE Skills",
+    logo: "https://ui-avatars.com/api/?name=IDE+Skills&background=random",
+    shortDescription: "A 'Just-in-Time' learning engine that detects developer friction and provides contextual micro-learning.",
+    overview: "Corporate training is often disconnected from daily work. Modern developers suffer from context switching when leaving their IDE to search for answers, breaking their cognitive 'Flow State'.",
     problemStatement: [
-      "Develop a system to monitor traffic density in real-time.",
-      "Optimize traffic signal timings based on current congestion levels.",
-      "Detect and report accidents or roadblocks automatically.",
-      "Provide alternative route suggestions to drivers."
+      "Develop an intelligent IDE plugin (VS Code/JetBrains) to detect 'Cognitive Friction'.",
+      "Dynamically generate micro-learning modules when a user is struggling.",
+      "Unblock the developer without them leaving the editor.",
+      "Differentiate between thinking time and struggling time."
     ],
     keyChallenges: [
-      "Sensor Integration: Integrating various IoT sensors for accurate data collection.",
-      "Real-time Processing: Processing large volumes of data with minimal latency.",
-      "Scalability: Ensuring the system can handle city-wide deployment.",
-      "Connectivity: Maintaining reliable communication between sensors and the central server."
+      "Struggle Detection: Using behavioral metrics (deletion rate, idle time) to identify gaps.",
+      "Contextual Relevance: Understanding code intent (e.g., implementing a React Hook) to provide useful help.",
+      "Privacy & Performance: Processing context locally without lagging the IDE."
     ],
     baselineRequirements: [
-      "A working prototype with at least 3 simulated traffic nodes.",
-      "Dashboard for traffic monitoring.",
-      "Algorithm for dynamic signal adjustment."
+      "IDE Extension: Functional plugin reading active editor state and AST.",
+      "Friction Metrics: Scoring system for struggle (Error frequency, Deletion rate).",
+      "Dynamic Content: Concise code snippets/explanations (under 200 words) upon detecting friction.",
+      "Dashboard: Summary view of 'Struggle Areas' for self-review."
     ]
   },
   {
     id: 3,
-    title: "Blockchain-based Secure Voting",
-    domain: "Cyber Security",
-    company: "SecureVote",
-    logo: "https://ui-avatars.com/api/?name=SecureVote&background=random",
-    shortDescription: "Ensuring transparency and security in elections using blockchain technology.",
-    overview: "Trust in electoral processes is paramount. Blockchain can provide an immutable ledger for recording votes, ensuring they cannot be tampered with.",
+    title: "AI Agent for Intake and Sales Enablement",
+    domain: "Sales Operations / NLP",
+    company: "Sales Agent",
+    logo: "https://ui-avatars.com/api/?name=Sales+Agent&background=random",
+    shortDescription: "End-to-End Sales Agent that autonomously qualifies leads and orchestrates meeting scheduling.",
+    overview: "Sales teams lose opportunities because inbound leads are not guided quickly. This challenge focuses on Agentic Behavior: autonomous decision-making and safe action execution.",
     problemStatement: [
-      "Create a decentralized application (DApp) for voting.",
-      "Ensure voter anonymity while maintaining verifiability.",
-      "Prevent double voting and unauthorized access.",
-      "Provide a transparent tallying mechanism."
+      "Design an Agentic Sales Orchestrator as the first point of contact for leads.",
+      "Autonomously capture lead details and evaluate against qualification criteria.",
+      "Orchestrate next steps: booking meetings for qualified leads or educating others.",
+      "Use a controlled Knowledge Base to prevent hallucinations."
     ],
     keyChallenges: [
-      "Identity Verification: Securely verifying voter identity without compromising anonymity.",
-      "Scalability: Handling a large number of transactions (votes) efficiently.",
-      "User Experience: Making the voting process simple and accessible for all users.",
-      "Security: Protecting the network from 51% attacks and other vulnerabilities."
+      "Agentic Decision Making: Deciding autonomously when enough info is gathered to qualify.",
+      "Tool Orchestration: Reliably triggering external actions (Calendly, Email) contextually.",
+      "Context Retention: Remembering user details (Role, Company) across multiple turns."
     ],
     baselineRequirements: [
-      "Smart contract for voting logic.",
-      "Frontend interface for voters.",
-      "Admin panel for election management.",
-      "Demonstration of immutability and transparency."
+      "Natural Intake: Conversational extraction of Name, Company, Role, and Use Case.",
+      "Criteria-Driven Routing: Generate Calendly links for qualified leads; provide resources for others.",
+      "Knowledge Retrieval: Recommend 2–5 specific product links/videos from a CSV/PDF KB.",
+      "Lead Log: Maintain a structured interaction state (New -> In Progress -> Qualified)."
     ]
   },
   {
     id: 4,
-    title: "Fake News Detection",
-    domain: "Machine Learning",
-    company: "TruthLens",
-    logo: "https://ui-avatars.com/api/?name=TruthLens&background=random",
-    shortDescription: "Combating misinformation with advanced NLP models.",
-    overview: "The spread of fake news on social media is a critical issue. We need automated tools to identify and flag misleading information.",
+    title: "Digital Pulse: The Contextual Cultural Intelligence Engine",
+    domain: "Data Analytics / Social Intelligence",
+    company: "Digital Pulse",
+    logo: "https://ui-avatars.com/api/?name=Digital+Pulse&background=random",
+    shortDescription: "A contextual analytics platform to identify and visualize viral narratives within social datasets.",
+    overview: "For researchers, viral metrics often mask subtle, significant cultural shifts. This tool reconstructs narratives to see what is driving engagement beyond just numbers.",
     problemStatement: [
-      "Build a model to classify news articles as real or fake.",
-      "Analyze the credibility of sources and authors.",
-      "Detect clickbait headlines and sensationalism.",
-      "Provide a confidence score for the prediction."
+      "Design a platform to ingest social data and reconstruct the 'Viral Narrative'.",
+      "Identify, rank, and visualize dominant trends based on engagement metrics.",
+      "Process raw data to group fragmented text into coherent topics.",
+      "Enable deep-dives into specific data points contributing to a trend."
     ],
     keyChallenges: [
-      "Data Quality: gathering a diverse and balanced dataset of real and fake news.",
-      "Context Understanding: NLP models often struggle with sarcasm and nuance.",
-      "Adversarial Attacks: Robustness against content designed to fool the model.",
-      "Explainability: Providing reasons for why a piece of content was flagged."
+      "Contextual Ingestion: Normalizing diverse datasets (CSVs, JSON dumps) for analysis.",
+      "Metric Reconstruction: Calculating 'Virality' and 'Impact' accurately within a bounded set.",
+      "Cluster Identification: Semantic grouping of unstructured text into topics."
     ],
     baselineRequirements: [
-      "Trained NLP model with >85% accuracy.",
-      "Web extension or app to analyze links/text.",
-      "Visual report of the analysis."
+      "Data Pipeline: System to parse and index user-uploaded social datasets.",
+      "Viral Ranking Engine: Scoring logic based on Volume, Likes, Shares, and Comments.",
+      "Hype Dashboard: Visualization of top-performing trends and entities.",
+      "Drill-Down: Ability to inspect specific posts contributing to a sentiment spike."
     ]
   },
   {
     id: 5,
-    title: "Predictive Maintenance for Industry 4.0",
-    domain: "IoT",
-    company: "InduTech",
-    logo: "https://ui-avatars.com/api/?name=InduTech&background=random",
-    shortDescription: "Minimizing downtime by predicting equipment failures.",
-    overview: "Unplanned equipment downtime costs industries billions. Predictive maintenance uses sensor data to foresee failures before they happen.",
+    title: "Gridlock-Breaker: AI-Coordinated Adaptive Traffic Orchestration",
+    domain: "Smart Cities / IoT",
+    company: "Traffic AI",
+    logo: "https://ui-avatars.com/api/?name=Traffic+AI&background=random",
+    shortDescription: "A city-wide orchestration engine that transforms static traffic signals into a synchronized intelligent network.",
+    overview: "Urban traffic in India is characterized by 'chaotic heterogeneity'. Current systems are reactive, leading to economic loss and delayed emergency services.",
     problemStatement: [
-      "Collect vibration, temperature, and sound data from machinery.",
-      "Train ML models to detect anomalies and predict failure modes.",
-      "Schedule maintenance only when necessary.",
-      "Visualize machine health in real-time."
+      "Design an AI Control Plane coordinating multiple intersections simultaneously.",
+      "Ingest real-time density data to dynamically adjust signal phases.",
+      "Maximize vehicle throughput and minimize waiting time across a grid.",
+      "Implement emergency priority corridors."
     ],
     keyChallenges: [
-      "Data Noise: Filtering out noise from industrial environments.",
-      "Early Detection: Identifying subtle signs of wear and tear.",
-      "Integration: connecting with legacy industrial equipment.",
-      "Actionable Insights: Translating data into clear maintenance recommendations."
+      "Green Wave Logic: Coordinating adjacent signals for fluid platoon movement.",
+      "Heterogeneous Flow: Handling mixed traffic (Buses, Bikes, Cars) with different behaviors.",
+      "Emergency Priority: Clearing paths for ambulances without gridlocking the rest of the city."
     ],
     baselineRequirements: [
-      "IoT setup for data collection (simulated or real).",
-      "Dashboard showing machine health status.",
-      "Alert system for predicted failures."
+      "Simulation Environment: Demonstration on a valid simulator (SUMO, CityFlow).",
+      "Adaptive Logic: RL or Heuristic algorithm adjusting timing based on queue length.",
+      "Emergency Override: Feature for zero-wait passage for an 'Ambulance Agent'.",
+      "Fail-Safe: Fallback to 'Safety Mode' if sensors go offline."
     ]
   },
   {
     id: 6,
-    title: "Phishing Website Detector",
-    domain: "Cyber Security",
-    company: "WebGuard",
-    logo: "https://ui-avatars.com/api/?name=WebGuard&background=random",
-    shortDescription: "Protecting users from malicious websites.",
-    overview: "Phishing attacks are becoming increasingly sophisticated. A real-time detector can warn users before they enter sensitive information.",
+    title: "Credit-Vision: Inclusive Scoring & Trust Protocols",
+    domain: "FinTech / Machine Learning",
+    company: "Credit Vision",
+    logo: "https://ui-avatars.com/api/?name=Credit+Vision&background=random",
+    shortDescription: "Alternative credit scoring engine using non-traditional data to assess risk for the 'Credit Invisible'.",
+    overview: "Many individuals in emerging economies are rejected by lenders due to lack of formal credit history, despite being financially responsible in daily life.",
     problemStatement: [
-      "Analyze URL structure and domain reputation.",
-      "Inspect page content for suspicious elements (e.g., hidden forms).",
-      "Check for SSL certificates and other security indicators.",
-      "Maintain a blacklist of known phishing sites."
+      "Design a real-time scoring engine that fuses non-traditional signals with traditional data.",
+      "Utilize Explainable AI (XAI) to justify scores to loan officers and users.",
+      "Assess risk for 'Cold Start' users with zero previous loan history.",
+      "Ensure the model is transparent and meets regulatory standards."
     ],
     keyChallenges: [
-      "Zero-day Attacks: Detecting new phishing sites that haven't been reported yet.",
-      "False Positives: Avoiding blocking legitimate websites.",
-      "Performance: Analyzing sites quickly without slowing down browsing.",
-      "Obfuscation: Handling techniques used by attackers to hide malicious code."
+      "Data Fusion: Merging structured bureau data with unstructured alternative signals.",
+      "Explainability: Outputting causal factors behind a score rather than just a probability.",
+      "Cold Start: Accurate risk assessment without historical loan data."
     ],
     baselineRequirements: [
-      "Browser extension or proxy service.",
-      "Real-time analysis of visited URLs.",
-      "User warning interface."
+      "Multi-Source Ingestion: Pipeline for cash flow patterns, utility payments, and digital metadata.",
+      "Hybrid Scoring Logic: ML model that weights alternative data based on availability.",
+      "Explainability Layer: Breakdown of contributing factors for a loan officer.",
+      "Performance: Near real-time evaluation for instant-finance use cases."
+    ]
+  },
+  {
+    id: 8,
+    title: "Lifecycle-Ledger: IoT Digital Product Passports",
+    domain: "IoT / Sustainability",
+    company: "Lifecycle Ledger",
+    logo: "https://ui-avatars.com/api/?name=Lifecycle+Ledger&background=random",
+    shortDescription: "A 'Living Identity' for electronics that records health metrics, repairs, and ownership transfer on a tamper-resistant ledger.",
+    overview: "Electronic waste is accelerated by opacity; devices are discarded because their internal health and repair history are unknown. To enable a Circular Economy and the 'Right to Repair,' devices require a trusted, transparent history.",
+    problemStatement: [
+      "Create an IoT-enabled Digital Passport System where each device is a dynamic asset.",
+      "Update automatically based on the device's lifecycle (health, repairs).",
+      "Allow authorized service centers to log repairs securely.",
+      "Enable recyclers to query 'Health Status' to calculate resale value."
+    ],
+    keyChallenges: [
+      "Dynamic Metadata: Synchronizing blockchain records with real-world IoT telemetry without congestion.",
+      "Access Control: ensuring only 'Authorized Repair Shops' can execute a 'Certified Repair'.",
+      "Offline Inspection: Verification of the passport via passive NFC even if hardware is offline."
+    ],
+    baselineRequirements: [
+      "Dynamic Asset Standard: Metadata state changes reflect physical wear (Health: 100% -> 80%).",
+      "Repair Signing: Cryptographic workflow for technician signatures.",
+      "Telemetry Bridge: IoT agent simulation anchoring 'Health Checkpoints' to the ledger.",
+      "Valuation Logic: Computational module estimating 'Resale Value' based on verified history."
+    ]
+  },
+  {
+    id: 9,
+    title: "Cyber-Resilient IoT Ecosystems",
+    domain: "IoT / Cybersecurity",
+    company: "Siemens",
+    logo: "https://ui-avatars.com/api/?name=Siemens&background=random",
+    shortDescription: "Developing adaptive AI-driven security for IoT to autonomously detect and mitigate threats.",
+    overview: "The widespread adoption of IoT has introduced security risks. Cyber-resilient security frameworks must defend against threats using lightweight encryption and self-healing networks.",
+    problemStatement: [
+      "Develop an adaptive AI-driven security system that autonomously detects threats.",
+      "Address unauthorized access, data breaches, and botnet attacks.",
+      "Overcome limited computational resources with lightweight protection.",
+      "Implement self-healing networks to detect and neutralize intrusions in real-time."
+    ],
+    keyChallenges: [
+      "Resource Constraints: implementing strong security on low-power devices.",
+      "Scalability: Protecting billions of diverse devices.",
+      "Real-time Mitigation: Detecting and stopping attacks instantly without human intervention."
+    ],
+    baselineRequirements: [
+      "AI-Driven Threat Detection: Real-time anomaly detection with minimal latency.",
+      "Lightweight Encryption: Elliptic Curve Cryptography (ECC) for constrained devices.",
+      "Zero-Trust Architecture: Continuous authentication and least-privilege access.",
+      "Decentralized Identity: Blockchain-based authentication.",
+      "Self-Healing: Autonomous detection and neutralization of intrusions."
+    ]
+  },
+  {
+    id: 10,
+    title: "Automating Labeling for Object Detection",
+    domain: "Manufacturing / AI",
+    company: "Smart Factory",
+    logo: "https://ui-avatars.com/api/?name=Smart+Factory&background=random",
+    shortDescription: "Enhancing manufacturing with AI-driven automated labeling for car part quality control.",
+    overview: "Manual labeling of assembly line parts is time-consuming and error-prone. Automating this process improves accuracy, speed, and consistency in quality control.",
+    problemStatement: [
+      "Automatically detect and annotate parts within images from the assembly line.",
+      "Label parts with relevant classes (e.g., 'part A', 'defect type X').",
+      "Identify and label defects or deviations in assembled products.",
+      "Integrate seamlessly with the existing quality control system."
+    ],
+    keyChallenges: [
+      "Variability: Handling different part variations, orientations, and lighting conditions.",
+      "Accuracy: Minimizing false positives and negatives in a high-speed environment.",
+      "Real-Time Processing: Keeping up with assembly line speeds."
+    ],
+    baselineRequirements: [
+      "Object Detection: High-accuracy identification of assembly components.",
+      "Automated Labeling: Drawing bounding boxes and assigning correct class labels.",
+      "Real-Time Integration: Processing images immediately for quality control feedback.",
+      "Data Scalability: Handling large volumes of data and adapting to new part types."
     ]
   }
 ];
 
-const domains = ["All", "Machine Learning", "Cyber Security", "IoT"];
+const domains = [
+  "All",
+  "Healthcare / Computer Vision",
+  "EdTech / Software Engineering",
+  "Sales Operations / NLP",
+  "Data Analytics / Social Intelligence",
+  "Smart Cities / IoT",
+  "FinTech / Machine Learning",
+  "Blockchain / Supply Chain",
+  "IoT / Sustainability",
+  "IoT / Cybersecurity",
+  "Manufacturing / AI"
+];
 
 const navItems = [
   { name: "Home", link: "/" },
@@ -198,7 +285,7 @@ export default function ProblemStatements() {
 
   return (
     <div className="relative w-full min-h-screen bg-black text-white selection:bg-purple-500/30">
-        <div className="fixed inset-0 w-full h-full pointer-events-none z-0">
+      <div className="fixed inset-0 w-full h-full pointer-events-none z-0">
            <DarkVeil
             hueShift={0}
             noiseIntensity={0.02}
@@ -210,57 +297,7 @@ export default function ProblemStatements() {
             />
         </div>
 
-      <Navbar className="fixed top-0 z-50">
-        <NavBody>
-          <NavbarLogo />
-          <NavItems items={navItems} />
-        </NavBody>
-        <div className="hidden lg:flex items-center gap-3 absolute right-8 top-8 z-50">
-          <a
-            href="https://www.linkedin.com/company/svce-developer-student-community/posts/?feedView=all"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-10 h-10 rounded-full bg-white/10 hover:bg-blue-600 backdrop-blur-sm border border-white/20 flex items-center justify-center transition-all duration-200 hover:scale-110 hover:shadow-lg"
-            aria-label="LinkedIn"
-          >
-            <IconBrandLinkedin size={20} className="text-white" />
-          </a>
-          <a
-            href="https://www.instagram.com/gdscsvce/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-10 h-10 rounded-full bg-white/10 hover:bg-gradient-to-br hover:from-purple-600 hover:via-pink-600 hover:to-orange-500 backdrop-blur-sm border border-white/20 flex items-center justify-center transition-all duration-200 hover:scale-110 hover:shadow-lg"
-            aria-label="Instagram"
-          >
-            <IconBrandInstagram size={20} className="text-white" />
-          </a>
-        </div>
-
-        <MobileNav>
-          <MobileNavHeader>
-            <NavbarLogo />
-            <MobileNavToggle
-              isOpen={isMobileMenuOpen}
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            />
-          </MobileNavHeader>
-          <MobileNavMenu
-            isOpen={isMobileMenuOpen}
-            onClose={() => setIsMobileMenuOpen(false)}
-          >
-            {navItems.map((item, idx) => (
-              <a
-                key={`mobile-link-${idx}`}
-                href={item.link}
-                className="text-white/80 hover:text-white/90"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {item.name}
-              </a>
-            ))}
-          </MobileNavMenu>
-        </MobileNav>
-      </Navbar>
+      <AppNavbar />
 
       <main className="relative z-10 pt-32 px-4 md:px-8 pb-20 max-w-7xl mx-auto">
         <div className="text-center mb-16">

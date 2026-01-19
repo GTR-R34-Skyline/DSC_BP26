@@ -11,17 +11,20 @@ import {
   NavBody,
   NavItems,
   NavbarLogo,
-  MobileNav,
-  MobileNavHeader,
   MobileNavMenu,
   MobileNavToggle,
+  SocialIcons,
 } from "@/components/Navbar";
 
+import AppNavbar from "@/components/AppNavbar";
 import Blueprints2025Carousel from "@/components/Blueprints2025Carousel";
 
 const navItems = [
   { name: "Home", link: "/" },
   { name: "Problem Statements", link: "/problem-statements" },
+  { name: "Sponsors", link: "/#sponsors" },
+  { name: "Blueprints 2025", link: "/#blueprints-2025" },
+  { name: "FAQ", link: "/#faq" },
   { name: "Contact", link: "/#contact" },
 ];
 
@@ -70,90 +73,19 @@ export default function Home() {
     >
       <div className="relative w-full min-h-screen bg-black">
         {/* Background with DarkVeil */}
-        <div className="fixed inset-0 w-full h-full pointer-events-none">
-          <DarkVeil
-            hueShift={0}
-            noiseIntensity={0.02}
-            scanlineIntensity={0}
-            speed={1.5}
-            scanlineFrequency={0}
-            warpAmount={0.3}
-            resolutionScale={1}
-          />
-        </div>
-      
-        {/* Navbar */}
-        <Navbar className="fixed top-0 z-50">
-          <NavBody>
-            <NavbarLogo />
-            <NavItems items={navItems} />
-          </NavBody>
-          <div className="hidden lg:flex items-center gap-3 absolute right-8 top-8 z-50">
-            <a
-              href="https://www.linkedin.com/company/svce-developer-student-community/posts/?feedView=all"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-10 h-10 rounded-full bg-white/10 hover:bg-blue-600 backdrop-blur-sm border border-white/20 flex items-center justify-center transition-all duration-200 hover:scale-110 hover:shadow-lg"
-              aria-label="LinkedIn"
-            >
-              <IconBrandLinkedin size={20} className="text-white" />
-            </a>
-            <a
-              href="https://www.instagram.com/gdscsvce/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-10 h-10 rounded-full bg-white/10 hover:bg-gradient-to-br hover:from-purple-600 hover:via-pink-600 hover:to-orange-500 backdrop-blur-sm border border-white/20 flex items-center justify-center transition-all duration-200 hover:scale-110 hover:shadow-lg"
-              aria-label="Instagram"
-            >
-              <IconBrandInstagram size={20} className="text-white" />
-            </a>
-          </div>
+        <div className="fixed inset-0 w-full h-full pointer-events-none z-0">
+        <DarkVeil
+          hueShift={0}
+          noiseIntensity={0.02}
+          scanlineIntensity={0}
+          speed={1.5}
+          scanlineFrequency={0}
+          warpAmount={0.3}
+          resolutionScale={1}
+        />
+      </div>
 
-          <MobileNav>
-            <MobileNavHeader>
-              <NavbarLogo />
-              <MobileNavToggle
-                isOpen={isMobileMenuOpen}
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              />
-            </MobileNavHeader>
-            <MobileNavMenu
-              isOpen={isMobileMenuOpen}
-              onClose={() => setIsMobileMenuOpen(false)}
-            >
-              {navItems.map((item, idx) => (
-                <a
-                  key={`mobile-link-${idx}`}
-                  href={item.link}
-                  className="text-white/80 hover:text-white/90"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </a>
-              ))}
-              <div className="flex items-center gap-3 mt-4">
-                <a
-                  href="https://www.linkedin.com/company/svce-developer-student-community/posts/?feedView=all"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-white/10 hover:bg-blue-600 backdrop-blur-sm border border-white/20 flex items-center justify-center transition-all duration-200 hover:scale-110 hover:shadow-lg"
-                  aria-label="LinkedIn"
-                >
-                  <IconBrandLinkedin size={20} className="text-white" />
-                </a>
-                <a
-                  href="https://www.instagram.com/gdscsvce/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-white/10 hover:bg-gradient-to-br hover:from-purple-600 hover:via-pink-600 hover:to-orange-500 backdrop-blur-sm border border-white/20 flex items-center justify-center transition-all duration-200 hover:scale-110 hover:shadow-lg"
-                  aria-label="Instagram"
-                >
-                  <IconBrandInstagram size={20} className="text-white" />
-                </a>
-              </div>
-            </MobileNavMenu>
-          </MobileNav>
-        </Navbar>
+      <AppNavbar />
 
         {/* Hero Section */}
         <section id="home" className="relative min-h-screen flex items-center justify-center pt-20">
@@ -179,14 +111,15 @@ export default function Home() {
                   View Problem Statements
                 </a>
                 <a 
-                  href="#"
+                  href="/Copy of PPT Template_1.pptx"
+                  download="Blueprints_2026_Template.pptx"
                   className="px-8 py-4 text-lg font-bold text-white bg-white/5 hover:bg-white/10 border border-white/20 rounded-full transition-all duration-300 hover:scale-105 flex items-center gap-2 backdrop-blur-sm"
                 >
                   <IconDownload size={20} />
                   Download Template
                 </a>
                 <a 
-                  href="https://google.com"
+                  href="https://docs.google.com/forms/d/16FXTZ4LEUdLaLxJxFgZK1NC1ebDaQJixH5N9_NbGu8A/edit"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-8 py-4 text-lg font-bold text-black bg-white hover:bg-gray-200 border border-transparent rounded-full transition-all duration-300 hover:scale-105 flex items-center gap-2 shadow-[0_0_20px_rgba(255,255,255,0.3)]"
@@ -233,50 +166,47 @@ export default function Home() {
             </div>
         </section>
 
-        {/* Event Aim & Flow Section */}
-        <section className="relative py-20 px-4">
-            <div className="max-w-7xl mx-auto">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                    <div>
-                        <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
-                            The Aim of <br/>
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">Blueprints 2026</span>
-                        </h2>
-                        <div className="space-y-6 text-lg text-white/70">
-                            <p>
-                                Our goal is to bridge the gap between theoretical knowledge and practical application. 
-                                We want to empower students to build solutions that matter.
-                            </p>
-                            <ul className="space-y-4">
-                                <li className="flex items-start gap-3">
-                                    <div className="w-6 h-6 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400 mt-1">1</div>
-                                    <span>Foster a culture of innovation and collaborative learning.</span>
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <div className="w-6 h-6 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 mt-1">2</div>
-                                    <span>Provide mentorship from industry experts and alumni.</span>
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <div className="w-6 h-6 rounded-full bg-pink-500/20 flex items-center justify-center text-pink-400 mt-1">3</div>
-                                    <span>Create a platform for networking and career growth.</span>
-                                </li>
-                            </ul>
+        {/* Aim Section - Redesigned */}
+        <section className="relative py-32 px-4 bg-gradient-to-b from-black/20 to-purple-900/10 backdrop-blur-sm">
+            <div className="max-w-7xl mx-auto text-center">
+                <h2 className="text-white mb-12 tracking-tight drop-shadow-2xl font-bold">
+                    <span className="block text-4xl md:text-5xl mb-2 text-white/80">The Aim of</span>
+                    <span className="block text-7xl md:text-9xl text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 animate-gradient-x leading-none pb-4">
+                        Blueprints 2026
+                    </span>
+                </h2>
+                
+                <p className="text-2xl md:text-3xl text-white/90 max-w-4xl mx-auto mb-20 leading-relaxed font-light">
+                    Our goal is to <span className="text-white font-semibold border-b-2 border-blue-500/50">bridge the gap</span> between theoretical knowledge and practical application. 
+                    We want to empower students to build <span className="text-purple-300 font-semibold border-b-2 border-purple-500/50">solutions that matter</span>.
+                </p>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                    <div className="bg-white/5 border border-white/10 p-10 rounded-[2rem] hover:bg-white/10 transition-all duration-300 group hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/10">
+                        <div className="w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400 mb-8 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(59,130,246,0.2)]">
+                            <span className="text-3xl font-bold">1</span>
                         </div>
+                        <p className="text-xl text-white/90 leading-relaxed">
+                            Foster a culture of <span className="text-blue-400 font-bold block mt-2 text-2xl">Innovation</span> and collaborative learning.
+                        </p>
                     </div>
-                    <div className="relative aspect-square md:aspect-video lg:aspect-square bg-white/5 rounded-2xl border border-white/10 flex items-center justify-center overflow-hidden group">
-                        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                        <div className="text-center p-8">
-                            <p className="text-white/30 text-xl font-mono mb-4">[EVENT FLOW VISUAL]</p>
-                            <div className="space-y-2 text-white/50 text-sm">
-                                <p>Registration Starts</p>
-                                <p>↓</p>
-                                <p>Hackathon Phases</p>
-                                <p>↓</p>
-                                <p>Shortlisting</p>
-                                <p>↓</p>
-                                <p>Grand Finale</p>
-                            </div>
+
+                    <div className="bg-white/5 border border-white/10 p-10 rounded-[2rem] hover:bg-white/10 transition-all duration-300 group hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-500/10">
+                        <div className="w-16 h-16 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 mb-8 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(168,85,247,0.2)]">
+                            <span className="text-3xl font-bold">2</span>
                         </div>
+                        <p className="text-xl text-white/90 leading-relaxed">
+                            Provide mentorship from <span className="text-purple-400 font-bold block mt-2 text-2xl">Industry Experts</span> and alumni.
+                        </p>
+                    </div>
+
+                    <div className="bg-white/5 border border-white/10 p-10 rounded-[2rem] hover:bg-white/10 transition-all duration-300 group hover:-translate-y-2 hover:shadow-2xl hover:shadow-pink-500/10">
+                        <div className="w-16 h-16 rounded-full bg-pink-500/20 flex items-center justify-center text-pink-400 mb-8 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(236,72,153,0.2)]">
+                            <span className="text-3xl font-bold">3</span>
+                        </div>
+                        <p className="text-xl text-white/90 leading-relaxed">
+                            Create a platform for <span className="text-pink-400 font-bold block mt-2 text-2xl">Networking</span> and career growth.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -286,10 +216,48 @@ export default function Home() {
 
 
         {/* Blueprints 2025 Carousel */}
-        <Blueprints2025Carousel />
+        <div id="blueprints-2025">
+          <Blueprints2025Carousel />
+        </div>
+
+        {/* Partners Section */}
+        <section id="partners" className="relative py-20 px-4 max-w-4xl mx-auto text-center">
+            <h2 className="text-4xl font-bold text-white mb-12">
+                Our Partners
+            </h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center justify-center">
+                {/* Venue Partner */}
+                <div className="flex flex-col items-center space-y-4">
+                    <p className="text-white/60 tracking-widest uppercase text-sm font-bold">Venue Partner</p>
+                    <a 
+                      href="https://www.google.com/maps/place/Tekclan+Software+Solutions+Pvt+Ltd/data=!4m2!3m1!1s0x0:0x1ab7093ab7f997f7?sa=X&ved=1t:2428&ictx=111" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="group transition-transform hover:scale-105"
+                    >
+                        <div className="bg-white rounded-3xl py-4 px-8 md:px-12 shadow-lg flex items-center justify-center">
+                            <img 
+                                src="/sponsor-yuniq-v3.png" 
+                                alt="Venue Partner" 
+                                className="h-40 md:h-52 w-auto object-contain"
+                            />
+                        </div>
+                    </a>
+                </div>
+
+                {/* Food Partner */}
+                <div className="flex flex-col items-center space-y-4">
+                    <p className="text-white/60 tracking-widest uppercase text-sm font-bold">Food Partner</p>
+                    <div className="h-24 md:h-32 flex items-center justify-center">
+                        <p className="text-2xl text-white/40 font-mono italic">Coming Soon</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
 {/* FAQ Section */}
-<section className="relative py-20 px-4 max-w-4xl mx-auto">
+<section id="faq" className="relative py-20 px-4 max-w-4xl mx-auto">
   <h2 className="text-4xl font-bold text-white mb-12 text-center">
     Frequently Asked Questions
   </h2>
@@ -384,7 +352,7 @@ export default function Home() {
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                     </div>
                     <h3 className="text-xl font-bold text-white mb-2">Call Us</h3>
-                    <a href="tel:+919876543210" className="text-white/70 hover:text-purple-400 transition-colors text-lg">
+                    <a href="tel:+918015920905" className="text-white/70 hover:text-purple-400 transition-colors text-lg">
                         +91 80159 20905
                     </a>
                 </div>
