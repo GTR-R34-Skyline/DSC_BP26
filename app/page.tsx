@@ -54,8 +54,14 @@ export default function Home() {
 
 
         {/* Hero Section */}
-        <section id="home" className="relative min-h-[90svh] flex items-center justify-center pt-24 md:pt-20 overflow-hidden">
-          <div className="text-center z-10 px-4 w-full max-w-6xl mx-auto flex flex-col items-center">
+        <section id="home" className="relative min-h-[90svh] flex items-center justify-center pt-24 md:pt-20">
+          {/* Background Layer (Clipped) */}
+          <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
+             {/* Add decorative elements here if any specific to hero, otherwise this acts as the safe boundary */}
+          </div>
+
+          {/* Content Layer (visible, no clip) */}
+          <div className="relative text-center z-10 px-4 w-full max-w-6xl mx-auto flex flex-col items-center">
             
             {/* Title - Typewriter Animation */}
             <h1 

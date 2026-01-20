@@ -27,7 +27,7 @@ export default function TypewriterText({
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   const containerVariants = {
-    hidden: { opacity: isMobile ? 0 : 1, scale: isMobile ? 0.9 : 1 },
+    hidden: { opacity: isMobile ? 0 : 1, scale: isMobile ? 1 : 1 },
     visible: {
       opacity: 1,
       scale: 1,
