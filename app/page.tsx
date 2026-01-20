@@ -63,9 +63,9 @@ export default function Home() {
           {/* Content Layer (visible, no clip) */}
           <div className="relative text-center z-10 px-4 w-full max-w-6xl mx-auto flex flex-col items-center">
             
-            {/* Title - Typewriter Animation */}
+            {/* Title - Typewriter Animation - FIXED FOR MOBILE */}
             <h1 
-              className="text-[3.5rem] leading-[0.9] sm:text-5xl md:text-7xl lg:text-9xl font-bold mb-4 md:mb-6 drop-shadow-2xl tracking-tighter max-w-full break-words" 
+              className="text-[1.8rem] sm:text-3xl md:text-5xl lg:text-7xl xl:text-9xl font-bold mb-4 md:mb-6 drop-shadow-2xl tracking-tighter max-w-full break-words leading-tight" 
               style={{ fontFamily: 'var(--font-anonymous-pro)' }}
             >
                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 animate-gradient-x inline-block pb-2">
