@@ -3,10 +3,12 @@ import { useState } from "react";
 import { Navbar, NavBody, NavbarLogo, NavItems, MobileNav, MobileNavHeader, MobileNavToggle, MobileNavMenu, SocialIcons } from "@/components/Navbar";
 import { IconBrandLinkedin, IconBrandInstagram } from "@tabler/icons-react";
 
+import { useActiveSection } from "@/hooks/useActiveSection";
+
 export const navItems = [
-  { name: "Home", link: "/" },
+  { name: "Home", link: "/#home" }, // Updated to include hash for consistent matching
   { name: "Problem Statements", link: "/problem-statements" },
-  { name: "Partners", link: "/#partners" },
+  { name: "Sponsors", link: "/#sponsors" },
   { name: "Blueprints 2025", link: "/#blueprints-2025" },
   { name: "FAQ", link: "/#faq" },
   { name: "Contact", link: "/#contact" },
@@ -14,12 +16,16 @@ export const navItems = [
 
 export default function AppNavbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const activeSection = useActiveSection(["home", "sponsors", "blueprints-2025", "faq", "contact"]);
+
+  // Helper to match active section to link
+  const activeTab = navItems.find(item => item.link.includes(`#${activeSection}`))?.link || (activeSection === "home" ? "/#home" : "");
 
   return (
     <Navbar className="fixed top-0 z-50">
       <NavBody>
         <NavbarLogo />
-        <NavItems items={navItems} />
+        <NavItems items={navItems} activeTab={activeTab} />
         <SocialIcons className="hidden lg:flex items-center gap-3">
           <a
             href="https://www.linkedin.com/company/svce-developer-student-community/posts/?feedView=all"

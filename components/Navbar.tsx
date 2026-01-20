@@ -13,9 +13,10 @@ import React, { useRef, useState, ReactNode } from "react";
 interface NavbarProps {
   children: ReactNode;
   className?: string;
+  id?: string;
 }
 
-export const Navbar = ({ children, className }: NavbarProps) => {
+export const Navbar = ({ children, className, id }: NavbarProps) => {
   const ref = useRef(null);
   const { scrollY } = useScroll();
   const [visible, setVisible] = useState(false);
@@ -31,6 +32,7 @@ export const Navbar = ({ children, className }: NavbarProps) => {
   return (
     <motion.div
       ref={ref}
+      id={id}
       className={cn("sticky inset-x-0 top-8 z-40 w-full", className)}
     >
       {React.Children.map(children, (child) => {
@@ -94,9 +96,10 @@ interface NavItemsProps {
   items: Array<{ name: string; link: string }>;
   className?: string;
   onItemClick?: () => void;
+  activeTab?: string;
 }
 
-export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
+export const NavItems = ({ items, className, onItemClick, activeTab, visible, ...props }: NavItemsProps & { visible?: boolean }) => {
   const [hovered, setHovered] = useState<number | null>(null);
 
   return (
@@ -106,24 +109,40 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
         "hidden flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium text-zinc-600 transition duration-200 hover:text-zinc-800 lg:flex lg:space-x-2",
         className
       )}
+      {...props}
     >
-      {items.map((item, idx) => (
-        <a
-          onMouseEnter={() => setHovered(idx)}
-          onClick={onItemClick}
-          className="relative px-4 py-2 text-white/80 hover:text-white/90"
-          key={`link-${idx}`}
-          href={item.link}
-        >
-          {hovered === idx && (
-            <motion.div
-              layoutId="hovered"
-              className="absolute inset-0 h-full w-full rounded-full bg-white/10"
-            />
-          )}
-          <span className="relative z-20">{item.name}</span>
-        </a>
-      ))}
+      {items.map((item, idx) => {
+        const isActive = activeTab === item.link || activeTab === item.link.substring(1); // Check full link or hash id
+        
+        return (
+          <a
+            onMouseEnter={() => setHovered(idx)}
+            onClick={onItemClick}
+            className={cn(
+              "relative px-4 py-2 text-sm transition-colors duration-200",
+              isActive ? "text-white font-semibold" : "text-white/70 hover:text-white/90"
+            )}
+            key={`link-${idx}`}
+            href={item.link}
+          >
+            {isActive && (
+               <motion.div
+                layoutId="active-pill"
+                className="absolute inset-0 h-full w-full rounded-full bg-white/10"
+                transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+              />
+            )}
+            
+            {hovered === idx && !isActive && (
+              <motion.div
+                layoutId="hovered"
+                className="absolute inset-0 h-full w-full rounded-full bg-white/5"
+              />
+            )}
+            <span className="relative z-20">{item.name}</span>
+          </a>
+        );
+      })}
     </motion.div>
   );
 };
