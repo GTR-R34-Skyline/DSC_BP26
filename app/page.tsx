@@ -10,6 +10,7 @@ import TypewriterText from "@/components/TypewriterText";
 import PulseGlow from "@/components/PulseGlow";
 import SectionTitle from "@/components/SectionTitle";
 import CountdownTimer from "@/components/CountdownTimer";
+import ScrollAnchor from "@/components/ScrollAnchor";
 
 import Chatbot from "@/components/Chatbot";
 import { IconArrowUpRight, IconBrandLinkedin, IconBrandInstagram, IconDownload, IconEye } from "@tabler/icons-react";
@@ -53,32 +54,46 @@ export default function Home() {
 
 
         {/* Hero Section */}
-        <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <section id="home" className="relative min-h-[90svh] flex items-center justify-center pt-24 md:pt-20 overflow-hidden">
           <div className="text-center z-10 px-4 w-full max-w-6xl mx-auto flex flex-col items-center">
             
             {/* Title - Typewriter Animation */}
             <h1 
-              className="text-4xl sm:text-5xl md:text-7xl lg:text-9xl font-bold mb-6 drop-shadow-2xl leading-[1.1] tracking-tighter max-w-[90vw] break-words" 
+              className="text-[3.5rem] leading-[0.9] sm:text-5xl md:text-7xl lg:text-9xl font-bold mb-4 md:mb-6 drop-shadow-2xl tracking-tighter max-w-full break-words" 
               style={{ fontFamily: 'var(--font-anonymous-pro)' }}
             >
-               <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 animate-gradient-x inline-block">
+               <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 animate-gradient-x inline-block pb-2">
                 <TypewriterText text="BLUEPRINTS 2026" />
                </span>
             </h1>
 
             {/* Subtitle & Description - Staggered Fade Up */}
-            <FadeIn delay={0.8} direction="up" className="pointer-events-none px-2">
-              <p className="text-xl md:text-2xl lg:text-3xl text-white/80 drop-shadow-md leading-relaxed max-w-3xl mx-auto font-light">
+            <FadeIn delay={0.8} direction="up" className="pointer-events-none px-2 mb-6 md:mb-0">
+              <p className="text-lg md:text-2xl lg:text-3xl text-white/80 drop-shadow-md leading-relaxed max-w-3xl mx-auto font-light">
                 Innovate. Build. Disrupt. <br/>
-                <span className="text-white/50 text-base md:text-xl mt-2 block sm:inline">The flagship 24-hour hackathon by DSC SVCE.</span>
+                <span className="text-white/50 text-sm md:text-xl mt-2 block sm:inline">The flagship 24-hour hackathon by DSC SVCE.</span>
               </p>
             </FadeIn>
             
             {/* Buttons - Staggered Fade Up */}
-            <FadeIn delay={1.0} className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 w-full px-4 pointer-events-auto">
+            <FadeIn delay={1.0} className="mt-4 md:mt-10 flex flex-col md:flex-row items-center justify-center gap-3 md:gap-4 w-full px-4 pointer-events-auto">
+                {/* Primary CTA: Register Now (Mobile First) */}
+                <PulseGlow delay={1.5} className="w-full md:w-auto order-1 md:order-3">
+                  <a 
+                    href="https://docs.google.com/forms/d/16FXTZ4LEUdLaLxJxFgZK1NC1ebDaQJixH5N9_NbGu8A/edit"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full md:w-auto justify-center px-8 py-4 text-lg font-bold text-black bg-white hover:bg-gray-200 border border-transparent rounded-full transition-all duration-300 hover:scale-105 flex items-center gap-2 shadow-[0_0_20px_rgba(255,255,255,0.3)]"
+                  >
+                    Register Now
+                    <IconArrowUpRight size={20} />
+                  </a>
+                </PulseGlow>
+
+                {/* Secondary CTAs */}
                 <a 
                   href="/problem-statements"
-                  className="px-8 py-4 text-lg font-bold text-white bg-white/5 hover:bg-white/10 border border-white/20 rounded-full transition-all duration-300 hover:scale-105 flex items-center gap-2 backdrop-blur-sm"
+                  className="w-full md:w-auto justify-center order-2 md:order-1 px-8 py-3 md:py-4 text-base md:text-lg font-bold text-white bg-white/5 hover:bg-white/10 border border-white/20 rounded-full transition-all duration-300 hover:scale-105 flex items-center gap-2 backdrop-blur-sm"
                 >
                   <IconEye size={20} />
                   View Problem Statements
@@ -86,22 +101,11 @@ export default function Home() {
                 <a 
                   href="/Copy of PPT Template_1.pptx"
                   download="Blueprints_2026_Template.pptx"
-                  className="px-8 py-4 text-lg font-bold text-white bg-white/5 hover:bg-white/10 border border-white/20 rounded-full transition-all duration-300 hover:scale-105 flex items-center gap-2 backdrop-blur-sm"
+                  className="w-full md:w-auto justify-center order-3 md:order-2 px-8 py-3 md:py-4 text-base md:text-lg font-bold text-white/70 hover:text-white bg-transparent hover:bg-white/5 border border-white/10 hover:border-white/20 rounded-full transition-all duration-300 flex items-center gap-2 backdrop-blur-sm"
                 >
                   <IconDownload size={20} />
                   Download Template
                 </a>
-                <PulseGlow delay={1.5}>
-                  <a 
-                    href="https://docs.google.com/forms/d/16FXTZ4LEUdLaLxJxFgZK1NC1ebDaQJixH5N9_NbGu8A/edit"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-8 py-4 text-lg font-bold text-black bg-white hover:bg-gray-200 border border-transparent rounded-full transition-all duration-300 hover:scale-105 flex items-center gap-2 shadow-[0_0_20px_rgba(255,255,255,0.3)]"
-                  >
-                    Register Now
-                    <IconArrowUpRight size={20} />
-                  </a>
-                </PulseGlow>
             </FadeIn>
             
             <FadeIn delay={1.2}>
@@ -115,25 +119,25 @@ export default function Home() {
             <div className="max-w-7xl mx-auto px-4">
                 {/* Stats - Sequentially Animated */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                    <FadeIn delay={0.1} className="space-y-2">
+                    <FadeIn delay={0.1} className="space-y-2" viewport={{ once: false }}>
                         <div className="text-4xl md:text-6xl font-bold text-blue-500 flex justify-center">
                            <AnimatedCounter to={24} suffix="h" />
                         </div>
                         <p className="text-white/60 uppercase tracking-widest text-sm">Duration</p>
                     </FadeIn>
-                    <FadeIn delay={0.3} className="space-y-2">
+                    <FadeIn delay={0.3} className="space-y-2" viewport={{ once: false }}>
                         <div className="text-4xl md:text-6xl font-bold text-purple-500 flex justify-center">
                            <AnimatedCounter to={500} suffix="+" />
                         </div>
                         <p className="text-white/60 uppercase tracking-widest text-sm">Participants</p>
                     </FadeIn>
-                    <FadeIn delay={0.5} className="space-y-2">
+                    <FadeIn delay={0.5} className="space-y-2" viewport={{ once: false }}>
                         <div className="text-4xl md:text-6xl font-bold text-pink-500 flex justify-center">
                            <AnimatedCounter to={15} suffix="+" />
                         </div>
                         <p className="text-white/60 uppercase tracking-widest text-sm">Problem Statements</p>
                     </FadeIn>
-                    <FadeIn delay={0.7} className="space-y-2">
+                    <FadeIn delay={0.7} className="space-y-2" viewport={{ once: false }}>
                          <div className="text-4xl md:text-6xl font-bold text-green-500 flex justify-center">
                            <AnimatedCounter prefix="₹" to={50} suffix="k+" />
                         </div>
@@ -223,12 +227,14 @@ export default function Home() {
         </section>
 
         {/* Blueprints 2025 Carousel */}
-        <div id="blueprints-2025" className="scroll-mt-40">
+        <ScrollAnchor id="blueprints-2025" />
+        <div>
           <Blueprints2025Carousel />
         </div>
 
         {/* Partners Section - Renamed id to sponsors to match navbar */}
-        <section id="sponsors" className="relative py-20 px-4 max-w-4xl mx-auto text-center scroll-mt-40">
+        <ScrollAnchor id="sponsors" />
+        <section className="relative py-20 px-4 max-w-4xl mx-auto text-center">
             <FadeIn>
               <SectionTitle title="Sponsors & Partners" subtitle="Our Supporters" />
             </FadeIn>
@@ -303,7 +309,8 @@ export default function Home() {
         </section>
 
 {/* FAQ Section */}
-<section id="faq" className="relative py-20 px-4 max-w-4xl mx-auto scroll-mt-40">
+<ScrollAnchor id="faq" />
+<section className="relative py-20 px-4 max-w-4xl mx-auto">
   <FadeIn>
     <SectionTitle title="Frequently Asked Questions" />
   </FadeIn>
@@ -345,7 +352,8 @@ export default function Home() {
 </section>
 
         {/* Contact Section */}
-        <section id="contact" className="relative py-20 px-4 md:px-8 bg-gradient-to-b from-black to-blue-950/20 scroll-mt-40">
+        <ScrollAnchor id="contact" />
+        <section className="relative py-20 px-4 md:px-8 bg-gradient-to-b from-black to-blue-950/20">
           <div className="w-full max-w-4xl mx-auto text-center z-10">
             <SectionTitle title="Get in Touch" subtitle="[CONTACT US]" />
 

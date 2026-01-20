@@ -45,7 +45,7 @@ const CountdownTimer = () => {
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: 10, opacity: 0 }}
         transition={{ duration: 0.3 }}
-        className="text-3xl md:text-5xl font-bold text-white tabular-nums drop-shadow-lg"
+        className="text-2xl md:text-5xl font-bold text-white tabular-nums drop-shadow-lg"
       >
         {value.toString().padStart(2, "0")}
       </motion.div>
@@ -56,17 +56,17 @@ const CountdownTimer = () => {
   );
 
   return (
-    <div className="flex flex-col items-center mt-12 pb-8">
-      <p className="text-white/70 uppercase tracking-widest text-sm mb-4 font-semibold">
+    <div className="flex flex-col items-center mt-8 md:mt-12 pb-4 md:pb-8">
+      <p className="text-white/70 uppercase tracking-widest text-[10px] md:text-sm mb-3 md:mb-4 font-semibold">
         Hackathon Begins In
       </p>
-      <div className="flex items-center justify-center bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-4 md:p-6 shadow-2xl">
+      <div className="flex items-center justify-center bg-white/5 backdrop-blur-md border border-white/10 rounded-xl md:rounded-2xl p-3 md:p-6 shadow-2xl">
         <TimeUnit value={timeLeft.days} label="Days" />
-        <span className="text-2xl md:text-4xl text-white/30 -mt-6">:</span>
+        <span className="text-xl md:text-4xl text-white/30 -mt-4 md:-mt-6">:</span>
         <TimeUnit value={timeLeft.hours} label="Hours" />
-        <span className="text-2xl md:text-4xl text-white/30 -mt-6">:</span>
+        <span className="text-xl md:text-4xl text-white/30 -mt-4 md:-mt-6">:</span>
         <TimeUnit value={timeLeft.minutes} label="Mins" />
-        <span className="text-2xl md:text-4xl text-white/30 -mt-6">:</span>
+        <span className="text-xl md:text-4xl text-white/30 -mt-4 md:-mt-6">:</span>
         <TimeUnit value={timeLeft.seconds} label="Secs" />
       </div>
     </div>

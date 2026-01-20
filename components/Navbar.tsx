@@ -268,17 +268,24 @@ export const NavbarLogo = ({ visible = false }: NavbarLogoProps) => {
   return (
     <a
       href="/"
-      className="relative z-20 flex items-center gap-2 mr-20"
+      className="relative z-20 flex items-center gap-2 mr-4 lg:mr-20"
     >
       <span className="text-white text-2xl font-bold">
         &lt;&gt;
       </span>
-      <span className="relative text-white text-xl tracking-wide whitespace-nowrap">
+      {/* Mobile Logo: Always Short */}
+      <span className="block md:hidden text-white text-xl font-bold tracking-wide">
+        DSC SVCE
+      </span>
+
+      {/* Desktop Logo: Animated */}
+      <span className="hidden md:block relative text-white text-xl tracking-wide whitespace-nowrap">
         <motion.span
           initial={false}
           animate={{
             opacity: visible ? 0 : 1,
             x: visible ? -10 : 0,
+            display: visible ? "none" : "inline-block", // Optimization
           }}
           transition={{ duration: 0.3 }}
           className="inline-block"
@@ -290,6 +297,7 @@ export const NavbarLogo = ({ visible = false }: NavbarLogoProps) => {
           animate={{
             opacity: visible ? 1 : 0,
             x: visible ? 0 : 10,
+            display: visible ? "inline-block" : "none",
           }}
           transition={{ duration: 0.3 }}
           className="inline-block absolute left-0 top-0"

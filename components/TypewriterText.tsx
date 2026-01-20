@@ -32,7 +32,7 @@ export default function TypewriterText({
       opacity: 1,
       scale: 1,
       transition: {
-        staggerChildren: isMobile ? 0 : 0.03,
+        staggerChildren: isMobile ? 0 : 0.05,
         delayChildren: delay,
         duration: isMobile ? 0.6 : 0,
         ease: "easeOut" as any,

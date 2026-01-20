@@ -9,9 +9,10 @@ interface FadeInProps {
   className?: string;
   direction?: "up" | "down" | "left" | "right" | "none";
   stagger?: number;
+  viewport?: { once?: boolean; margin?: string; amount?: "some" | "all" | number };
 }
 
-export default function FadeIn({ children, delay = 0, className = "", direction = "up", stagger = 0 }: FadeInProps) {
+export default function FadeIn({ children, delay = 0, className = "", direction = "up", stagger = 0, viewport }: FadeInProps) {
   const variants = {
     hidden: {
       opacity: 0,
@@ -35,7 +36,7 @@ export default function FadeIn({ children, delay = 0, className = "", direction 
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-50px" }}
+      viewport={viewport || { once: true, margin: "-50px" }}
       variants={variants}
       className={className}
     >

@@ -10,9 +10,8 @@ const images = [
   "/highlights/15.JPG",
   "/highlights/16.JPG",
   "/highlights/17.JPG",
-  "/highlights/18.JPG",
-  "/highlights/19.JPG",
-  "/highlights/20.JPG",
+  "/highlights/18.jpg",
+  "/highlights/19.jpg",
 ];
 
 export default function Blueprints2025Carousel() {
@@ -33,7 +32,7 @@ export default function Blueprints2025Carousel() {
             <b>Blueprints 2025 Rewind</b>
           </h2>
           <p className="text-white/60 max-w-2xl mx-auto">
-            A glimpse into our previous flagship hackathon where innovation met execution.
+            A glimpse into our previous flagship product hackathon where innovation met execution.
           </p>
         </div>
 

@@ -299,8 +299,9 @@ export default function ProblemStatements() {
 
       <AppNavbar />
 
-      <main className="relative z-10 pt-32 px-4 md:px-8 pb-20 max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+      <main className="relative z-10 px-4 md:px-8 pb-20 max-w-7xl mx-auto">
+        <div className="h-28 md:h-36 w-full" aria-hidden="true" />
+        <div className="text-center mb-10 md:mb-14">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-b from-white to-white/50 bg-clip-text text-transparent">
             Problem Statements
           </h1>
@@ -310,7 +311,7 @@ export default function ProblemStatements() {
         </div>
 
         {/* Filter Tabs */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        <div className="flex flex-wrap justify-center gap-4 mb-8">
           {domains.map((domain) => (
             <button
               key={domain}

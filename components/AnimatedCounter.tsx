@@ -22,7 +22,7 @@ export default function AnimatedCounter({
 }: AnimatedCounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const motionValue = useMotionValue(from);
-  const inView = useInView(ref, { once: true, margin: "-50px" });
+  const inView = useInView(ref, { once: false, margin: "-10px" }); // margin adjusted to trigger slightly earlier/later
 
   const springValue = useSpring(motionValue, {
     duration: duration * 1000, 
@@ -32,12 +32,15 @@ export default function AnimatedCounter({
   useEffect(() => {
     if (inView) {
       motionValue.set(to);
+    } else {
+      motionValue.set(from);
     }
-  }, [inView, motionValue, to]);
+  }, [inView, motionValue, from, to]);
 
   useEffect(() => {
     return springValue.on("change", (latest) => {
       if (ref.current) {
+        // integers only
         ref.current.textContent = `${prefix}${latest.toFixed(0)}${suffix}`;
       }
     });
