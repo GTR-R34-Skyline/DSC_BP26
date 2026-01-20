@@ -7,6 +7,9 @@ import FadeIn from "@/components/FadeIn";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import Accordion from "@/components/Accordion";
 import TypewriterText from "@/components/TypewriterText";
+import PulseGlow from "@/components/PulseGlow";
+import SectionTitle from "@/components/SectionTitle";
+import CountdownTimer from "@/components/CountdownTimer";
 
 import Chatbot from "@/components/Chatbot";
 import { IconArrowUpRight, IconBrandLinkedin, IconBrandInstagram, IconDownload, IconEye } from "@tabler/icons-react";
@@ -47,22 +50,13 @@ export default function Home() {
 
         <AppNavbar />
 
-import TypewriterText from "@/components/TypewriterText";
 
-// ... imports
 
         {/* Hero Section */}
         <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
           <div className="text-center z-10 px-4 w-full max-w-6xl mx-auto flex flex-col items-center">
             
             {/* Title - Typewriter Animation */}
-            {/* 
-                Structure: H1 contains the gradient. 
-                TypewriterText renders internal spans.
-                We need the gradient to apply to the whole text block, not per character.
-                If we use bg-clip-text on the parent, it works if children are standard text.
-                Since TypewriterText makes motion.spans, we just need to ensure they don't override color.
-             */}
             <h1 
               className="text-4xl sm:text-5xl md:text-7xl lg:text-9xl font-bold mb-6 drop-shadow-2xl leading-[1.1] tracking-tighter max-w-[90vw] break-words" 
               style={{ fontFamily: 'var(--font-anonymous-pro)' }}
@@ -73,7 +67,6 @@ import TypewriterText from "@/components/TypewriterText";
             </h1>
 
             {/* Subtitle & Description - Staggered Fade Up */}
-            {/* Delay explanation: Title is ~15 chars * 0.03s = 0.45s + enter anim. Let's delay ~0.8s */}
             <FadeIn delay={0.8} direction="up" className="pointer-events-none px-2">
               <p className="text-xl md:text-2xl lg:text-3xl text-white/80 drop-shadow-md leading-relaxed max-w-3xl mx-auto font-light">
                 Innovate. Build. Disrupt. <br/>
@@ -83,7 +76,6 @@ import TypewriterText from "@/components/TypewriterText";
             
             {/* Buttons - Staggered Fade Up */}
             <FadeIn delay={1.0} className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 w-full px-4 pointer-events-auto">
-
                 <a 
                   href="/problem-statements"
                   className="px-8 py-4 text-lg font-bold text-white bg-white/5 hover:bg-white/10 border border-white/20 rounded-full transition-all duration-300 hover:scale-105 flex items-center gap-2 backdrop-blur-sm"
@@ -99,15 +91,21 @@ import TypewriterText from "@/components/TypewriterText";
                   <IconDownload size={20} />
                   Download Template
                 </a>
-                <a 
-                  href="https://docs.google.com/forms/d/16FXTZ4LEUdLaLxJxFgZK1NC1ebDaQJixH5N9_NbGu8A/edit"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-8 py-4 text-lg font-bold text-black bg-white hover:bg-gray-200 border border-transparent rounded-full transition-all duration-300 hover:scale-105 flex items-center gap-2 shadow-[0_0_20px_rgba(255,255,255,0.3)]"
-                >
-                  Register Now
-                  <IconArrowUpRight size={20} />
-                </a>
+                <PulseGlow delay={1.5}>
+                  <a 
+                    href="https://docs.google.com/forms/d/16FXTZ4LEUdLaLxJxFgZK1NC1ebDaQJixH5N9_NbGu8A/edit"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-8 py-4 text-lg font-bold text-black bg-white hover:bg-gray-200 border border-transparent rounded-full transition-all duration-300 hover:scale-105 flex items-center gap-2 shadow-[0_0_20px_rgba(255,255,255,0.3)]"
+                  >
+                    Register Now
+                    <IconArrowUpRight size={20} />
+                  </a>
+                </PulseGlow>
+            </FadeIn>
+            
+            <FadeIn delay={1.2}>
+              <CountdownTimer />
             </FadeIn>
           </div>
         </section>
@@ -115,36 +113,37 @@ import TypewriterText from "@/components/TypewriterText";
         {/* Event Overview / Stats Section */}
         <section className="relative py-20 border-y border-white/10 bg-black/50 backdrop-blur-sm">
             <div className="max-w-7xl mx-auto px-4">
-                <FadeIn className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                    <div className="space-y-2">
+                {/* Stats - Sequentially Animated */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                    <FadeIn delay={0.1} className="space-y-2">
                         <div className="text-4xl md:text-6xl font-bold text-blue-500 flex justify-center">
                            <AnimatedCounter to={24} suffix="h" />
                         </div>
                         <p className="text-white/60 uppercase tracking-widest text-sm">Duration</p>
-                    </div>
-                    <div className="space-y-2">
+                    </FadeIn>
+                    <FadeIn delay={0.3} className="space-y-2">
                         <div className="text-4xl md:text-6xl font-bold text-purple-500 flex justify-center">
                            <AnimatedCounter to={500} suffix="+" />
                         </div>
                         <p className="text-white/60 uppercase tracking-widest text-sm">Participants</p>
-                    </div>
-                    <div className="space-y-2">
+                    </FadeIn>
+                    <FadeIn delay={0.5} className="space-y-2">
                         <div className="text-4xl md:text-6xl font-bold text-pink-500 flex justify-center">
                            <AnimatedCounter to={15} suffix="+" />
                         </div>
                         <p className="text-white/60 uppercase tracking-widest text-sm">Problem Statements</p>
-                    </div>
-                    <div className="space-y-2">
+                    </FadeIn>
+                    <FadeIn delay={0.7} className="space-y-2">
                          <div className="text-4xl md:text-6xl font-bold text-green-500 flex justify-center">
                            <AnimatedCounter prefix="₹" to={50} suffix="k+" />
                         </div>
                         <p className="text-white/60 uppercase tracking-widest text-sm">Prize Pool</p>
-                    </div>
-                </FadeIn>
+                    </FadeIn>
+                </div>
                 
                 <FadeIn delay={0.2} className="mt-16 text-center max-w-4xl mx-auto">
-                    <h2 className="text-3xl font-bold text-white mb-6">Where Innovation Meets Execution</h2>
-                    <p className="text-lg text-white/70 leading-relaxed">
+                    <SectionTitle title="Where Innovation Meets Execution" />
+                    <p className="text-lg text-white/70 leading-relaxed -mt-4">
                         Blueprints 2026 is not just a hackathon; it's a launchpad for the next generation of developers. 
                         We bring together the brightest minds to solve real-world problems across domains like 
                         <span className="text-blue-400"> Machine Learning</span>, 
@@ -159,6 +158,7 @@ import TypewriterText from "@/components/TypewriterText";
         <section className="relative py-32 px-4 bg-gradient-to-b from-black/20 to-purple-900/10 backdrop-blur-sm">
             <div className="max-w-7xl mx-auto text-center">
                 <FadeIn>
+                  {/* Custom Title for Aim to preserve specific styling */}
                   <h2 className="text-white mb-12 tracking-tight drop-shadow-2xl font-bold">
                       <span className="block text-4xl md:text-5xl mb-2 text-white/80">The Aim of</span>
                       <span className="block text-7xl md:text-9xl text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 animate-gradient-x leading-none pb-4">
@@ -203,17 +203,34 @@ import TypewriterText from "@/components/TypewriterText";
             </div>
         </section>
 
+        {/* Judging Panel Section */}
+        <section className="relative py-20 px-4 text-center bg-black/40 border-t border-white/5">
+            <FadeIn>
+                <SectionTitle title="Judging Panel" subtitle="Evaluation" />
+                <p className="text-white/60 italic text-xl mt-8 mb-12">Judging panel details will be announced soon.</p>
+                
+                {/* Skeleton Cards for Layout */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto opacity-50 pointer-events-none grayscale">
+                    {[1, 2, 3].map((i) => (
+                        <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center space-y-4">
+                            <div className="w-24 h-24 rounded-full bg-white/10 animate-pulse" />
+                            <div className="w-3/4 h-6 bg-white/10 rounded animate-pulse" />
+                            <div className="w-1/2 h-4 bg-white/5 rounded animate-pulse" />
+                        </div>
+                    ))}
+                </div>
+            </FadeIn>
+        </section>
+
         {/* Blueprints 2025 Carousel */}
-        <div id="blueprints-2025">
+        <div id="blueprints-2025" className="scroll-mt-40">
           <Blueprints2025Carousel />
         </div>
 
         {/* Partners Section - Renamed id to sponsors to match navbar */}
-        <section id="sponsors" className="relative py-20 px-4 max-w-4xl mx-auto text-center">
+        <section id="sponsors" className="relative py-20 px-4 max-w-4xl mx-auto text-center scroll-mt-40">
             <FadeIn>
-              <h2 className="text-4xl font-bold text-white mb-12">
-                  Our Partners
-              </h2>
+              <SectionTitle title="Sponsors & Partners" subtitle="Our Supporters" />
             </FadeIn>
             
             <FadeIn className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center justify-center">
@@ -248,12 +265,47 @@ import TypewriterText from "@/components/TypewriterText";
             </FadeIn>
         </section>
 
+        {/* Sponsorship Details Section */}
+        <section className="relative py-20 px-4 max-w-5xl mx-auto text-center border-t border-white/10">
+            <FadeIn>
+                <div className="bg-white/5 border border-white/10 rounded-3xl p-8 md:p-12 backdrop-blur-sm">
+                    <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">Partner With Us</h3>
+                    <p className="text-lg text-white/80 leading-relaxed mb-8 max-w-3xl mx-auto">
+                        Join us in shaping the future of technology. As a sponsor, you gain access to the brightest minds, 
+                        showcase your brand to a dedicated community of developers, and contribute to an ecosystem of innovation.
+                        We welcome both financial sponsorships and strategic partnerships.
+                    </p>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 text-left">
+                        <div className="p-4 bg-white/5 rounded-xl border border-white/5">
+                            <h4 className="text-blue-400 font-bold mb-2">Talent Access</h4>
+                            <p className="text-sm text-white/70">Connect with top-tier student developers for hiring and internships.</p>
+                        </div>
+                        <div className="p-4 bg-white/5 rounded-xl border border-white/5">
+                            <h4 className="text-purple-400 font-bold mb-2">Brand Visibility</h4>
+                            <p className="text-sm text-white/70">Showcase your brand across our social media handles and event assets.</p>
+                        </div>
+                        <div className="p-4 bg-white/5 rounded-xl border border-white/5">
+                            <h4 className="text-pink-400 font-bold mb-2">Mentorship</h4>
+                            <p className="text-sm text-white/70">Engage directly with participants through workshops and mentoring sessions.</p>
+                        </div>
+                    </div>
+                    <PulseGlow>
+                        <a 
+                            href="mailto:dsc@svce.ac.in"
+                            className="inline-flex items-center gap-2 px-8 py-4 text-lg font-bold text-black bg-white hover:bg-gray-200 rounded-full transition-all duration-300 hover:scale-105"
+                        >
+                            Become a Partner
+                            <IconArrowUpRight size={20} />
+                        </a>
+                    </PulseGlow>
+                </div>
+            </FadeIn>
+        </section>
+
 {/* FAQ Section */}
-<section id="faq" className="relative py-20 px-4 max-w-4xl mx-auto">
+<section id="faq" className="relative py-20 px-4 max-w-4xl mx-auto scroll-mt-40">
   <FadeIn>
-    <h2 className="text-4xl font-bold text-white mb-12 text-center">
-      Frequently Asked Questions
-    </h2>
+    <SectionTitle title="Frequently Asked Questions" />
   </FadeIn>
 
   <FadeIn delay={0.2}>
@@ -293,14 +345,10 @@ import TypewriterText from "@/components/TypewriterText";
 </section>
 
         {/* Contact Section */}
-        <section id="contact" className="relative py-20 px-4 md:px-8 bg-gradient-to-b from-black to-blue-950/20">
+        <section id="contact" className="relative py-20 px-4 md:px-8 bg-gradient-to-b from-black to-blue-950/20 scroll-mt-40">
           <div className="w-full max-w-4xl mx-auto text-center z-10">
-            <p className="text-sm md:text-base text-white/50 font-mono tracking-wider uppercase mb-4">
-                [CONTACT US]
-            </p>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8">
-                Get in Touch
-            </h2>
+            <SectionTitle title="Get in Touch" subtitle="[CONTACT US]" />
+
             <p className="text-xl text-white/70 mb-12 max-w-2xl mx-auto">
                 Have questions? Reach out to us directly. We're here to help!
             </p>
@@ -325,6 +373,18 @@ import TypewriterText from "@/components/TypewriterText";
                         +91 80159 20905
                     </a>
                 </div>
+            </div>
+            
+            <div className="mt-16 pt-8 border-t border-white/10">
+                <p className="text-white/60 mb-4">Visit our Community Website</p>
+                <a 
+                    href="https://developer-student-community.vercel.app/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-400 hover:text-blue-300 transition-colors font-medium border-b border-blue-400/50 hover:border-blue-300 pb-1"
+                >
+                    developer-student-community.vercel.app
+                </a>
             </div>
             
             <div className="flex justify-center gap-6 mt-12">

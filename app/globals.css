@@ -116,13 +116,13 @@
   * {
     @apply border-border outline-ring/50;
   }
-  
+
   html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  
+
   html,
   body {
     @apply bg-black text-foreground;
@@ -132,9 +132,9 @@
     min-height: 100%;
     overscroll-behavior-y: none;
   }
-  
+
   #__next,
-  body > div:first-child {
+  body>div:first-child {
     width: 100%;
     min-height: 100%;
   }
@@ -151,15 +151,5 @@
     transform: translateZ(0);
     backface-visibility: hidden;
     perspective: 1000px;
-  }
-
-  /* Smooth scroll offset for sections with sticky navbar */
-  section[id] {
-    scroll-margin-top: 120px; /* Offset for sticky navbar */
-  }
-
-  /* Ensure anchor links scroll smoothly to correct position */
-  html {
-    scroll-padding-top: 120px;
   }
 }

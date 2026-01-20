@@ -8,9 +8,10 @@ interface FadeInProps {
   delay?: number;
   className?: string;
   direction?: "up" | "down" | "left" | "right" | "none";
+  stagger?: number;
 }
 
-export default function FadeIn({ children, delay = 0, className = "", direction = "up" }: FadeInProps) {
+export default function FadeIn({ children, delay = 0, className = "", direction = "up", stagger = 0 }: FadeInProps) {
   const variants = {
     hidden: {
       opacity: 0,
@@ -25,6 +26,7 @@ export default function FadeIn({ children, delay = 0, className = "", direction 
         duration: 0.5,
         delay: delay,
         ease: "easeOut" as any,
+        staggerChildren: stagger,
       },
     },
   };

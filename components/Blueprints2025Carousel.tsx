@@ -3,16 +3,16 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const images = [
-  "/highlights/DSC_1570.JPG",
-  "/highlights/DSC_1579.JPG",
-  "/highlights/DSC_1584.JPG",
-  "/highlights/DSC_1590.JPG",
-  "/highlights/DSC_1631.JPG",
-  "/highlights/DSC_1711.JPG",
-  "/highlights/DSC_1757.JPG",
-  "/highlights/DSC_1765.JPG",
-  "/highlights/DSC_1766.JPG",
-  "/highlights/DSC_1903.JPG",
+  "/highlights/11.JPG",
+  "/highlights/12.JPG",
+  "/highlights/13.JPG",
+  "/highlights/14.JPG",
+  "/highlights/15.JPG",
+  "/highlights/16.JPG",
+  "/highlights/17.JPG",
+  "/highlights/18.JPG",
+  "/highlights/19.JPG",
+  "/highlights/20.JPG",
 ];
 
 export default function Blueprints2025Carousel() {
@@ -30,7 +30,7 @@ export default function Blueprints2025Carousel() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
-            Blueprints 2025 Rewind
+            <b>Blueprints 2025 Rewind</b>
           </h2>
           <p className="text-white/60 max-w-2xl mx-auto">
             A glimpse into our previous flagship hackathon where innovation met execution.
