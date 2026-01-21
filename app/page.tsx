@@ -170,8 +170,8 @@ export default function Home() {
                 <FadeIn>
                   {/* Custom Title for Aim to preserve specific styling */}
                   <h2 className="text-white mb-12 tracking-tight drop-shadow-2xl font-bold">
-                      <span className="block text-4xl md:text-5xl mb-2 text-white/80">The Aim of</span>
-                      <span className="block text-7xl md:text-9xl text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 animate-gradient-x leading-none pb-4">
+                      <span className="block text-3xl md:text-4xl mb-2 text-white/80">The Aim of</span>
+                      <span className="block text-6xl md:text-8xl text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 animate-gradient-x leading-none pb-4">
                           Blueprints 2026
                       </span>
                   </h2>
