@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Navbar, NavBody, NavbarLogo, NavItems, MobileNav, MobileNavHeader, MobileNavToggle, MobileNavMenu } from "@/components/Navbar";
-import AppNavbar from "@/components/AppNavbar";
+import AppNavbar from "@/components/Navbar";
 import DarkVeil from "@/components/DarkVeil";
 import { IconX, IconArrowUpRight, IconBrandLinkedin, IconBrandInstagram } from "@tabler/icons-react";
 

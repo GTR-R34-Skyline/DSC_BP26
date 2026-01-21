@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { IconMenu2, IconX, IconArrowUpRight } from "@tabler/icons-react";
+import { IconMenu2, IconX, IconBrandLinkedin, IconBrandInstagram } from "@tabler/icons-react";
 import {
   motion,
   AnimatePresence,
@@ -9,6 +9,9 @@ import {
 } from "motion/react";
 
 import React, { useRef, useState, ReactNode } from "react";
+import { useActiveSection } from "@/hooks/useActiveSection";
+
+// ============ NAVBAR COMPONENTS ============
 
 interface NavbarProps {
   children: ReactNode;
@@ -37,7 +40,6 @@ export const Navbar = ({ children, className, id }: NavbarProps) => {
     >
       {React.Children.map(children, (child) => {
         if (!React.isValidElement(child)) return child;
-        // Only pass visible to React components, not DOM elements
         if (typeof child.type === 'string') {
           return child;
         }
@@ -75,14 +77,13 @@ export const NavBody = ({ children, className, visible = false }: NavBodyProps) 
         minWidth: "950px",
       }}
       className={cn(
-        "relative z-60 mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full bg-transparent pl-2 pr-6 py-4 lg:flex",
+        "relative z-60 mx-auto hidden w-full max-w-7xl flex-row items-center gap-8 self-start rounded-full bg-transparent pl-2 pr-6 py-4 lg:flex",
         visible && "bg-black/70 border border-white/10",
         className
       )}
     >
       {React.Children.map(children, (child) => {
         if (!React.isValidElement(child)) return child;
-        // Only pass visible to React components, not DOM elements
         if (typeof child.type === 'string') {
           return child;
         }
@@ -106,13 +107,13 @@ export const NavItems = ({ items, className, onItemClick, activeTab, visible, ..
     <motion.div
       onMouseLeave={() => setHovered(null)}
       className={cn(
-        "hidden flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium text-zinc-600 transition duration-200 hover:text-zinc-800 lg:flex lg:space-x-2",
+        "hidden flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium text-zinc-600 transition duration-200 hover:text-zinc-800 lg:flex",
         className
       )}
       {...props}
     >
       {items.map((item, idx) => {
-        const isActive = activeTab === item.link || activeTab === item.link.substring(1); // Check full link or hash id
+        const isActive = activeTab === item.link || activeTab === item.link.substring(1);
         
         return (
           <a
@@ -184,7 +185,6 @@ export const MobileNav = ({ children, className, visible = false }: MobileNavPro
     >
       {React.Children.map(children, (child) => {
         if (!React.isValidElement(child)) return child;
-        // Only pass visible to React components, not DOM elements
         if (typeof child.type === 'string') {
           return child;
         }
@@ -210,7 +210,6 @@ export const MobileNavHeader = ({ children, className, visible = false }: Mobile
     >
       {React.Children.map(children, (child) => {
         if (!React.isValidElement(child)) return child;
-        // Only pass visible to React components, not DOM elements
         if (typeof child.type === 'string') {
           return child;
         }
@@ -268,42 +267,19 @@ export const NavbarLogo = ({ visible = false }: NavbarLogoProps) => {
   return (
     <a
       href="/"
-      className="relative z-20 flex items-center gap-2 mr-4 lg:mr-20"
+      className="relative z-20 flex items-center gap-2 flex-shrink-0"
     >
-      <span className="text-white text-2xl font-bold">
+      <span className="text-white text-sm font-bold leading-none">
         &lt;&gt;
       </span>
       {/* Mobile Logo: Always Short */}
-      <span className="block md:hidden text-white text-xl font-bold tracking-wide">
-        DSC SVCE
+      <span className="block md:hidden text-white text-sm font-bold tracking-wide leading-none">
+        DSC
       </span>
 
-      {/* Desktop Logo: Animated */}
-      <span className="hidden md:block relative text-white text-xl tracking-wide whitespace-nowrap">
-        <motion.span
-          initial={false}
-          animate={{
-            opacity: visible ? 0 : 1,
-            x: visible ? -10 : 0,
-            display: visible ? "none" : "inline-block", // Optimization
-          }}
-          transition={{ duration: 0.3 }}
-          className="inline-block"
-        >
-          Developer Student Community,SVCE
-        </motion.span>
-        <motion.span
-          initial={false}
-          animate={{
-            opacity: visible ? 1 : 0,
-            x: visible ? 0 : 10,
-            display: visible ? "inline-block" : "none",
-          }}
-          transition={{ duration: 0.3 }}
-          className="inline-block absolute left-0 top-0"
-        >
-          DSC
-        </motion.span>
+      {/* Desktop Logo: Full version */}
+      <span className="hidden md:block text-white text-sm tracking-wide leading-none whitespace-nowrap">
+        Developer Student Community
       </span>
     </a>
   );
@@ -325,7 +301,7 @@ export const NavbarButton = ({
   children,
   className,
   variant = "primary",
-  visible, // Extract visible prop to prevent it from being passed to DOM
+  visible,
   ...props
 }: NavbarButtonProps) => {
   const baseStyles =
@@ -374,3 +350,94 @@ export const SocialIcons = ({ className, visible, children }: SocialIconsProps) 
   );
 };
 
+// ============ APP NAVBAR COMPONENT ============
+
+export const navItems = [
+  { name: "Home", link: "/#home" },
+  { name: "Problem Statements", link: "/problem-statements" },
+  { name: "Sponsors", link: "/#sponsors" },
+  { name: "Blueprints 2025", link: "/#blueprints-2025" },
+  { name: "FAQ", link: "/#faq" },
+  { name: "Contact", link: "/#contact" },
+];
+
+export default function AppNavbar() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const activeSection = useActiveSection(["home", "sponsors", "blueprints-2025", "faq", "contact"]);
+
+  const activeTab = navItems.find(item => item.link.includes(`#${activeSection}`))?.link || (activeSection === "home" ? "/#home" : "");
+
+  return (
+    <Navbar className="fixed top-0 z-50">
+      <NavBody>
+        <NavbarLogo />
+        <NavItems items={navItems} activeTab={activeTab} />
+        <SocialIcons className="hidden lg:flex items-center gap-3">
+          <a
+            href="https://www.linkedin.com/company/svce-developer-student-community/posts/?feedView=all"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-10 h-10 rounded-full bg-white/10 hover:bg-blue-600 backdrop-blur-sm border border-white/20 flex items-center justify-center transition-all duration-200 hover:scale-110 hover:shadow-lg"
+            aria-label="LinkedIn"
+          >
+            <IconBrandLinkedin size={20} className="text-white" />
+          </a>
+          <a
+            href="https://www.instagram.com/dsc.svce?igsh=NHlqbGE5ZHNnamRh"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-10 h-10 rounded-full bg-white/10 hover:bg-gradient-to-br hover:from-purple-600 hover:via-pink-600 hover:to-orange-500 backdrop-blur-sm border border-white/20 flex items-center justify-center transition-all duration-200 hover:scale-110 hover:shadow-lg"
+            aria-label="Instagram"
+          >
+            <IconBrandInstagram size={20} className="text-white" />
+          </a>
+        </SocialIcons>
+      </NavBody>
+
+      <MobileNav>
+        <MobileNavHeader>
+          <NavbarLogo />
+          <MobileNavToggle
+            isOpen={isMobileMenuOpen}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          />
+        </MobileNavHeader>
+        <MobileNavMenu
+          isOpen={isMobileMenuOpen}
+          onClose={() => setIsMobileMenuOpen(false)}
+        >
+          {navItems.map((item, idx) => (
+            <a
+              key={`mobile-link-${idx}`}
+              href={item.link}
+              className="text-white/80 hover:text-white/90"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              {item.name}
+            </a>
+          ))}
+          <div className="flex items-center gap-3 mt-4 pt-4 border-t border-white/10 w-full">
+            <a
+              href="https://www.linkedin.com/company/svce-developer-student-community/posts/?feedView=all"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 rounded-full bg-white/10 hover:bg-blue-600 backdrop-blur-sm border border-white/20 flex items-center justify-center transition-all duration-200 hover:scale-110 hover:shadow-lg"
+              aria-label="LinkedIn"
+            >
+              <IconBrandLinkedin size={20} className="text-white" />
+            </a>
+            <a
+              href="https://www.instagram.com/dsc.svce?igsh=NHlqbGE5ZHNnamRh"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 rounded-full bg-white/10 hover:bg-gradient-to-br hover:from-purple-600 hover:via-pink-600 hover:to-orange-500 backdrop-blur-sm border border-white/20 flex items-center justify-center transition-all duration-200 hover:scale-110 hover:shadow-lg"
+              aria-label="Instagram"
+            >
+              <IconBrandInstagram size={20} className="text-white" />
+            </a>
+          </div>
+        </MobileNavMenu>
+      </MobileNav>
+    </Navbar>
+  );
+}

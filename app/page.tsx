@@ -15,7 +15,7 @@ import ScrollAnchor from "@/components/ScrollAnchor";
 import Chatbot from "@/components/Chatbot";
 import { IconArrowUpRight, IconBrandLinkedin, IconBrandInstagram, IconDownload, IconEye } from "@tabler/icons-react";
 // Removed unused Navbar imports
-import AppNavbar from "@/components/AppNavbar";
+import AppNavbar from "@/components/Navbar";
 import Blueprints2025Carousel from "@/components/Blueprints2025Carousel";
 
 // ... (keep navItems if used, or remove if unused, but page has its own definitions sometimes. checking...)
@@ -217,17 +217,38 @@ export default function Home() {
         <section className="relative py-20 px-4 text-center bg-black/40 border-t border-white/5">
             <FadeIn>
                 <SectionTitle title="Judging Panel" subtitle="Evaluation" />
-                <p className="text-white/60 italic text-xl mt-8 mb-12">Judging panel details will be announced soon.</p>
                 
-                {/* Skeleton Cards for Layout */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto opacity-50 pointer-events-none grayscale">
-                    {[1, 2, 3].map((i) => (
-                        <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center space-y-4">
-                            <div className="w-24 h-24 rounded-full bg-white/10 animate-pulse" />
-                            <div className="w-3/4 h-6 bg-white/10 rounded animate-pulse" />
-                            <div className="w-1/2 h-4 bg-white/5 rounded animate-pulse" />
+                {/* Judges Cards */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                    {/* Judge 1 */}
+                    <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center space-y-4 hover:border-white/20 transition-all duration-200">
+                        <img src="/rajaraman.jpeg" alt="Rajaraman Swaminathan" className="w-24 h-24 rounded-full object-cover border border-white/20" />
+                        <div>
+                            <h3 className="text-white font-semibold text-lg">Rajaraman Swaminathan</h3>
+                            <p className="text-white/60 text-sm">Product Manager</p>
+                            <p className="text-white/50 text-xs">Revinova</p>
                         </div>
-                    ))}
+                    </div>
+
+                    {/* Judge 2 */}
+                    <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center space-y-4 hover:border-white/20 transition-all duration-200">
+                        <img src="/ganeshg.jpeg" alt="Ganesh G" className="w-24 h-24 rounded-full object-cover border border-white/20" />
+                        <div>
+                            <h3 className="text-white font-semibold text-lg">Ganesh G</h3>
+                            <p className="text-white/60 text-sm">Software Developer Engineer</p>
+                            <p className="text-white/50 text-xs">Freshworks</p>
+                        </div>
+                    </div>
+
+                    {/* Judge 3 */}
+                    <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center space-y-4 hover:border-white/20 transition-all duration-200">
+                        <img src="/adhina.jpeg" alt="Adityavignesh V" className="w-24 h-24 rounded-full object-cover border border-white/20" />
+                        <div>
+                            <h3 className="text-white font-semibold text-lg">Adityavignesh V</h3>
+                            <p className="text-white/60 text-sm">Software Engineer</p>
+                            <p className="text-white/50 text-xs">Newgen</p>
+                        </div>
+                    </div>
                 </div>
             </FadeIn>
         </section>
