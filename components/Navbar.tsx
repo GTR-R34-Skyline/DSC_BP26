@@ -272,12 +272,9 @@ export const NavbarLogo = ({ visible = false }: NavbarLogoProps) => {
       <span className="text-white text-sm font-bold leading-none">
         &lt;&gt;
       </span>
-      {/* Mobile Logo: Always Short */}
       <span className="block md:hidden text-white text-sm font-bold tracking-wide leading-none">
         DSC
       </span>
-
-      {/* Desktop Logo: Full version */}
       <span className="hidden md:block text-white text-sm tracking-wide leading-none whitespace-nowrap">
         Developer Student Community
       </span>
@@ -355,15 +352,15 @@ export const SocialIcons = ({ className, visible, children }: SocialIconsProps) 
 export const navItems = [
   { name: "Home", link: "/#home" },
   { name: "Problem Statements", link: "/problem-statements" },
-  { name: "Sponsors", link: "/#sponsors" },
   { name: "Blueprints 2025", link: "/#blueprints-2025" },
+  { name: "Sponsors", link: "/#sponsors" },
   { name: "FAQ", link: "/#faq" },
   { name: "Contact", link: "/#contact" },
 ];
 
 export default function AppNavbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const activeSection = useActiveSection(["home", "sponsors", "blueprints-2025", "faq", "contact"]);
+  const activeSection = useActiveSection(["home", "blueprints-2025", "sponsors", "faq", "contact"]);
 
   const activeTab = navItems.find(item => item.link.includes(`#${activeSection}`))?.link || (activeSection === "home" ? "/#home" : "");
 
