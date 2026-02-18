@@ -290,10 +290,23 @@ export default function Home() {
 
                 {/* Food Partner */}
                 <div className="flex flex-col items-center space-y-4">
-                    <p className="text-white/60 tracking-widest uppercase text-sm font-bold">Food Partner</p>
-                    <div className="h-24 md:h-32 flex items-center justify-center">
-                        <p className="text-2xl text-white/40 font-mono italic">Coming Soon</p>
-                    </div>
+                    <p className="text-white/60 tracking-widest uppercase text-sm font-bold">Automation & Workflow Partner</p>
+                    <a 
+                      href="https://n8n.io/" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="group transition-transform hover:scale-105"
+                    >
+                        <div className="bg-white rounded-3xl py-4 px-8 md:px-12 shadow-lg flex items-center justify-center">
+                            {/* Replaced img with standard img for now, converting to next/image requires size knowledge which I don't have yet. Can be future optimization task. */}
+                            <img 
+                                src="/sponsor-n8n.png" 
+                                alt="Automation & Workflow Partner" 
+                                loading="lazy"
+                                className="h-40 md:h-52 w-auto object-contain"
+                            />
+                        </div>
+                    </a>
                 </div>
             </FadeIn>
         </section>
