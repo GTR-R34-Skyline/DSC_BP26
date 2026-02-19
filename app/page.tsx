@@ -86,7 +86,7 @@ export default function Home() {
                 {/* Primary CTA: Register Now (Mobile First) */}
                 <PulseGlow delay={1.5} className="w-full md:w-auto order-1 md:order-3">
                   <a 
-                    href="https://docs.google.com/forms/d/16FXTZ4LEUdLaLxJxFgZK1NC1ebDaQJixH5N9_NbGu8A/edit"
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSdxjNTYRklXSOkXOXKWBi63Qb-aSaOLi_DcDuUK0vQcxQjZcw/viewform"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full md:w-auto justify-center px-8 py-4 text-lg font-bold text-black bg-white hover:bg-gray-200 border border-transparent rounded-full transition-all duration-300 hover:scale-105 flex items-center gap-2 shadow-[0_0_20px_rgba(255,255,255,0.3)]"
