@@ -77,7 +77,7 @@ export default function Home() {
             <FadeIn delay={0.8} direction="up" className="pointer-events-none px-2 mb-6 md:mb-0">
               <p className="text-lg md:text-2xl lg:text-3xl text-white/80 drop-shadow-md leading-relaxed max-w-3xl mx-auto font-light">
                 Innovate. Build. Disrupt. <br/>
-                <span className="text-white/50 text-sm md:text-xl mt-2 block sm:inline">The flagship 24-hour hackathon by DSC SVCE.</span>
+                <span className="text-white/50 text-sm md:text-xl mt-2 block sm:inline">One-Month Intercollegiate Product Development Bootcamp organized by the Developer Student Community</span>
               </p>
             </FadeIn>
             
@@ -372,7 +372,7 @@ export default function Home() {
         },
         {
           q: "Is there a registration fee?",
-          a: "There is no registration fee for Round 1. A registration fee is applicable only for teams selected for Round 2."
+          a: "There is no registration fee for Round 1 and Round 2. A registration fee is applicable only for teams selected for the final round."
         },
         {
           q: "How does the selection process work?",
