@@ -26,11 +26,12 @@ PARTICIPATION RULES:
 - Other colleges are welcome
 - Registration only via Google Form on the website
 - No fee for Round 1
-- Fee applies ONLY for Round 2 shortlisted teams
+- No fee for Round 2
+- Fee applies ONLY for teams that qualify for the Grand Finale
 ROUNDS:
-- Round 1: Initial screening
-- Round 2: Top 50 teams (fee applicable)
-- Grand Finale: Final event
+- Round 1: Initial screening (no fee)
+- Round 2: Top 50 teams (no fee)
+- Grand Finale: Final event (fee applicable only for finalists)
 
 VENUE:
 - The Grand Finale will be held at Tekclan Software Solutions Pvt Ltd.
