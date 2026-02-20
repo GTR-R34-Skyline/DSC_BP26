@@ -372,7 +372,7 @@ export default function Home() {
         },
         {
           q: "Is there a registration fee?",
-          a: "There is no registration fee for Round 1 and Round 2. A registration fee is applicable only for teams selected for the final round."
+          a: "There is no registration fee for Round 1 and Round 2. A registration fee of ₹500 is applicable only for teams selected for the final round."
         },
         {
           q: "How does the selection process work?",
