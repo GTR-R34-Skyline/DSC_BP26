@@ -139,7 +139,7 @@ export default function Home() {
                     </FadeIn>
                     <FadeIn delay={0.5} className="space-y-2" viewport={{ once: false }}>
                         <div className="text-4xl md:text-6xl font-bold text-pink-500 flex justify-center">
-                           <AnimatedCounter to={15} suffix="+" />
+                           <AnimatedCounter to={6} suffix="+" />
                         </div>
                         <p className="text-white/60 uppercase tracking-widest text-sm">Problem Statements</p>
                     </FadeIn>
