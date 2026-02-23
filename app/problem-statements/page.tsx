@@ -14,181 +14,181 @@ const problemStatements = [
     domain: "ML",
     company: "Clustrex",
     logo: "/logos/clustrex_logo.jpeg",
-    shortDescription: "AI-powered triage assistant to filter retinal images and optimize ophthalmologist time in rural camps.",
-    overview: "In India, diabetic retinopathy (DR) is a leading cause of avoidable blindness. Rural eye screening camps serve hundreds of patients daily with limited specialist availability.",
+    shortDescription: "AI-powered triage assistant acting as a 'First Line of Defense' to optimize ophthalmologist time in rural screening camps.",
+    overview: "In India, diabetic retinopathy (DR) is a leading cause of avoidable blindness. Rural eye screening camps serve hundreds of patients daily with limited specialist availability. The critical bottleneck is time: ophthalmologists waste hours screening healthy eyes, leaving less time for patients who need urgent intervention. This challenge seeks an AI solution to act as a 'First Line of Defense,' filtering the patient queue to optimize the doctor's time.",
     problemStatement: [
-      "Design an AI-powered triage assistant that analyzes retinal (fundus) images.",
-      "Estimate Diabetic Retinopathy severity to identify patients needing urgent intervention.",
-      "Function as a high-volume filter: 'Refer' vs 'Monitor'.",
-      "Ensure no severe cases are missed while maintaining speed."
+      "Design an AI-powered triage assistant that analyzes retinal (fundus) images to estimate Diabetic Retinopathy severity.",
+      "The system must function as a high-volume filter, identifying which patients need specialist attention ('Refer') and which are safe to send home ('Monitor'), ensuring no severe cases are missed."
     ],
     keyChallenges: [
-      "The Trust Gap: Systems must explain decisions via heatmaps.",
-      "Field Conditions: Must be robust against uneven lighting and blur.",
-      "Throughput: Render decisions quickly to prevent patient queue pile-up."
+      "The 'Trust Gap': Doctors are skeptical of 'Black Box' AI. The system must explain why it made a decision (e.g., heatmaps, lesion detection).",
+      "Field Conditions: The model must be robust against image quality issues typical of mobile camps (uneven lighting, mild blur, noise).",
+      "Throughput: The system must render a decision quickly to prevent queue pile-up."
     ],
     baselineRequirements: [
-      "Core Classification: Analyze images into standard clinical stages (0-4).",
-      "Actionable Triage: Map severity to a binary 'Refer' or 'Monitor' recommendation.",
-      "Explainability: Provide visual rationale for predictions.",
-      "Safety Protocol: Interface must state 'Screening Support – Non-Diagnostic'."
-    ]
+      "Core Classification: Automatically analyze retinal images and classify them into standard clinical severity stages.",
+      "Actionable Triage: Map the severity score to strict recommendations.",
+      "Explainability: Provide a visual or textual rationale for the prediction to aid doctor verification.",
+      "Safety Protocol: The interface must explicitly state 'Screening Support – Non-Diagnostic.'"
+    ],
+    expectedOutcome: "A functional prototype that takes a fundus image as input and displays a Severity Score, a Triage Action, and an Explanation Layer."
   },
+
   {
     id: 2,
     title: "Neuro-Adaptive Workflow: The In-IDE Skill Synthesizer",
     domain: "AI",
     company: "Asking India",
     logo: "https://ui-avatars.com/api/?name=IDE+Skills&background=random",
-    shortDescription: "A 'Just-in-Time' learning engine that detects developer friction and provides contextual micro-learning.",
-    overview: "Corporate training is often disconnected from daily work. Developers break their cognitive 'Flow State' when searching for answers outside the IDE.",
+    shortDescription: "A 'Just-in-Time' Learning Engine that detects cognitive friction and injects contextual micro-skills inside the IDE.",
+    overview: "Corporate training has a near-zero ROI because it is disconnected from daily work. Modern developers suffer from constant context switching — leaving their IDE to search for answers, breaking their 'Flow State.' This challenge seeks to build a 'Just-in-Time' Learning Engine that acts as an intelligent layer between the developer and their code, injecting micro-skills exactly when a knowledge gap is detected.",
     problemStatement: [
-      "Develop an intelligent IDE plugin to detect 'Cognitive Friction'.",
-      "Dynamically generate micro-learning modules when a user is struggling.",
-      "Unblock the developer without them leaving the editor.",
-      "Differentiate between thinking time and struggling time."
+      "Develop an intelligent IDE plugin (VS Code/JetBrains) that monitors a developer's real-time coding behavior to detect 'Cognitive Friction.'",
+      "When struggle is detected (e.g., repeated refactoring, idle time, compilation errors), dynamically generate and present a Micro-Learning Module tailored to unblock them without leaving the editor."
     ],
     keyChallenges: [
-      "Struggle Detection: Using behavioral metrics (deletion rate, idle time).",
-      "Contextual Relevance: Understanding code intent to provide useful help.",
-      "Privacy & Performance: Processing context locally without lagging the IDE."
+      "Struggle Detection: Accurately distinguishing between thinking time and struggling time using behavioral metrics.",
+      "Contextual Relevance: Understanding code intent (e.g., implementing a React Hook) to provide useful help.",
+      "Privacy & Performance: Efficient local processing without lagging the IDE."
     ],
     baselineRequirements: [
-      "IDE Extension: Functional plugin reading active editor state.",
-      "Friction Metrics: Scoring system for struggle.",
-      "Dynamic Content: Concise code snippets/explanations.",
-      "Dashboard: Summary view of 'Struggle Areas' for self-review."
-    ]
+      "IDE Extension: Functional plugin reading active editor state and AST.",
+      "Friction Metrics: Scoring system using Error Frequency, Deletion Rate, Documentation Search patterns.",
+      "Dynamic Content: Concise interactive snippet/explanation generation.",
+      "Dashboard: Summary of 'Struggle Areas' for self-review."
+    ],
+    expectedOutcome: "A polished IDE extension where the judge codes a buggy function and the system automatically identifies the missing concept and offers a correction without breaking flow."
   },
+
   {
     id: 3,
     title: "AI Agent for Intake and Sales Enablement",
     domain: "Agentic AI",
     company: "Revinova",
     logo: "/logos/revinova-logo.png",
-    shortDescription: "End-to-End Sales Agent that autonomously qualifies leads and orchestrates meeting scheduling.",
-    overview: "Sales teams lose opportunities because inbound leads are not guided quickly. This focuses on Agentic Behavior: autonomous decision-making.",
+    shortDescription: "End-to-End Agentic Sales Orchestrator capable of autonomous qualification and action execution.",
+    overview: "Sales teams lose valuable opportunities because inbound leads are not guided to the right product quickly. Manual qualification is inconsistent, and scheduling meetings involves tedious back-and-forth. This challenge focuses on building an End-to-End AI Agent that demonstrates autonomous decision-making, context awareness, and safe action execution.",
     problemStatement: [
-      "Design an Agentic Sales Orchestrator as the first point of contact.",
-      "Autonomously capture lead details and evaluate against criteria.",
-      "Orchestrate next steps: booking meetings or educating others.",
-      "Use a controlled Knowledge Base to prevent hallucinations."
+      "Design an Agentic Sales Orchestrator acting as the first point of contact.",
+      "Autonomously capture lead details, evaluate them against explicit qualification criteria, and orchestrate next steps — either booking meetings or educating leads using a controlled knowledge base."
     ],
     keyChallenges: [
-      "Agentic Decision Making: Deciding when enough info is gathered.",
-      "Tool Orchestration: Reliably triggering external actions (Calendly, Email).",
-      "Context Retention: Remembering user details across multiple turns."
+      "Agentic Decision Making: Decide when enough information is gathered.",
+      "Controlled Generation: Strict retrieval from provided Knowledge Base to prevent hallucinations.",
+      "Tool Orchestration: Trigger external actions reliably without breaking conversation.",
+      "Context Retention: Maintain structured conversation state."
     ],
     baselineRequirements: [
-      "Natural Intake: Conversational extraction of lead metadata.",
-      "Criteria-Driven Routing: Generate Calendly links for qualified leads.",
-      "Knowledge Retrieval: Recommend specific product resources.",
-      "Lead Log: Maintain a structured interaction state."
-    ]
+      "Natural Intake & Qualification: Extract Name, Company, Role, Use Case mapped to explicit criteria.",
+      "Criteria-Driven Routing: Perform autonomous followups or provide KB resources.",
+      "Knowledge Retrieval: Recommend 2–5 product spec links/videos from provided sources.",
+      "Lead Log: Maintain structured interaction state."
+    ],
+    expectedOutcome: "A fully functioning Sales Agent (Web Interface) capable of end-to-end qualification, recommendation, and meeting scheduling without human intervention."
   },
+
   {
     id: 4,
     title: "Digital Pulse: The Contextual Cultural Intelligence Engine",
     domain: "Data Analytics",
     company: "VIU",
     logo: "/logos/viuott_logo.jpeg",
-    shortDescription: "A contextual analytics platform to identify and visualize viral narratives within social datasets.",
-    overview: "Viral metrics often mask significant cultural shifts. This tool reconstructs narratives to see what drives engagement beyond numbers.",
+    shortDescription: "Contextual analytics platform reconstructing viral narratives and identifying cultural shifts.",
+    overview: "Modern social media amplifies popularity over significance. Researchers miss subtle early-stage cultural shifts. This challenge focuses on building a dual-purpose intelligence engine capable of analyzing both viral currents and nascent signals.",
     problemStatement: [
-      "Design a platform to ingest social data and reconstruct the 'Viral Narrative'.",
-      "Identify, rank, and visualize dominant trends.",
-      "Process raw data to group fragmented text into coherent topics.",
-      "Enable deep-dives into specific data points."
+      "Design a Contextual Analytics Platform to ingest structured/unstructured social data.",
+      "Reconstruct the Viral Narrative and identify, rank, and visualize dominant trends."
     ],
     keyChallenges: [
-      "Contextual Ingestion: Normalizing diverse datasets (CSV, JSON).",
-      "Metric Reconstruction: Calculating 'Virality' within a bounded set.",
-      "Cluster Identification: Semantic grouping of unstructured text."
+      "Contextual Ingestion: Normalize diverse datasets (CSV, JSON, streams).",
+      "Metric Reconstruction: Calculate Virality and Impact accurately.",
+      "Cluster Identification: Group fragmented unstructured text into coherent topics."
     ],
     baselineRequirements: [
-      "Data Pipeline: System to parse and index social datasets.",
-      "Viral Ranking Engine: Scoring logic based on engagement.",
-      "Hype Dashboard: Visualization of performing trends.",
-      "Drill-Down: Inspect specific posts contributing to sentiment spikes."
-    ]
+      "Data Pipeline: Parse and index uploaded datasets.",
+      "Viral Ranking Engine: Score based on Volume, Likes, Shares, Comments.",
+      "Hype Dashboard: Surface top-performing trends.",
+      "Drill-Down Capability: Inspect posts contributing to trends."
+    ],
+    expectedOutcome: "A deployed tool generating a 'State of the Conversation' report instantly from raw uploads."
   },
+
   {
     id: 5,
-    title: "Gridlock-Breaker: AI-Coordinated Traffic Orchestration",
+    title: "Gridlock-Breaker: AI-Coordinated Adaptive Traffic Orchestration",
     domain: "IoT",
     company: "VIU",
     logo: "/logos/viuott_logo.jpeg",
-    shortDescription: "A city-wide orchestration engine that transforms static traffic signals into a synchronized intelligent network.",
-    overview: "Urban traffic is characterized by 'chaotic heterogeneity'. Current reactive systems lead to economic loss and delayed emergency services.",
+    shortDescription: "City-wide orchestration engine transforming static traffic signals into synchronized intelligent networks.",
+    overview: "Urban traffic in Indian metropolitan areas is chaotic and reactive. This challenge seeks a City-Wide Orchestration Engine that transforms traffic signals into synchronized intelligent systems optimizing flow.",
     problemStatement: [
-      "Design an AI Control Plane coordinating multiple intersections.",
-      "Ingest real-time density data to dynamically adjust phases.",
-      "Maximize vehicle throughput across a grid.",
-      "Implement emergency priority corridors."
+      "Design an AI-Driven Traffic Control Plane coordinating multiple intersections.",
+      "Use simulation (SUMO/CityFlow/custom engine) to ingest real-time density and dynamically adjust signal phases."
     ],
     keyChallenges: [
-      "Green Wave Logic: Coordinating adjacent signals.",
-      "Heterogeneous Flow: Handling mixed traffic behaviors (Buses, Bikes).",
-      "Emergency Priority: Clearing paths without gridlocking the city."
+      "Green Wave Logic: Coordinate adjacent signals.",
+      "Heterogeneous Flow: Handle mixed vehicle types.",
+      "Emergency Priority: Create green corridors instantly."
     ],
     baselineRequirements: [
-      "Simulation Environment: Demonstration on SUMO or CityFlow.",
-      "Adaptive Logic: RL algorithm adjusting timing based on queue.",
-      "Emergency Override: Zero-wait passage for ambulances.",
-      "Fail-Safe: Fallback to safety mode if sensors fail."
-    ]
+      "Simulation Environment: Multi-intersection grid model.",
+      "Adaptive Logic: Queue-based timing adjustments.",
+      "Emergency Override: Ambulance Agent zero-wait feature.",
+      "Fail-Safe: Fallback safety mode."
+    ],
+    expectedOutcome: "Side-by-side simulation showing 20%+ reduction in average wait time compared to fixed timers."
   },
+
   {
     id: 6,
     title: "Credit-Vision: Inclusive Scoring & Trust Protocols",
     domain: "ML",
     company: "Credit Vision",
     logo: "https://ui-avatars.com/api/?name=Credit+Vision&background=random",
-    shortDescription: "Alternative credit scoring engine using non-traditional data to assess risk for the 'Credit Invisible'.",
-    overview: "Many in emerging economies lack formal credit history.",
+    shortDescription: "Real-time alternative credit scoring engine for the credit invisible using Explainable AI.",
+    overview: "Many in emerging economies remain 'Credit Invisible' due to lack of formal history. Traditional models are static and exclusionary.",
     problemStatement: [
-      "Design a real-time scoring engine using non-traditional signals.",
-      "Utilize Explainable AI (XAI) to justify scores.",
-      "Assess risk for 'Cold Start' users with zero history.",
-      "Ensure transparency and regulatory compliance."
+      "Design a Real-Time Alternative Credit Scoring Engine ingesting non-traditional financial signals.",
+      "Fuse structured and alternative data to generate a holistic risk assessment using Explainable AI."
     ],
     keyChallenges: [
-      "Data Fusion: Merging structured bureau data with unstructured signals.",
-      "Explainability: Outputting causal factors behind a score.",
-      "Cold Start: Accurate assessment without historical loan data."
+      "Data Fusion: Merge structured bureau data with alternative signals.",
+      "Explainability: Output causal factors behind scores.",
+      "Cold Start: Accurate assessment without historical loans."
     ],
     baselineRequirements: [
-      "Multi-Source Ingestion: Cash flow, utility payments, and metadata.",
-      "Hybrid Scoring Logic: ML model weighting alternative data.",
-      "Explainability Layer: Factor breakdown for loan officers.",
+      "Multi-Source Ingestion: Cash flow, utility payments, digital metadata.",
+      "Hybrid Scoring Logic: ML weighting alternative data dynamically.",
+      "Explainability Layer: Breakdown of contributing factors.",
       "Performance: Near real-time evaluation."
-    ]
+    ],
+    expectedOutcome: "A deployed system generating mathematically justified Risk Scores for users with zero formal credit history."
   },
+
   {
     id: 8,
     title: "Lifecycle-Ledger: IoT Digital Product Passports",
     domain: "IoT",
     company: "Kloud Katalyst",
     logo: "logos/kloud_katalyst_logo.jpeg",
-    shortDescription: "A 'Living Identity' for electronics recording health, repairs, and ownership on a tamper-resistant ledger.",
-    overview: "Electronic waste is accelerated by opacity.",
+    shortDescription: "IoT-enabled Digital Product Passport providing a tamper-resistant lifecycle identity for electronics.",
+    overview: "Electronic waste is accelerated by opacity; devices are discarded due to unknown internal health and repair history. This challenge builds a Digital Product Passport system — a Living Identity for electronics.",
     problemStatement: [
-      "Create an IoT Digital Passport System where each device is a dynamic asset.",
-      "Update automatically based on device lifecycle health.",
-      "Allow authorized centers to log repairs securely.",
-      "Enable recyclers to query health to calculate resale value."
+      "Design an IoT-Enabled Digital Passport System where each device is represented by a dynamic asset that updates automatically based on lifecycle telemetry.",
+      "Allow authorized service centers to log repairs and enable recyclers to query verified health status to determine resale value."
     ],
     keyChallenges: [
-      "Dynamic Metadata: Synchronizing blockchain with IoT telemetry.",
-      "Access Control: Ensuring only authorized shops sign repairs.",
-      "Offline Inspection: Verification via passive NFC."
+      "Dynamic Metadata: Updating blockchain record from IoT telemetry without spamming network.",
+      "Access Control: Restrict repair signing to authorized shops.",
+      "Offline Inspection: NFC-based verification even without battery/network."
     ],
     baselineRequirements: [
-      "Dynamic Asset Standard: Metadata reflecting physical wear.",
+      "Dynamic Asset Standard: Metadata reflecting physical health changes.",
       "Repair Signing: Cryptographic workflow for technician signatures.",
-      "Telemetry Bridge: Simulation anchoring health to the ledger.",
-      "Valuation Logic: Module estimating resale value."
-    ]
+      "Telemetry Bridge: IoT agent anchoring health checkpoints to ledger.",
+      "Valuation Logic: Resale value estimation module."
+    ],
+    expectedOutcome: "A deployed system where scanning a device shows a verified history timeline and automatically calculates its refurbished grade."
   }
 ];
 
