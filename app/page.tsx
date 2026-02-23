@@ -366,7 +366,7 @@ export default function Home() {
         },
         {
           q: "Is there a registration fee?",
-          a: "There is no registration fee for Round 1 and Round 2. A registration fee of ₹500 is applicable only for teams selected for the final round."
+          a: "No registration fee is required for participation in Round 1. A registration fee shall apply exclusively to teams shortlisted for Round 2 and the Final Round."
         },
         {
           q: "How does the selection process work?",
@@ -378,7 +378,7 @@ export default function Home() {
         },
         {
           q: "Can participants from different colleges form a team?",
-          a: "Yes, cross-college teams are allowed as long as the team size requirement is met."
+          a: "No, cross-college teams are not allowed."
         }
       ]}
     />
