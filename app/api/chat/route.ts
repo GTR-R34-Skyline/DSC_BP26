@@ -26,8 +26,7 @@ PARTICIPATION RULES:
 - Other colleges are welcome
 - Registration only via Google Form on the website
 - No fee for Round 1
-- No fee for Round 2
-- Fee applies ONLY for teams that qualify for the Grand Finale
+- Fee applies ONLY for teams that qualify for for Round 2 and the Grand Finale
 ROUNDS:
 - Round 1: Initial screening (no fee)
 - Round 2: Top 50 teams (no fee)
