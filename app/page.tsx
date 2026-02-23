@@ -124,7 +124,7 @@ export default function Home() {
         <section className="relative py-20 border-y border-white/10 bg-black/50 backdrop-blur-sm">
             <div className="max-w-7xl mx-auto px-4">
                 {/* Stats - Sequentially Animated */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 text-center">
                     <FadeIn delay={0.1} className="space-y-2" viewport={{ once: false }}>
                         <div className="text-4xl md:text-6xl font-bold text-blue-500 flex justify-center">
                            <AnimatedCounter to={24} suffix="h" />
