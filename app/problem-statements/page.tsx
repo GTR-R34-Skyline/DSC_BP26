@@ -3,8 +3,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import AppNavbar from "@/components/Navbar";
 import DarkVeil from "@/components/DarkVeil";
-import { IconX, IconArrowUpRight, IconDownload } from "@tabler/icons-react";
-import jsPDF from "jspdf";
+import { IconX } from "@tabler/icons-react";
 
 // Simplified Technical Classification
 const problemStatements = [
@@ -195,110 +194,6 @@ const problemStatements = [
 const domains = ["All", "ML", "AI", "Data Analytics", "IoT", "Agentic AI"];
 
 /* ====================================================
-   PDF GENERATOR FUNCTION
-==================================================== */
-// Helper: fetch an image URL and return a base64 data URL
-const toBase64 = (url: string): Promise<string> =>
-  fetch(url)
-    .then((res) => res.blob())
-    .then(
-      (blob) =>
-        new Promise((resolve, reject) => {
-          const reader = new FileReader();
-          reader.onloadend = () => resolve(reader.result as string);
-          reader.onerror = reject;
-          reader.readAsDataURL(blob);
-        })
-    );
-
-const generatePDF = async (problem: typeof problemStatements[0]) => {
-  const doc = new jsPDF();
-
-  let dscBase64 = "";
-  let bpBase64 = "";
-  try {
-    [dscBase64, bpBase64] = await Promise.all([
-      toBase64("/DSC_logo.png"),
-      toBase64("/Blueprints_Logo.png"),
-    ]);
-  } catch (_) {}
-
-  const HEADER_H = 22;
-
-  doc.setFillColor(10, 10, 10);
-  doc.rect(0, 0, 210, HEADER_H, "F");
-
-  if (dscBase64) doc.addImage(dscBase64, "PNG", 10, 3, 36, 16);
-  if (bpBase64) doc.addImage(bpBase64, "PNG", 164, 3, 36, 16);
-
-  doc.setDrawColor(147, 51, 234);
-  doc.setLineWidth(0.8);
-  doc.line(0, HEADER_H, 210, HEADER_H);
-
-  let y = HEADER_H + 10;
-
-  doc.setFontSize(18);
-  doc.setFont("helvetica", "bold");
-  const titleLines = doc.splitTextToSize(problem.title, 170);
-  doc.text(titleLines, 20, y);
-  y += titleLines.length * 8 + 6;
-
-  doc.setFontSize(11);
-  doc.setTextColor(120, 80, 200);
-  doc.text(`Domain: ${problem.domain}`, 20, y);
-  y += 6;
-  doc.text(`Company: ${problem.company}`, 20, y);
-  y += 12;
-
-  doc.setDrawColor(200, 200, 200);
-  doc.line(20, y, 190, y);
-  y += 10;
-
-  const addSection = (title: string, content: string | string[]) => {
-    if (y > 260) {
-      doc.addPage();
-      y = 20;
-    }
-
-    doc.setFontSize(13);
-    doc.setFont("helvetica", "bold");
-    doc.setTextColor(40, 40, 40);
-    doc.text(title, 20, y);
-    y += 8;
-
-    doc.setFontSize(10);
-    doc.setFont("helvetica", "normal");
-    doc.setTextColor(70, 70, 70);
-
-    if (Array.isArray(content)) {
-      content.forEach((item, i) => {
-        if (y > 270) {
-          doc.addPage();
-          y = 20;
-        }
-        const lines = doc.splitTextToSize(`• ${item}`, 165);
-        doc.text(lines, 22, y);
-        y += lines.length * 6 + 3;
-      });
-    } else {
-      const lines = doc.splitTextToSize(content, 170);
-      doc.text(lines, 20, y);
-      y += lines.length * 6 + 6;
-    }
-
-    y += 6;
-  };
-
-  addSection("Overview", problem.overview);
-  addSection("Core Objectives", problem.problemStatement);
-  addSection("Key Challenges", problem.keyChallenges);
-  addSection("Baseline Requirements", problem.baselineRequirements);
-  addSection("Expected Outcome", problem.expectedOutcome);
-
-  doc.save(`${problem.title}.pdf`);
-};
-
-/* ====================================================
    COMPONENT
 ==================================================== */
 
@@ -371,92 +266,84 @@ export default function ProblemStatements() {
       <AnimatePresence>
         {selectedProblem && (
           <motion.div
-            className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95 backdrop-blur-xl"
             onClick={() => setSelectedProblem(null)}
           >
             <motion.div
-              className="bg-[#050505] border border-white/10 rounded-3xl w-full max-w-5xl max-h-[90vh] overflow-y-auto p-10"
-              initial={{ scale: 0.95 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.95 }}
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="relative w-full max-w-5xl max-h-[90vh] bg-[#050505] border border-white/10 rounded-[2rem] overflow-hidden shadow-2xl flex flex-col md:flex-row"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex justify-between items-start mb-8">
-                <h2 className="text-4xl font-bold">
-                  {selectedProblem.title}
-                </h2>
+              {/* Close button */}
+              <button
+                onClick={() => setSelectedProblem(null)}
+                className="absolute top-8 right-8 z-30 p-2 rounded-full bg-white/5 hover:bg-white/10 text-white transition-all"
+              >
+                <IconX size={20} />
+              </button>
 
-                <button
-                  onClick={() => generatePDF(selectedProblem)}
-                  className="flex items-center gap-2 bg-purple-600 px-4 py-2 rounded-xl text-sm"
-                >
-                  <IconDownload size={16} />
-                  PDF
-                </button>
+              {/* Left Panel */}
+              <div className="w-full md:w-2/5 bg-zinc-900/30 p-10 border-b md:border-b-0 md:border-r border-white/10 flex flex-col justify-start relative">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-blue-500" />
+
+                <div>
+                  <p className="text-purple-500 font-mono text-[10px] mb-4 uppercase tracking-[0.3em] font-bold">Standard #2026</p>
+                  <h2 className="text-4xl font-bold text-white mb-6 leading-[1.1]">{selectedProblem.title}</h2>
+                  <div className="flex items-center gap-3 p-3 bg-white/5 rounded-2xl border border-white/5 w-fit">
+                    <img src={selectedProblem.logo} className="w-6 h-6 rounded-full" alt={selectedProblem.company} />
+                    <span className="text-sm font-medium text-white/90">{selectedProblem.company}</span>
+                  </div>
+                </div>
               </div>
 
-              <div className="space-y-10">
-
-                <section>
-                  <h4 className="text-white/40 uppercase text-xs mb-3">
-                    Overview
-                  </h4>
-                  <p className="text-white/70 text-sm leading-relaxed">
-                    {selectedProblem.overview}
-                  </p>
-                </section>
-
-                <section>
-                  <h4 className="text-white/40 uppercase text-xs mb-3">
-                    Core Objectives
-                  </h4>
-                  <ul className="space-y-3">
-                    {selectedProblem.problemStatement.map((s, i) => (
-                      <li key={i} className="text-sm text-white/80">
-                        {i + 1}. {s}
-                      </li>
-                    ))}
-                  </ul>
-                </section>
-
-                <section>
-                  <h4 className="text-white/40 uppercase text-xs mb-3">
-                    Key Challenges
-                  </h4>
-                  <ul className="space-y-3">
-                    {selectedProblem.keyChallenges.map((c, i) => (
-                      <li key={i} className="text-sm text-white/70">
-                        • {c}
-                      </li>
-                    ))}
-                  </ul>
-                </section>
-
-                <section>
-                  <h4 className="text-white/40 uppercase text-xs mb-3">
-                    Baseline Requirements
-                  </h4>
-                  <ul className="space-y-3">
-                    {selectedProblem.baselineRequirements.map((r, i) => (
-                      <li key={i} className="text-sm text-white/70">
-                        • {r}
-                      </li>
-                    ))}
-                  </ul>
-                </section>
-
-                <section>
-                  <h4 className="text-white/40 uppercase text-xs mb-3">
-                    Expected Outcome
-                  </h4>
-                  <p className="text-green-400 text-sm leading-relaxed">
-                    {selectedProblem.expectedOutcome}
-                  </p>
-                </section>
-
+              {/* Right Panel */}
+              <div className="w-full md:w-3/5 p-10 overflow-y-auto custom-scrollbar">
+                <div className="space-y-12">
+                  <section>
+                    <h4 className="text-[10px] uppercase tracking-[0.2em] text-white/30 mb-4 font-black">Overview</h4>
+                    <p className="text-white/60 leading-relaxed text-sm">{selectedProblem.overview}</p>
+                  </section>
+                  <section>
+                    <h4 className="text-[10px] uppercase tracking-[0.2em] text-white/30 mb-4 font-black">Core Objective</h4>
+                    <ul className="space-y-4">
+                      {selectedProblem.problemStatement.map((s, i) => (
+                        <li key={i} className="text-sm text-white/80 flex gap-4">
+                          <span className="text-purple-500 font-bold">0{i + 1}</span>
+                          <span className="opacity-80">{s}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
+                  <section>
+                    <h4 className="text-[10px] uppercase tracking-[0.2em] text-white/30 mb-4 font-black">Key Challenges</h4>
+                    <div className="grid grid-cols-1 gap-3">
+                      {selectedProblem.keyChallenges.map((r, i) => (
+                        <div key={i} className="p-4 bg-white/[0.03] border border-white/5 rounded-xl text-[12px] text-white/60 leading-snug">
+                          {r}
+                        </div>
+                      ))}
+                    </div>
+                  </section>
+                  <section>
+                    <h4 className="text-[10px] uppercase tracking-[0.2em] text-white/30 mb-4 font-black">Baseline Requirements</h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {selectedProblem.baselineRequirements.map((r, i) => (
+                        <div key={i} className="p-4 bg-white/[0.03] border border-white/5 rounded-xl text-[11px] text-white/50 leading-snug">
+                          {r}
+                        </div>
+                      ))}
+                    </div>
+                  </section>
+                  <section>
+                    <h4 className="text-[10px] uppercase tracking-[0.2em] text-white/30 mb-4 font-black">Expected Outcome</h4>
+                    <p className="text-purple-400 text-sm font-medium leading-relaxed">{selectedProblem.expectedOutcome}</p>
+                  </section>
+                </div>
               </div>
             </motion.div>
           </motion.div>
