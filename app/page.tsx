@@ -77,7 +77,7 @@ export default function Home() {
             <FadeIn delay={0.8} direction="up" className="pointer-events-none px-2 mb-6 md:mb-0">
               <p className="text-lg md:text-2xl lg:text-3xl text-white/80 drop-shadow-md leading-relaxed max-w-3xl mx-auto font-light">
                 Innovate. Build. Disrupt. <br/>
-                <span className="text-white/50 text-sm md:text-xl mt-2 block sm:inline">One-Month Intercollegiate Product Development Bootcamp organized by the Developer Student Community</span>
+                <span className="text-white/50 text-sm md:text-xl mt-2 block sm:inline">National-Level Intercollegiate Innovation & Product Development Bootcamp</span>
               </p>
             </FadeIn>
             
@@ -136,12 +136,6 @@ export default function Home() {
                            <AnimatedCounter to={500} suffix="+" />
                         </div>
                         <p className="text-white/60 uppercase tracking-widest text-sm">Participants</p>
-                    </FadeIn>
-                    <FadeIn delay={0.5} className="space-y-2" viewport={{ once: false }}>
-                        <div className="text-4xl md:text-6xl font-bold text-pink-500 flex justify-center">
-                           <AnimatedCounter to={6} suffix="+" />
-                        </div>
-                        <p className="text-white/60 uppercase tracking-widest text-sm">Problem Statements</p>
                     </FadeIn>
                     <FadeIn delay={0.7} className="space-y-2" viewport={{ once: false }}>
                          <div className="text-4xl md:text-6xl font-bold text-green-500 flex justify-center">
