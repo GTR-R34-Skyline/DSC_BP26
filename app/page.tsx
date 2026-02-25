@@ -20,7 +20,6 @@ import Blueprints2025Carousel from "@/components/Blueprints2025Carousel";
 
 // ... (keep navItems if used, or remove if unused, but page has its own definitions sometimes. checking...)
 // The page.tsx had a local navItems definition which is now redundant if we rely on AppNavbar.
-// However, I will just leave the imports and focusing on the render part.
 
 export default function Home() {
   // Mobile menu state handled by AppNavbar internally now, or if passed, it's fine.
