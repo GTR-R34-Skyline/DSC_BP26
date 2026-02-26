@@ -7,31 +7,6 @@ import { IconX, IconUsers } from "@tabler/icons-react";
 
 const problemStatements = [
     {
-        id: 1,
-        title: "AI-Powered Diabetic Retinopathy Screening for Eye Camps",
-        domain: "ML",
-        company: "Clustrex",
-        logo: "/logos/clustrex_logo.jpeg",
-        shortDescription: "AI-powered triage assistant acting as a 'First Line of Defense' to optimize ophthalmologist time in rural screening camps.",
-        overview: "Diabetic Retinopathy (DR) is a leading cause of preventable blindness in India. Rural eye camps screen hundreds of patients daily with limited specialist availability. The core bottleneck is time — ophthalmologists must manually filter mostly healthy cases before reaching severe ones. The intelligence must lie in an AI-powered triage layer that acts as the first line of defense, prioritizing high-risk patients while maintaining clinical trust and safety.",
-        problemStatement: [
-            "Design an AI-powered screening assistant that analyzes retinal (fundus) images and classifies Diabetic Retinopathy severity.",
-            `The system must:\n• Classify images into standard clinical DR stages\n• Identify patients requiring urgent referral\n• Safely filter low-risk cases\n• Provide explainable reasoning for each prediction`
-        ],
-        keyChallenges: [
-            "Trust & Explainability: Doctors must understand why a decision was made (e.g., heatmaps, lesion localization).",
-            "Field Robustness: The model must handle real-world noise: blur, uneven lighting, low contrast.",
-            "Throughput: Predictions must render quickly to avoid queue congestion.",
-            "Safety Framing: Interface must clearly state: 'Screening Support – Non-Diagnostic.'"
-        ],
-        baselineRequirements: [
-            "Core Classification: Automatically analyze retinal images and classify them into standard clinical severity stages.",
-            "Actionable Triage: Map the severity score to strict recommendations.",
-            "Explainability: Provide a visual or textual rationale for the prediction to aid doctor verification.",
-            "Safety Protocol: The interface must explicitly state 'Screening Support – Non-Diagnostic.'"
-        ]
-    },
-    {
         id: 2,
         title: "AI Agent for Intake and Sales Enablement",
         domain: "Agentic AI",
@@ -68,7 +43,7 @@ const problemStatements = [
         title: "Digital Pulse: The Contextual Cultural Intelligence Engine",
         domain: "Data Analytics",
         company: "VIU",
-        logo: "/logos/viuott_logo.jpeg",
+        logo: "/logos/viu-logo-01.png",
         shortDescription: "Contextual analytics platform reconstructing viral narratives and identifying cultural shifts.",
         overview: "Modern platforms amplify popularity, not significance. Viral content dominates dashboards, while early-stage cultural signals remain buried in low-engagement noise. This challenge focuses on building a dual-mode analytics engine that reconstructs dominant viral narratives while also detecting subtle, emerging cultural shifts before they achieve mass engagement.",
         problemStatement: [
@@ -94,12 +69,37 @@ const problemStatements = [
             "Predictive Framing: Include a lightweight forecasting mechanism to predict which high-engagement topics are likely to sustain growth."
         ]
     },
+        {
+        id: 1,
+        title: "AI-Powered Diabetic Retinopathy Screening for Eye Camps",
+        domain: "ML",
+        company: "Clustrex",
+        logo: "/logos/clustrex_logo.jpeg",
+        shortDescription: "AI-powered triage assistant acting as a 'First Line of Defense' to optimize ophthalmologist time in rural screening camps.",
+        overview: "Diabetic Retinopathy (DR) is a leading cause of preventable blindness in India. Rural eye camps screen hundreds of patients daily with limited specialist availability. The core bottleneck is time — ophthalmologists must manually filter mostly healthy cases before reaching severe ones. The intelligence must lie in an AI-powered triage layer that acts as the first line of defense, prioritizing high-risk patients while maintaining clinical trust and safety.",
+        problemStatement: [
+            "Design an AI-powered screening assistant that analyzes retinal (fundus) images and classifies Diabetic Retinopathy severity.",
+            `The system must:\n• Classify images into standard clinical DR stages\n• Identify patients requiring urgent referral\n• Safely filter low-risk cases\n• Provide explainable reasoning for each prediction`
+        ],
+        keyChallenges: [
+            "Trust & Explainability: Doctors must understand why a decision was made (e.g., heatmaps, lesion localization).",
+            "Field Robustness: The model must handle real-world noise: blur, uneven lighting, low contrast.",
+            "Throughput: Predictions must render quickly to avoid queue congestion.",
+            "Safety Framing: Interface must clearly state: 'Screening Support – Non-Diagnostic.'"
+        ],
+        baselineRequirements: [
+            "Core Classification: Automatically analyze retinal images and classify them into standard clinical severity stages.",
+            "Actionable Triage: Map the severity score to strict recommendations.",
+            "Explainability: Provide a visual or textual rationale for the prediction to aid doctor verification.",
+            "Safety Protocol: The interface must explicitly state 'Screening Support – Non-Diagnostic.'"
+        ]
+    },
     {
         id: 4,
         title: "Gridlock-Breaker: AI-Coordinated Adaptive Traffic Orchestration",
         domain: "IoT",
         company: "VIU",
-        logo: "/logos/viuott_logo.jpeg",
+        logo: "/logos/viu-logo-01.png",
         shortDescription: "City-wide orchestration engine transforming static traffic signals into synchronized intelligent networks.",
         overview: "Urban traffic in Indian metros operates under static timers and manual intervention. These systems are reactive — responding only after congestion forms. This challenge demands a synchronized, city-wide orchestration engine that proactively optimizes traffic flow across an interconnected grid. The objective is flow optimization, not just congestion response.",
         problemStatement: [

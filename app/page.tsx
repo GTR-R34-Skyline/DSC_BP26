@@ -150,7 +150,7 @@ export default function Home() {
                 Blueprints 2026 is not just a hackathon; it's a launchpad for the next generation of developers.
                 We bring together the brightest minds to solve real-world problems across domains like
                 <span className="text-blue-400"> Machine Learning</span>,
-                <span className="text-purple-400"> Cyber Security</span>, and
+                <span className="text-purple-400"> Agentic AI</span>, and
                 <span className="text-pink-400"> IoT</span>.
               </p>
             </FadeIn>
