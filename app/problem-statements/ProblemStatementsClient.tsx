@@ -1,12 +1,16 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { Poppins } from "next/font/google";
-
-const poppins = Poppins({ subsets: ["latin"], weight: ["700"] });
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import AppNavbar from "@/components/Navbar";
 import DarkVeil from "@/components/DarkVeil";
 import { IconX, IconUsers } from "@tabler/icons-react";
+
+const poppins = Poppins({ subsets: ["latin"], weight: ["700"] });
+
+/* ====================================================
+   PROBLEM STATEMENTS DATA
+==================================================== */
 
 const problemStatements = [
     {
@@ -72,7 +76,7 @@ const problemStatements = [
             "Predictive Framing: Include a lightweight forecasting mechanism to predict which high-engagement topics are likely to sustain growth."
         ]
     },
-        {
+    {
         id: 1,
         title: "AI-Powered Diabetic Retinopathy Screening for Eye Camps",
         domain: "ML",
@@ -347,303 +351,284 @@ const problemStatements = [
     }
 ];
 
-// Domain-based color mapping
+/* ====================================================
+   DOMAIN STYLES
+==================================================== */
+
 const domainStyles: Record<string, { border: string; text: string; accent: string }> = {
-    "ML":           { border: "border-blue-500/40",   text: "text-blue-400",   accent: "bg-blue-500" },
-    "Agentic AI":   { border: "border-purple-500/40", text: "text-purple-400", accent: "bg-purple-500" },
-    "Data Analytics":{ border: "border-cyan-500/40",  text: "text-cyan-400",   accent: "bg-cyan-500" },
-    "IoT":          { border: "border-green-500/40",  text: "text-green-400",  accent: "bg-green-500" },
-    "Blockchain":   { border: "border-amber-500/40",  text: "text-amber-400",  accent: "bg-amber-500" },
-    "AI/ML":        { border: "border-rose-500/40",   text: "text-rose-400",   accent: "bg-rose-500" },
+  ML: { border: "border-blue-500/40", text: "text-blue-400", accent: "bg-blue-500" },
+  "Agentic AI": { border: "border-purple-500/40", text: "text-purple-400", accent: "bg-purple-500" },
+  "Data Analytics": { border: "border-cyan-500/40", text: "text-cyan-400", accent: "bg-cyan-500" },
+  IoT: { border: "border-green-500/40", text: "text-green-400", accent: "bg-green-500" },
+  Blockchain: { border: "border-amber-500/40", text: "text-amber-400", accent: "bg-amber-500" },
+  "AI/ML": { border: "border-rose-500/40", text: "text-rose-400", accent: "bg-rose-500" },
 };
 
 function getDomainStyle(domain: string) {
-    return domainStyles[domain] ?? { border: "border-white/20", text: "text-white/60", accent: "bg-white" };
+  return domainStyles[domain] ?? {
+    border: "border-white/20",
+    text: "text-white/60",
+    accent: "bg-white",
+  };
 }
 
-// Sticky Card Component for Overlapping Effect
+/* ====================================================
+   STICKY CARD
+==================================================== */
+
 function ProblemCard({
-    problem,
-    index,
-    total,
-    totalSubmissions,
-    onClick
-}: {
-    problem: typeof problemStatements[0]
-    index: number
-    total: number
-    totalSubmissions: number
-    onClick: () => void
-}) {
-    const cardRef = useRef<HTMLDivElement>(null);
-    const { scrollYProgress } = useScroll({
-        target: cardRef,
-        offset: ["start end", "start start"]
-    });
+  problem,
+  index,
+  total,
+  totalSubmissions,
+  onClick,
+}: any) {
+  const cardRef = useRef<HTMLDivElement>(null);
 
-    const scale = useTransform(scrollYProgress, [0, 1], [1, 1 - (total - index) * 0.05]);
-    const style = getDomainStyle(problem.domain);
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start end", "start start"],
+  });
 
-    return (
-        <motion.div
-            ref={cardRef}
-            style={{ scale }}
-            onClick={onClick}
-            className={`sticky top-24 mb-16 last:mb-0 w-full rounded-3xl overflow-hidden cursor-pointer group bg-gradient-to-b from-white/5 to-black border ${style.border} hover:shadow-2xl transition-all duration-300 md:h-72`}
-        >
-            {/* Glossy Overlay */}
-            <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none mix-blend-overlay" />
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1 - (total - index) * 0.05]);
+  const style = getDomainStyle(problem.domain);
 
-            <div className="p-8 md:p-10 h-full flex flex-col md:flex-row gap-8 items-start relative z-10 bg-black/40 backdrop-blur-sm">
+  return (
+    <motion.div
+      ref={cardRef}
+      style={{ scale }}
+      onClick={onClick}
+      className={`sticky top-24 mb-16 w-full rounded-3xl overflow-hidden cursor-pointer group bg-gradient-to-b from-white/5 to-black border ${style.border} hover:shadow-2xl transition-all duration-300 md:h-72`}
+    >
+      <div className="p-8 md:p-10 h-full flex flex-col md:flex-row gap-8 items-start relative z-10 bg-black/40 backdrop-blur-sm">
 
-                {/* Left Info: Logo, Domain & Stats */}
-                <div className="w-full md:w-[250px] shrink-0 flex flex-col justify-between h-full space-y-6">
-                    <div className="flex items-center gap-4">
-                        <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center shrink-0 shadow-xl overflow-hidden">
-                            {problem.company === "Developer Student Community" ? (
-                                <span className={`${poppins.className} text-black font-bold text-lg select-none`}>&lt;&gt;</span>
-                            ) : (
-                                <img
-                                    src={problem.logo}
-                                    alt={problem.company}
-                                    className="w-full h-full object-contain p-2"
-                                    onError={(e) => { (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${problem.company}&background=random`; }}
-                                />
-                            )}
-                        </div>
-                        <div>
-                            {problem.company !== "Developer Student Community" && (
-                                <span className="text-white/60 text-xs uppercase tracking-wider font-bold block mb-1">Partner</span>
-                            )}
-                            <span className="text-white font-semibold text-lg">{problem.company}</span>
-                        </div>
-                    </div>
+        {/* LEFT SIDE */}
+        <div className="w-full md:w-[260px] shrink-0 flex flex-col justify-between h-full space-y-6">
 
-                    <div className="flex flex-col gap-3">
-                        <div className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border bg-black/50 w-fit ${style.border}`}>
-                            <IconUsers size={16} className="text-white/70" />
-                            <span className="text-sm font-semibold text-white/90">
-                                {totalSubmissions || 0} <span className="text-white/50 font-normal">Submissions</span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
+          <div className="flex items-center gap-4">
+            {problem.company === "Developer Student Community" ? (
+              <span className={`${poppins.className} text-white font-bold text-2xl select-none`}>
+                {"<>"}
+              </span>
+            ) : (
+              <div className="w-16 h-16 rounded-2xl bg-white p-2 flex items-center justify-center shadow-xl overflow-hidden shrink-0">
+                <img
+                  src={problem.logo}
+                  alt={problem.company}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+            )}
 
-                {/* Right Info: Text Content */}
-                <div className="flex-1 flex flex-col justify-center">
-                    <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4 leading-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-white/50 transition-all">
-                        {problem.title}
-                    </h3>
-                    <p className="text-white/60 text-base md:text-lg leading-relaxed max-w-3xl">
-                        {problem.shortDescription}
-                    </p>
-                </div>
-            </div>
-        </motion.div>
-    );
+            <span className="text-white font-semibold text-lg">
+              {problem.company}
+            </span>
+          </div>
+
+          <div className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border bg-black/50 w-fit ${style.border}`}>
+            <IconUsers size={16} className="text-white/70" />
+            <span className="text-sm font-semibold text-white/90">
+              {totalSubmissions || 0} <span className="text-white/50 font-normal">Submissions</span>
+            </span>
+          </div>
+        </div>
+
+        {/* RIGHT SIDE */}
+        <div className="flex-1 flex flex-col justify-center">
+          <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4 leading-tight">
+            {problem.title}
+          </h3>
+          <p className="text-white/60 text-base md:text-lg leading-relaxed max-w-3xl">
+            {problem.shortDescription}
+          </p>
+        </div>
+      </div>
+    </motion.div>
+  );
 }
 
 /* ====================================================
    MAIN COMPONENT
 ==================================================== */
 
-export default function ProblemStatementsClient({ submissionStats }: { submissionStats: Record<string, number> }) {
-    const [selectedProblem, setSelectedProblem] = useState<typeof problemStatements[0] | null>(null);
+export default function ProblemStatementsClient({ submissionStats }: any) {
+  const [selectedProblem, setSelectedProblem] = useState<any | null>(null);
 
-    const filteredProblems = problemStatements;
+  useEffect(() => {
+    document.body.style.overflow = selectedProblem ? "hidden" : "unset";
+    return () => { document.body.style.overflow = "unset"; };
+  }, [selectedProblem]);
 
-    useEffect(() => {
-        document.body.style.overflow = selectedProblem ? "hidden" : "unset";
-        return () => { document.body.style.overflow = "unset"; };
-    }, [selectedProblem]);
+  return (
+    <div className="relative w-full min-h-screen bg-black text-white">
 
-    return (
-        <div className="relative w-full min-h-screen bg-black text-white selection:bg-white/20">
-            <div className="fixed inset-0 pointer-events-none z-0 mix-blend-screen opacity-50">
-                <DarkVeil speed={1.5} noiseIntensity={0.03} warpAmount={0.2} />
-            </div>
+      <div className="fixed inset-0 pointer-events-none z-0 mix-blend-screen opacity-50">
+        <DarkVeil speed={1.5} noiseIntensity={0.03} warpAmount={0.2} />
+      </div>
 
-            <AppNavbar />
+      <AppNavbar />
 
-            <main className="relative z-10 px-4 md:px-8 pb-32 max-w-6xl mx-auto">
-                <div className="h-32 md:h-40" />
+      <main className="relative z-10 px-4 md:px-8 pb-32 max-w-6xl mx-auto">
 
-                <div className="text-center mb-16 relative">
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-blue-500/20 blur-[120px] rounded-full pointer-events-none" />
-                    <h1 className="text-5xl md:text-7xl font-black tracking-tighter mb-6 bg-gradient-to-br from-white via-white/90 to-white/40 bg-clip-text text-transparent drop-shadow-sm leading-tight relative z-10">
-                        Problem Statements
-                    </h1>
-                    <p className="text-white/50 text-lg md:text-xl max-w-2xl mx-auto">
-                        Explore the challenges brought forward by our industry partners.
-                    </p>
-                </div>
+        <div className="h-32" />
 
-                {/* STACKING LIST */}
-                <div className="relative pb-24">
-                    <AnimatePresence>
-                        {filteredProblems.map((problem, i) => (
-                            <motion.div
-                                key={problem.id}
-                                initial={{ opacity: 0, y: 50 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, scale: 0.95 }}
-                                transition={{ duration: 0.4, delay: i * 0.05 }}
-                            >
-                                <ProblemCard
-                                    problem={problem}
-                                    index={i}
-                                    total={filteredProblems.length}
-                                    totalSubmissions={submissionStats[problem.title] || 0}
-                                    onClick={() => setSelectedProblem(problem)}
-                                />
-                            </motion.div>
-                        ))}
-                    </AnimatePresence>
-                    {filteredProblems.length === 0 && (
-                        <div className="text-center text-white/40 py-20 bg-white/5 rounded-3xl border border-dashed border-white/10">
-                            No problem statements found for this domain.
-                        </div>
-                    )}
-                </div>
-            </main>
-
-            {/* MODAL */}
-            <AnimatePresence>
-                {selectedProblem && (() => {
-                    const style = getDomainStyle(selectedProblem.domain);
-                    return (
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-6 lg:p-12 bg-black/80 backdrop-blur-2xl"
-                            onClick={() => setSelectedProblem(null)}
-                        >
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.95, y: 20 }}
-                                animate={{ opacity: 1, scale: 1, y: 0 }}
-                                exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                                transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                                className={`relative w-full max-w-6xl max-h-[92vh] md:max-h-[85vh] bg-[#0a0a0a] border ${style.border} rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl flex flex-col md:flex-row z-10`}
-                                onClick={(e) => e.stopPropagation()}
-                            >
-                                {/* Close button */}
-                                <button
-                                    onClick={() => setSelectedProblem(null)}
-                                    className="absolute top-6 right-6 z-30 p-2.5 rounded-full bg-black/50 hover:bg-white/10 backdrop-blur-md text-white transition-all border border-white/10 group"
-                                >
-                                    <IconX size={20} className="group-hover:rotate-90 transition-transform duration-300" />
-                                </button>
-
-                                {/* Left Panel */}
-                                <div className="w-full md:w-2/5 p-8 md:p-12 border-b md:border-b-0 md:border-r border-white/10 flex flex-col justify-between relative overflow-hidden bg-white/5">
-                                    <div className={`absolute top-0 left-0 w-full h-1 ${style.accent} opacity-60`} />
-
-                                    <div>
-                                        <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border bg-black/50 mb-6 ${style.border}`}>
-                                            <IconUsers size={16} className="text-white/70" />
-                                            <span className="text-sm font-semibold text-white/90">
-                                                {submissionStats[selectedProblem.title] || 0} Submissions
-                                            </span>
-                                        </div>
-
-                                        <h2 className="text-3xl md:text-5xl font-black text-white mb-8 leading-[1.1] tracking-tight">
-                                            {selectedProblem.title}
-                                        </h2>
-
-                                        <div className="flex items-center gap-4 p-4 bg-black/40 rounded-2xl border border-white/5 w-fit shadow-inner">
-                                            <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center shrink-0 overflow-hidden">
-                                                {selectedProblem.company === "Developer Student Community" ? (
-                                                    <span className={`${poppins.className} text-black font-bold text-base select-none`}>&lt;&gt;</span>
-                                                ) : (
-                                                    <img
-                                                        src={selectedProblem.logo}
-                                                        className="w-full h-full object-contain p-1.5"
-                                                        alt={selectedProblem.company}
-                                                        onError={(e) => { (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${selectedProblem.company}&background=random`; }}
-                                                    />
-                                                )}
-                                            </div>
-                                            <div>
-                                                {selectedProblem.company !== "Developer Student Community" && (
-                                                    <p className="text-[10px] text-white/50 uppercase tracking-widest font-bold">Industry Partner</p>
-                                                )}
-                                                <span className="text-base font-bold text-white/90">{selectedProblem.company}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* Right Panel */}
-                                <div className="w-full md:w-3/5 p-8 md:p-12 overflow-y-auto custom-scrollbar bg-black/60 backdrop-blur-xl">
-                                    <div className="space-y-12 max-w-3xl">
-                                        <section>
-                                            <div className="flex items-center gap-4 mb-4">
-                                                <div className="h-[1px] flex-1 bg-white/10" />
-                                                <h4 className="text-[11px] uppercase tracking-[0.25em] text-white/40 font-black">Overview</h4>
-                                                <div className="h-[1px] flex-1 bg-white/10" />
-                                            </div>
-                                            <p className="text-white/70 leading-relaxed text-base md:text-lg">{selectedProblem.overview}</p>
-                                        </section>
-
-                                        <section>
-                                            <div className="flex items-center gap-4 mb-6">
-                                                <div className="h-[1px] flex-1 bg-white/10" />
-                                                <h4 className="text-[11px] uppercase tracking-[0.25em] text-white/40 font-black">Core Objective</h4>
-                                                <div className="h-[1px] flex-1 bg-white/10" />
-                                            </div>
-                                            <ul className="space-y-5">
-                                                {selectedProblem.problemStatement.map((s, i) => (
-                                                    <li key={i} className="text-base md:text-lg text-white/80 flex gap-5 items-start bg-white/5 p-5 rounded-2xl border border-white/5">
-                                                        <span className={`text-xl font-black opacity-50 font-mono select-none ${style.text}`}>
-                                                            0{i + 1}
-                                                        </span>
-                                                        <span className="opacity-90 leading-relaxed pt-1 whitespace-pre-line">{s}</span>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </section>
-
-                                        <section>
-                                            <div className="flex items-center gap-4 mb-6">
-                                                <div className="h-[1px] flex-1 bg-white/10" />
-                                                <h4 className="text-[11px] uppercase tracking-[0.25em] text-white/40 font-black">Key Challenges</h4>
-                                                <div className="h-[1px] flex-1 bg-white/10" />
-                                            </div>
-                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                                {selectedProblem.keyChallenges.map((r, i) => (
-                                                    <div key={i} className="p-5 bg-white/[0.03] border border-white/5 rounded-2xl text-sm text-white/60 leading-relaxed hover:bg-white/[0.05] transition-colors relative overflow-hidden group">
-                                                        <div className={`absolute top-0 left-0 w-full h-1 ${style.accent} opacity-30 group-hover:opacity-70 transition-opacity`} />
-                                                        {r}
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </section>
-
-                                        <section>
-                                            <div className="flex items-center gap-4 mb-6">
-                                                <div className="h-[1px] flex-1 bg-white/10" />
-                                                <h4 className="text-[11px] uppercase tracking-[0.25em] text-white/40 font-black">
-                                                    Baseline Requirements
-                                                </h4>
-                                                <div className="h-[1px] flex-1 bg-white/10" />
-                                            </div>
-                                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                                {selectedProblem.baselineRequirements.map((r, i) => (
-                                                    <div key={i} className="flex gap-3 text-sm text-white/60 leading-relaxed">
-                                                        <div className={`w-1.5 h-1.5 rounded-full mt-2 shrink-0 ${style.accent} opacity-60`} />
-                                                        <span>{r}</span>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </section>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        </motion.div>
-                    );
-                })()}
-            </AnimatePresence>
+        {/* TITLE */}
+        <div className="text-center mb-16">
+          <h1 className="text-5xl md:text-7xl font-black tracking-tighter mb-6 bg-gradient-to-br from-white via-white/90 to-white/40 bg-clip-text text-transparent">
+            Problem Statements
+          </h1>
         </div>
-    );
+
+        {/* LIST */}
+        <div className="relative pb-24">
+          {problemStatements.map((problem: any, i: number) => (
+            <ProblemCard
+              key={problem.id}
+              problem={problem}
+              index={i}
+              total={problemStatements.length}
+              totalSubmissions={submissionStats?.[problem.title] || 0}
+              onClick={() => setSelectedProblem(problem)}
+            />
+          ))}
+        </div>
+      </main>
+
+      {/* MODAL */}
+      <AnimatePresence>
+        {selectedProblem && (() => {
+          const style = getDomainStyle(selectedProblem.domain);
+          return (
+            <motion.div
+              key="modal-backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/80 backdrop-blur-2xl"
+              onClick={() => setSelectedProblem(null)}
+            >
+              <motion.div
+                key="modal-content"
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                className={`relative w-full max-w-5xl max-h-[85vh] bg-[#0a0a0a] border ${style.border} rounded-3xl overflow-hidden shadow-2xl flex`}
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* CLOSE */}
+                <button
+                  onClick={() => setSelectedProblem(null)}
+                  className="absolute top-6 right-6 p-2 rounded-full bg-black/50 hover:bg-white/10 text-white border border-white/10 z-10"
+                >
+                  <IconX size={20} />
+                </button>
+
+                {/* LEFT PANEL */}
+                <div className="w-2/5 p-10 border-r border-white/10 flex flex-col gap-8 relative overflow-hidden shrink-0">
+                  <div className={`absolute top-0 left-0 w-full h-1 ${style.accent} opacity-60`} />
+
+                  <div className="flex items-center gap-4">
+                    {selectedProblem.company === "Developer Student Community" ? (
+                      <span className={`${poppins.className} text-white font-bold text-3xl select-none`}>
+                        {"<>"}
+                      </span>
+                    ) : (
+                      <div className="w-14 h-14 rounded-xl bg-white p-2 flex items-center justify-center overflow-hidden shrink-0">
+                        <img
+                          src={selectedProblem.logo}
+                          className="w-full h-full object-contain"
+                          alt={selectedProblem.company}
+                        />
+                      </div>
+                    )}
+
+                    <div>
+                      {selectedProblem.company !== "Developer Student Community" && (
+                        <p className="text-[10px] text-white/50 uppercase tracking-widest font-bold">Industry Partner</p>
+                      )}
+                      <span className="text-xl font-bold text-white">
+                        {selectedProblem.company}
+                      </span>
+                    </div>
+                  </div>
+
+                  <h2 className="text-4xl font-black leading-tight text-white">
+                    {selectedProblem.title}
+                  </h2>
+                </div>
+
+                {/* RIGHT PANEL */}
+                <div className="w-3/5 p-10 overflow-y-auto">
+                  <div className="space-y-10">
+
+                    <section>
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="h-[1px] flex-1 bg-white/10" />
+                        <h4 className="text-[11px] uppercase tracking-[0.25em] text-white/40 font-black">Overview</h4>
+                        <div className="h-[1px] flex-1 bg-white/10" />
+                      </div>
+                      <p className="text-white/70 leading-relaxed">{selectedProblem.overview}</p>
+                    </section>
+
+                    <section>
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="h-[1px] flex-1 bg-white/10" />
+                        <h4 className="text-[11px] uppercase tracking-[0.25em] text-white/40 font-black">Core Objective</h4>
+                        <div className="h-[1px] flex-1 bg-white/10" />
+                      </div>
+                      <ul className="space-y-4">
+                        {selectedProblem.problemStatement.map((s: string, i: number) => (
+                          <li key={i} className="flex gap-4 items-start bg-white/5 p-4 rounded-2xl border border-white/5">
+                            <span className={`text-lg font-black opacity-50 font-mono select-none shrink-0 ${style.text}`}>
+                              0{i + 1}
+                            </span>
+                            <span className="text-white/80 leading-relaxed whitespace-pre-line">{s}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </section>
+
+                    <section>
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="h-[1px] flex-1 bg-white/10" />
+                        <h4 className="text-[11px] uppercase tracking-[0.25em] text-white/40 font-black">Key Challenges</h4>
+                        <div className="h-[1px] flex-1 bg-white/10" />
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        {selectedProblem.keyChallenges.map((r: string, i: number) => (
+                          <div key={i} className="p-4 bg-white/[0.03] border border-white/5 rounded-2xl text-sm text-white/60 leading-relaxed relative overflow-hidden group">
+                            <div className={`absolute top-0 left-0 w-full h-1 ${style.accent} opacity-30 group-hover:opacity-70 transition-opacity`} />
+                            {r}
+                          </div>
+                        ))}
+                      </div>
+                    </section>
+
+                    <section>
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="h-[1px] flex-1 bg-white/10" />
+                        <h4 className="text-[11px] uppercase tracking-[0.25em] text-white/40 font-black">Baseline Requirements</h4>
+                        <div className="h-[1px] flex-1 bg-white/10" />
+                      </div>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        {selectedProblem.baselineRequirements.map((r: string, i: number) => (
+                          <div key={i} className="flex gap-3 text-sm text-white/60 leading-relaxed">
+                            <div className={`w-1.5 h-1.5 rounded-full mt-2 shrink-0 ${style.accent} opacity-60`} />
+                            <span>{r}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </section>
+
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
+          );
+        })()}
+      </AnimatePresence>
+
+    </div>
+  );
 }
