@@ -399,14 +399,14 @@ function ProblemCard({
                 {/* Left Info: Logo, Domain & Stats */}
                 <div className="w-full md:w-[250px] shrink-0 flex flex-col justify-between h-full space-y-6">
                     <div className="flex items-center gap-4">
-                        <div className="w-16 h-16 rounded-2xl bg-white p-2 flex items-center justify-center shrink-0 shadow-xl overflow-hidden">
+                        <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center shrink-0 shadow-xl overflow-hidden">
                             {problem.company === "Developer Student Community" ? (
-                                <span className={`${poppins.className} text-black font-bold text-xl select-none leading-none`}>{"<>"}</span>
+                                <span className={`${poppins.className} text-black font-bold text-lg select-none`}>&lt;&gt;</span>
                             ) : (
                                 <img
                                     src={problem.logo}
                                     alt={problem.company}
-                                    className="w-full h-full object-contain"
+                                    className="w-full h-full object-contain p-2"
                                     onError={(e) => { (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${problem.company}&background=random`; }}
                                 />
                             )}
@@ -552,13 +552,13 @@ export default function ProblemStatementsClient({ submissionStats }: { submissio
                                         </h2>
 
                                         <div className="flex items-center gap-4 p-4 bg-black/40 rounded-2xl border border-white/5 w-fit shadow-inner">
-                                            <div className="w-12 h-12 rounded-xl bg-white p-1.5 flex items-center justify-center shrink-0 overflow-hidden">
+                                            <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center shrink-0 overflow-hidden">
                                                 {selectedProblem.company === "Developer Student Community" ? (
-                                                    <span className={`${poppins.className} text-black font-bold text-base select-none leading-none`}>{"<>"}</span>
+                                                    <span className={`${poppins.className} text-black font-bold text-base select-none`}>&lt;&gt;</span>
                                                 ) : (
                                                     <img
                                                         src={selectedProblem.logo}
-                                                        className="w-full h-full object-contain"
+                                                        className="w-full h-full object-contain p-1.5"
                                                         alt={selectedProblem.company}
                                                         onError={(e) => { (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${selectedProblem.company}&background=random`; }}
                                                     />
