@@ -405,7 +405,9 @@ function ProblemCard({
                             />
                         </div>
                         <div>
-                            <span className="text-white/60 text-xs uppercase tracking-wider font-bold block mb-1">Partner</span>
+                            {problem.company !== "Developer Student Community" && (
+                                <span className="text-white/60 text-xs uppercase tracking-wider font-bold block mb-1">Partner</span>
+                            )}
                             <span className="text-white font-semibold text-lg">{problem.company}</span>
                         </div>
                     </div>
