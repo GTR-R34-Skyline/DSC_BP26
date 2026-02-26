@@ -15,14 +15,14 @@ const problemStatements = [
         logo: "/logos/clustrex_logo.jpeg",
         shortDescription: "AI-powered triage assistant acting as a 'First Line of Defense' to optimize ophthalmologist time in rural screening camps.",
         overview: "Diabetic Retinopathy (DR) is a leading cause of preventable blindness in India. Rural eye camps screen hundreds of patients daily with limited specialist availability. The core bottleneck is time — ophthalmologists must manually filter mostly healthy cases before reaching severe ones. The intelligence must lie in an AI-powered triage layer that acts as the first line of defense, prioritizing high-risk patients while maintaining clinical trust and safety.",
-        problemStatement: [
-            "Design an AI-powered screening assistant that analyzes retinal (fundus) images and classifies Diabetic Retinopathy severity.",
-            "The system must:
+problemStatement: [
+    "Design an AI-powered screening assistant that analyzes retinal (fundus) images and classifies Diabetic Retinopathy severity.",
+    `The system must:
 • Classify images into standard clinical DR stages
 • Identify patients requiring urgent referral
 • Safely filter low-risk cases
-• Provide explainable reasoning for each prediction"
-        ],
+• Provide explainable reasoning for each prediction`
+],
         keyChallenges: [
 	    "Trust & Explainability: Doctors must understand why a decision was made (e.g., heatmaps, lesion localization).",
             "Field Robustness: The model must handle real-world noise: blur, uneven lighting, low contrast.",
