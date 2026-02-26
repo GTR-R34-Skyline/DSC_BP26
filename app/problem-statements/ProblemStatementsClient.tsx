@@ -130,7 +130,7 @@ const problemStatements = [
         title: "Credit-Vision: Inclusive Scoring & Trust Protocols",
         domain: "ML",
         company: "Developer Student Community",
-        logo: "/DSC_logo.png",
+        logo: "/PS_logo.png",
         shortDescription: "Real-time alternative credit scoring engine for the credit invisible using Explainable AI.",
         overview: "Millions in emerging economies remain 'Credit Invisible' due to lack of formal credit history despite responsible financial behavior. Traditional credit models are static, bureau-dependent, and exclusionary. This challenge requires building a real-time, regulator-ready scoring engine that evaluates alternative financial behavior signals while remaining transparent, explainable, and mathematically justified.",
         problemStatement: [
@@ -160,7 +160,7 @@ const problemStatements = [
         title: "The Silent Perimeter: Directional Intrusion System",
         domain: "IoT",
         company: "Developer Student Community",
-        logo: "/DSC_logo.png",
+        logo: "/PS_logo.png",
         shortDescription: "High-precision laser-based directional intrusion detection using timing sequence intelligence.",
         overview: "In high-security environments, a basic tripwire is insufficient. It reacts to noise such as falling debris, animals, or authorized personnel. A military-grade perimeter must distinguish direction and intent. The hardware sensors are simple; the intelligence lies in high-precision timing analysis at the command center. The system must operate at ultra-low latency and ensure reliable data transmission under real-world constraints.",
         problemStatement: [
@@ -190,7 +190,7 @@ const problemStatements = [
         title: "Digital Evidence Integrity System",
         domain: "Blockchain",
         company: "Developer Student Community",
-        logo: "/DSC_logo.png",
+        logo: "/PS_logo.png",
         shortDescription: "End-to-end blockchain-backed system ensuring cryptographic immutability and transparent chain-of-custody for legal evidence.",
         overview: "Digital evidence is central to modern litigation, yet credibility is frequently challenged due to tampering risks and undocumented custody transfers. This challenge requires building an end-to-end blockchain-backed evidence integrity system that guarantees authenticity, structured custody management, and verifiable audit trails. Every action performed on evidence must be traceable, role-bound, and tamper-evident.",
         problemStatement: [
@@ -221,7 +221,7 @@ const problemStatements = [
         title: "Autonomous Machine Economy",
         domain: "Blockchain",
         company: "Developer Student Community",
-        logo: "/DSC_logo.png",
+        logo: "/PS_logo.png",
         shortDescription: "Blockchain-powered machine-to-machine payment ecosystem with autonomous service consumption and smart contract settlement.",
         overview: "As IoT ecosystems expand, devices increasingly transact without human intervention. However, there is no standardized infrastructure enabling secure and trust-minimized machine-to-machine payments. This challenge requires building a blockchain-powered Autonomous Machine Economy where devices independently consume services, measure usage, calculate costs, and execute real-time payments via smart contracts.",
         problemStatement: [
@@ -252,7 +252,7 @@ const problemStatements = [
         title: "The Autonomous Research Orchestrator: Intelligent Drug Repurposing Platform",
         domain: "AI/ML",
         company: "Developer Student Community",
-        logo: "/DSC_logo.png",
+        logo: "/PS_logo.png",
         shortDescription: "Multi-domain AI research engine synthesizing clinical, patent, regulatory, and market intelligence for drug repurposing.",
         overview: "In pharmaceutical innovation, identifying repurposing opportunities for approved molecules requires navigating fragmented ecosystems including regulatory filings, clinical trials, patent landscapes, scientific publications, and market intelligence. Traditional platforms retrieve documents; this system must orchestrate retrieval, reasoning, and structured synthesis across domains. The intelligence lies in the orchestration layer that coordinates modular research workflows and produces traceable innovation insights.",
         problemStatement: [
@@ -279,10 +279,10 @@ const problemStatements = [
     },
     {
         id: 10,
-        title: "The Code Insight Engine: AI-Driven Developer Intelligence System",
+        title: "AI-Driven Effort Estimation and Developer Intelligence System",
         domain: "AI/ML",
         company: "Developer Student Community",
-        logo: "/DSC_logo.png",
+        logo: "/PS_logo.png",
         shortDescription: "AI-powered development analytics engine connecting business intent to code impact with explainable performance intelligence.",
         overview: "Modern software teams rely on subjective effort estimation and performance evaluation. Raw commits and ticket counts fail to capture requirement intent, architectural impact, or evolving delivery complexity. This challenge requires building a continuous intelligence layer that maps business requirements to implementation changes, estimates functional effort, and translates development signals into measurable, explainable impact insights.",
         problemStatement: [
@@ -317,7 +317,7 @@ const problemStatements = [
         title: "The Self-Healing Supply Chain: Intelligent BOM Shock Predictor",
         domain: "AI/ML",
         company: "Developer Student Community",
-        logo: "/DSC_logo.png",
+        logo: "/PS_logo.png",
         shortDescription: "ML-powered predictive engine detecting supply shocks and recommending technically compliant substitute components.",
         overview: "In advanced manufacturing, a single microchip or specialty alloy buried deep within a Bill of Materials (BOM) can halt an entire production line. Engineers currently react by manually scanning datasheets for substitutes — a slow and high-risk process. This challenge requires building a predictive intelligence engine that detects supply shocks early and computationally evaluates technical equivalency to recommend safe, compliant substitute components.",
         problemStatement: [
