@@ -411,9 +411,6 @@ function ProblemCard({
                     </div>
 
                     <div className="flex flex-col gap-3">
-                        <span className={`inline-block px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-lg border bg-black/50 w-fit ${style.border} ${style.text}`}>
-                            {problem.domain}
-                        </span>
                         <div className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border bg-black/50 w-fit ${style.border}`}>
                             <IconUsers size={16} className="text-white/70" />
                             <span className="text-sm font-semibold text-white/90">
@@ -555,7 +552,9 @@ export default function ProblemStatementsClient({ submissionStats }: { submissio
                                                 />
                                             </div>
                                             <div>
-                                                <p className="text-[10px] text-white/50 uppercase tracking-widest font-bold">Industry Partner</p>
+                                                {selectedProblem.company !== "Developer Student Community" && (
+                                                    <p className="text-[10px] text-white/50 uppercase tracking-widest font-bold">Industry Partner</p>
+                                                )}
                                                 <span className="text-base font-bold text-white/90">{selectedProblem.company}</span>
                                             </div>
                                         </div>
