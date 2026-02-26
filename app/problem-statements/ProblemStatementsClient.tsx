@@ -1,12 +1,12 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { Poppins } from "next/font/google";
+
+const poppins = Poppins({ subsets: ["latin"], weight: ["700"] });
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import AppNavbar from "@/components/Navbar";
 import DarkVeil from "@/components/DarkVeil";
 import { IconX, IconUsers } from "@tabler/icons-react";
-
-const poppins = Poppins({ subsets: ["latin"], weight: ["700"] });
 
 const problemStatements = [
     {
@@ -72,7 +72,7 @@ const problemStatements = [
             "Predictive Framing: Include a lightweight forecasting mechanism to predict which high-engagement topics are likely to sustain growth."
         ]
     },
-    {
+        {
         id: 1,
         title: "AI-Powered Diabetic Retinopathy Screening for Eye Camps",
         domain: "ML",
@@ -82,7 +82,7 @@ const problemStatements = [
         overview: "Diabetic Retinopathy (DR) is a leading cause of preventable blindness in India. Rural eye camps screen hundreds of patients daily with limited specialist availability. The core bottleneck is time — ophthalmologists must manually filter mostly healthy cases before reaching severe ones. The intelligence must lie in an AI-powered triage layer that acts as the first line of defense, prioritizing high-risk patients while maintaining clinical trust and safety.",
         problemStatement: [
             "Design an AI-powered screening assistant that analyzes retinal (fundus) images and classifies Diabetic Retinopathy severity.",
-            "The system must:\n• Classify images into standard clinical DR stages\n• Identify patients requiring urgent referral\n• Safely filter low-risk cases\n• Provide explainable reasoning for each prediction"
+            `The system must:\n• Classify images into standard clinical DR stages\n• Identify patients requiring urgent referral\n• Safely filter low-risk cases\n• Provide explainable reasoning for each prediction`
         ],
         keyChallenges: [
             "Trust & Explainability: Doctors must understand why a decision was made (e.g., heatmaps, lesion localization).",
@@ -347,19 +347,21 @@ const problemStatements = [
     }
 ];
 
+// Domain-based color mapping
 const domainStyles: Record<string, { border: string; text: string; accent: string }> = {
-    "ML": { border: "border-blue-500/40", text: "text-blue-400", accent: "bg-blue-500" },
-    "Agentic AI": { border: "border-purple-500/40", text: "text-purple-400", accent: "bg-purple-500" },
-    "Data Analytics": { border: "border-cyan-500/40", text: "text-cyan-400", accent: "bg-cyan-500" },
-    "IoT": { border: "border-green-500/40", text: "text-green-400", accent: "bg-green-500" },
-    "Blockchain": { border: "border-amber-500/40", text: "text-amber-400", accent: "bg-amber-500" },
-    "AI/ML": { border: "border-rose-500/40", text: "text-rose-400", accent: "bg-rose-500" },
+    "ML":           { border: "border-blue-500/40",   text: "text-blue-400",   accent: "bg-blue-500" },
+    "Agentic AI":   { border: "border-purple-500/40", text: "text-purple-400", accent: "bg-purple-500" },
+    "Data Analytics":{ border: "border-cyan-500/40",  text: "text-cyan-400",   accent: "bg-cyan-500" },
+    "IoT":          { border: "border-green-500/40",  text: "text-green-400",  accent: "bg-green-500" },
+    "Blockchain":   { border: "border-amber-500/40",  text: "text-amber-400",  accent: "bg-amber-500" },
+    "AI/ML":        { border: "border-rose-500/40",   text: "text-rose-400",   accent: "bg-rose-500" },
 };
 
 function getDomainStyle(domain: string) {
     return domainStyles[domain] ?? { border: "border-white/20", text: "text-white/60", accent: "bg-white" };
 }
 
+// Sticky Card Component for Overlapping Effect
 function ProblemCard({
     problem,
     index,
@@ -389,41 +391,33 @@ function ProblemCard({
             onClick={onClick}
             className={`sticky top-24 mb-16 last:mb-0 w-full rounded-3xl overflow-hidden cursor-pointer group bg-gradient-to-b from-white/5 to-black border ${style.border} hover:shadow-2xl transition-all duration-300 md:h-72`}
         >
+            {/* Glossy Overlay */}
             <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none mix-blend-overlay" />
 
             <div className="p-8 md:p-10 h-full flex flex-col md:flex-row gap-8 items-start relative z-10 bg-black/40 backdrop-blur-sm">
 
-                {/* Left Info: LOGO & BRANDING */}
-                <div className="w-full md:w-auto shrink-0 flex flex-col justify-between h-full space-y-6">
-                    {problem.company === "Developer Student Community" ? (
-                        /* DSC SPECIAL HORIZONTAL LAYOUT */
-                        <div className="flex items-center gap-4 bg-white/10 p-4 pr-8 rounded-2xl border border-white/20 shadow-xl backdrop-blur-md">
-                            <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center shrink-0 shadow-lg">
-                                <span className={`${poppins.className} text-black font-bold text-xl select-none`}>
-                                    &lt;&gt;
-                                </span>
-                            </div>
-                            <span className="text-white font-bold text-xl md:text-2xl tracking-tight whitespace-nowrap">
-                                Developer Student Community
-                            </span>
-                        </div>
-                    ) : (
-                        /* STANDARD PARTNER LAYOUT */
-                        <div className="flex items-center gap-4">
-                            <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center shrink-0 shadow-xl overflow-hidden">
+                {/* Left Info: Logo, Domain & Stats */}
+                <div className="w-full md:w-[250px] shrink-0 flex flex-col justify-between h-full space-y-6">
+                    <div className="flex items-center gap-4">
+                        <div className="w-16 h-16 rounded-2xl bg-white p-2 flex items-center justify-center shrink-0 shadow-xl overflow-hidden">
+                            {problem.company === "Developer Student Community" ? (
+                                <span className={`${poppins.className} text-black font-bold text-xl select-none leading-none`}>{"<>"}</span>
+                            ) : (
                                 <img
                                     src={problem.logo}
                                     alt={problem.company}
-                                    className="w-full h-full object-contain p-2"
+                                    className="w-full h-full object-contain"
                                     onError={(e) => { (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${problem.company}&background=random`; }}
                                 />
-                            </div>
-                            <div>
-                                <span className="text-white/60 text-xs uppercase tracking-wider font-bold block mb-1">Partner</span>
-                                <span className="text-white font-semibold text-lg">{problem.company}</span>
-                            </div>
+                            )}
                         </div>
-                    )}
+                        <div>
+                            {problem.company !== "Developer Student Community" && (
+                                <span className="text-white/60 text-xs uppercase tracking-wider font-bold block mb-1">Partner</span>
+                            )}
+                            <span className="text-white font-semibold text-lg">{problem.company}</span>
+                        </div>
+                    </div>
 
                     <div className="flex flex-col gap-3">
                         <div className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border bg-black/50 w-fit ${style.border}`}>
@@ -449,8 +443,14 @@ function ProblemCard({
     );
 }
 
+/* ====================================================
+   MAIN COMPONENT
+==================================================== */
+
 export default function ProblemStatementsClient({ submissionStats }: { submissionStats: Record<string, number> }) {
     const [selectedProblem, setSelectedProblem] = useState<typeof problemStatements[0] | null>(null);
+
+    const filteredProblems = problemStatements;
 
     useEffect(() => {
         document.body.style.overflow = selectedProblem ? "hidden" : "unset";
@@ -478,9 +478,10 @@ export default function ProblemStatementsClient({ submissionStats }: { submissio
                     </p>
                 </div>
 
+                {/* STACKING LIST */}
                 <div className="relative pb-24">
                     <AnimatePresence>
-                        {problemStatements.map((problem, i) => (
+                        {filteredProblems.map((problem, i) => (
                             <motion.div
                                 key={problem.id}
                                 initial={{ opacity: 0, y: 50 }}
@@ -491,16 +492,22 @@ export default function ProblemStatementsClient({ submissionStats }: { submissio
                                 <ProblemCard
                                     problem={problem}
                                     index={i}
-                                    total={problemStatements.length}
+                                    total={filteredProblems.length}
                                     totalSubmissions={submissionStats[problem.title] || 0}
                                     onClick={() => setSelectedProblem(problem)}
                                 />
                             </motion.div>
                         ))}
                     </AnimatePresence>
+                    {filteredProblems.length === 0 && (
+                        <div className="text-center text-white/40 py-20 bg-white/5 rounded-3xl border border-dashed border-white/10">
+                            No problem statements found for this domain.
+                        </div>
+                    )}
                 </div>
             </main>
 
+            {/* MODAL */}
             <AnimatePresence>
                 {selectedProblem && (() => {
                     const style = getDomainStyle(selectedProblem.domain);
@@ -520,6 +527,7 @@ export default function ProblemStatementsClient({ submissionStats }: { submissio
                                 className={`relative w-full max-w-6xl max-h-[92vh] md:max-h-[85vh] bg-[#0a0a0a] border ${style.border} rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl flex flex-col md:flex-row z-10`}
                                 onClick={(e) => e.stopPropagation()}
                             >
+                                {/* Close button */}
                                 <button
                                     onClick={() => setSelectedProblem(null)}
                                     className="absolute top-6 right-6 z-30 p-2.5 rounded-full bg-black/50 hover:bg-white/10 backdrop-blur-md text-white transition-all border border-white/10 group"
@@ -527,6 +535,7 @@ export default function ProblemStatementsClient({ submissionStats }: { submissio
                                     <IconX size={20} className="group-hover:rotate-90 transition-transform duration-300" />
                                 </button>
 
+                                {/* Left Panel */}
                                 <div className="w-full md:w-2/5 p-8 md:p-12 border-b md:border-b-0 md:border-r border-white/10 flex flex-col justify-between relative overflow-hidden bg-white/5">
                                     <div className={`absolute top-0 left-0 w-full h-1 ${style.accent} opacity-60`} />
 
@@ -543,13 +552,13 @@ export default function ProblemStatementsClient({ submissionStats }: { submissio
                                         </h2>
 
                                         <div className="flex items-center gap-4 p-4 bg-black/40 rounded-2xl border border-white/5 w-fit shadow-inner">
-                                            <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center shrink-0 overflow-hidden">
+                                            <div className="w-12 h-12 rounded-xl bg-white p-1.5 flex items-center justify-center shrink-0 overflow-hidden">
                                                 {selectedProblem.company === "Developer Student Community" ? (
-                                                    <span className={`${poppins.className} text-black font-bold text-base select-none`}>&lt;&gt;</span>
+                                                    <span className={`${poppins.className} text-black font-bold text-base select-none leading-none`}>{"<>"}</span>
                                                 ) : (
                                                     <img
                                                         src={selectedProblem.logo}
-                                                        className="w-full h-full object-contain p-1.5"
+                                                        className="w-full h-full object-contain"
                                                         alt={selectedProblem.company}
                                                         onError={(e) => { (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${selectedProblem.company}&background=random`; }}
                                                     />
@@ -565,6 +574,7 @@ export default function ProblemStatementsClient({ submissionStats }: { submissio
                                     </div>
                                 </div>
 
+                                {/* Right Panel */}
                                 <div className="w-full md:w-3/5 p-8 md:p-12 overflow-y-auto custom-scrollbar bg-black/60 backdrop-blur-xl">
                                     <div className="space-y-12 max-w-3xl">
                                         <section>
