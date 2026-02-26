@@ -229,7 +229,7 @@ export default function Home() {
                 <img src="/ganeshg.jpeg" alt="Ganesh G" className="w-24 h-24 rounded-full object-cover border border-white/20" />
                 <div>
                   <h3 className="text-white font-semibold text-lg">Ganesh G</h3>
-                  <p className="text-white/60 text-sm">Senior Software Developer Engineer</p>
+                  <p className="text-white/60 text-sm">Senior Software Developer</p>
                   <p className="text-white/50 text-xs">Freshworks</p>
                 </div>
               </div>
