@@ -36,38 +36,37 @@ problemStatement: [
             "Safety Protocol: The interface must explicitly state 'Screening Support – Non-Diagnostic.'"
         ]
     },
-    {
-        id: 2,
-        title: "AI Agent for Intake and Sales Enablement",
-        domain: "Agentic AI",
-        company: "Revinova",
-        logo: "/logos/revinova-logo.png",
-        shortDescription: "End-to-End Agentic Sales Orchestrator capable of autonomous qualification and action execution.",
-        overview: "Modern buyers rarely move in straight lines. They explore, compare, hesitate, and signal intent indirectly. Traditional sales bots rely on rigid qualification checklists, but real-world selling requires contextual understanding and pacing.The intelligence must lie in an adaptive agent that reconstructs buyer intent from incomplete conversational signals and delays hard sales actions until readiness is evident.",
-        problemStatement: [
-            "Design an Agentic Sales Consultant that serves as the first point of contact for inbound leads.",
-            "Instead of using static qualification filters, the agent must:
-• Infer Buyer Intent State (Exploring, Comparing, Decision-Ready)
-• Maintain contextual memory across turns
-• Delay qualification and scheduling until intent confidence crosses a defined threshold
-• Provide value-aligned content before attempting to close
-The system must demonstrate reasoning beyond simple keyword triggers."
-        ],
-        keyChallenges: [
-            "Intent Ambiguity: Interpreting vague or mixed signals without relying on rigid keyword rules.",
-            "Adaptive Pacing: Suppressing premature scheduling behavior.",
-            "Intent Confidence Modeling: Maintaining a dynamic intent score across conversation turns.",
-            "Controlled Knowledge Retrieval: Ensuring recommendations come strictly from the approved Knowledge Base.",
-	    "Citation Accuracy: If a video/spec sheet is recommended, it must genuinely match the user’s need.",
-	    "Context Retention: Remembering earlier signals and evolving user position."
-        ],
-baselineRequirements: [
-    "Intent Tracking Model: Classify users into Exploring (educational resources), Comparing (spec sheets and differentiation), or Decision-Ready (trigger scheduling).",
-    "Knowledge Retrieval Control: Retrieve resources strictly from provided KB (CSV/PDF). No hallucinated content. Every recommendation must include traceable citation.",
-    "Tool Orchestration: Trigger Calendly only when intent threshold is met.",
-    "Structured Lead Log: Maintain intent score progression, detected signals, recommended content, and triggered actions.",
-    "Evaluation Safeguards: Use ambiguous transcripts to test inference depth beyond keyword matching. Ensure all recommended content is citation-verified for semantic relevance."
-] 
+{
+    id: 2,
+    title: "AI Agent for Intake and Sales Enablement",
+    domain: "Agentic AI",
+    company: "Revinova",
+    logo: "/logos/revinova-logo.png",
+    shortDescription: "End-to-End Agentic Sales Orchestrator capable of autonomous qualification and action execution.",
+    overview: "Modern buyers rarely move in straight lines. They explore, compare, hesitate, and signal intent indirectly. Traditional sales bots rely on rigid qualification checklists, but real-world selling requires contextual understanding and pacing. The intelligence must lie in an adaptive agent that reconstructs buyer intent from incomplete conversational signals and delays hard sales actions until readiness is evident.",
+    problemStatement: [
+        "Design an Agentic Sales Consultant that serves as the first point of contact for inbound leads.",
+        "Infer Buyer Intent State (Exploring, Comparing, Decision-Ready).",
+        "Maintain contextual memory across turns.",
+        "Delay qualification and scheduling until intent confidence crosses a defined threshold.",
+        "Provide value-aligned content before attempting to close.",
+        "Demonstrate reasoning beyond simple keyword triggers."
+    ],
+    keyChallenges: [
+        "Intent Ambiguity: Interpreting vague or mixed signals without relying on rigid keyword rules.",
+        "Adaptive Pacing: Suppressing premature scheduling behavior.",
+        "Intent Confidence Modeling: Maintaining a dynamic intent score across conversation turns.",
+        "Controlled Knowledge Retrieval: Ensuring recommendations come strictly from the approved Knowledge Base.",
+        "Citation Accuracy: If a video/spec sheet is recommended, it must genuinely match the user’s need.",
+        "Context Retention: Remembering earlier signals and evolving user position."
+    ],
+    baselineRequirements: [
+        "Intent Tracking Model: Classify users into Exploring (educational resources), Comparing (spec sheets and differentiation), or Decision-Ready (trigger scheduling).",
+        "Knowledge Retrieval Control: Retrieve resources strictly from provided KB (CSV/PDF). No hallucinated content. Every recommendation must include traceable citation.",
+        "Tool Orchestration: Trigger Calendly only when intent threshold is met.",
+        "Structured Lead Log: Maintain intent score progression, detected signals, recommended content, and triggered actions.",
+        "Evaluation Safeguards: Use ambiguous transcripts to test inference depth beyond keyword matching. Ensure all recommended content is citation-verified for semantic relevance."
+    ]
 },
 {
     id: 3,
