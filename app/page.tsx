@@ -384,69 +384,101 @@ export default function Home() {
             />
           </FadeIn>
         </section>
+{/* Contact Section */}
+<ScrollAnchor id="contact" />
+<section className="relative py-20 px-4 md:px-8 bg-gradient-to-b from-black to-blue-950/20">
+  <div className="w-full max-w-4xl mx-auto text-center z-10">
+    <SectionTitle title="Get in Touch" />
 
-        {/* Contact Section */}
-        <ScrollAnchor id="contact" />
-        <section className="relative py-20 px-4 md:px-8 bg-gradient-to-b from-black to-blue-950/20">
-          <div className="w-full max-w-4xl mx-auto text-center z-10">
-            <SectionTitle title="Get in Touch" />
+    <p className="text-xl text-white/70 mb-12 max-w-2xl mx-auto">
+      Have questions? Reach out to us directly. We're here to help!
+    </p>
 
-            <p className="text-xl text-white/70 mb-12 max-w-2xl mx-auto">
-              Have questions? Reach out to us directly. We're here to help!
-            </p>
+    {/* Centered Email Card */}
+    <div className="flex justify-center">
+      <div className="w-full max-w-md bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-colors group text-center">
+        
+        <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-6 text-blue-400 group-hover:scale-110 transition-transform">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <rect width="20" height="16" x="2" y="4" rx="2" />
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+          </svg>
+        </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-colors group">
-                <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-6 text-blue-400 group-hover:scale-110 transition-transform">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-2">Email Us</h3>
-                <a href="mailto:gdscsvce@svce.ac.in" className="text-white/70 hover:text-blue-400 transition-colors text-lg">
-                  gdscsvce@svce.ac.in
-                </a>
-              </div>
+        <h3 className="text-xl font-bold text-white mb-2">
+          Email Us
+        </h3>
 
-            </div>
+        <a
+          href="mailto:gdscsvce@svce.ac.in"
+          className="block text-white/70 hover:text-blue-400 transition-colors text-lg"
+        >
+          gdscsvce@svce.ac.in
+        </a>
 
-            <div className="mt-16 pt-8 border-t border-white/10">
-              <p className="text-white/60 mb-4">Visit our Community Website</p>
-              <a
-                href="https://developer-student-community.vercel.app/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-400 hover:text-blue-300 transition-colors font-medium border-b border-blue-400/50 hover:border-blue-300 pb-1"
-              >
-                developer-student-community.vercel.app
-              </a>
-            </div>
+      </div>
+    </div>
 
-            <div className="flex justify-center gap-6 mt-12">
-              <a
-                href="https://www.linkedin.com/company/svce-developer-student-community/posts/?feedView=all"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-12 h-12 rounded-full bg-white/10 hover:bg-blue-600 backdrop-blur-sm border border-white/20 flex items-center justify-center transition-all duration-200 hover:scale-110 hover:shadow-lg"
-                aria-label="LinkedIn"
-              >
-                <IconBrandLinkedin size={24} className="text-white" />
-              </a>
-              <a
-                href="https://www.instagram.com/gdscsvce/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-12 h-12 rounded-full bg-white/10 hover:bg-gradient-to-br hover:from-purple-600 hover:via-pink-600 hover:to-orange-500 backdrop-blur-sm border border-white/20 flex items-center justify-center transition-all duration-200 hover:scale-110 hover:shadow-lg"
-                aria-label="Instagram"
-              >
-                <IconBrandInstagram size={24} className="text-white" />
-              </a>
-            </div>
-            <div className="mt-8">
-              <a href="/login" className="text-white/30 hover:text-white/50 text-sm transition-colors">
-                Admin Login
-              </a>
-            </div>
-          </div>
-        </section>
+    {/* Website Link */}
+    <div className="mt-16 pt-8 border-t border-white/10">
+      <p className="text-white/60 mb-4">
+        Visit our Community Website
+      </p>
+      <a
+        href="https://developer-student-community.vercel.app/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-blue-400 hover:text-blue-300 transition-colors font-medium border-b border-blue-400/50 hover:border-blue-300 pb-1"
+      >
+        developer-student-community.vercel.app
+      </a>
+    </div>
+
+    {/* Social Icons */}
+    <div className="flex justify-center gap-6 mt-12">
+      <a
+        href="https://www.linkedin.com/company/svce-developer-student-community/posts/?feedView=all"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="w-12 h-12 rounded-full bg-white/10 hover:bg-blue-600 backdrop-blur-sm border border-white/20 flex items-center justify-center transition-all duration-200 hover:scale-110 hover:shadow-lg"
+        aria-label="LinkedIn"
+      >
+        <IconBrandLinkedin size={24} className="text-white" />
+      </a>
+
+      <a
+        href="https://www.instagram.com/gdscsvce/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="w-12 h-12 rounded-full bg-white/10 hover:bg-gradient-to-br hover:from-purple-600 hover:via-pink-600 hover:to-orange-500 backdrop-blur-sm border border-white/20 flex items-center justify-center transition-all duration-200 hover:scale-110 hover:shadow-lg"
+        aria-label="Instagram"
+      >
+        <IconBrandInstagram size={24} className="text-white" />
+      </a>
+    </div>
+
+    {/* Admin Login */}
+    <div className="mt-8">
+      <a
+        href="/login"
+        className="text-white/30 hover:text-white/50 text-sm transition-colors"
+      >
+        Admin Login
+      </a>
+    </div>
+
+  </div>
+</section>
 
         {/* Chatbot */}
         <Chatbot />
