@@ -1,5 +1,8 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
+import { Poppins } from "next/font/google";
+
+const poppins = Poppins({ subsets: ["latin"], weight: ["700"] });
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import AppNavbar from "@/components/Navbar";
 import DarkVeil from "@/components/DarkVeil";
@@ -397,12 +400,16 @@ function ProblemCard({
                 <div className="w-full md:w-[250px] shrink-0 flex flex-col justify-between h-full space-y-6">
                     <div className="flex items-center gap-4">
                         <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center shrink-0 shadow-xl overflow-hidden">
-                            <img
-                                src={problem.logo}
-                                alt={problem.company}
-                                className={`w-full h-full ${problem.company === "Developer Student Community" ? "object-cover" : "object-contain p-2"}`}
-                                onError={(e) => { (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${problem.company}&background=random`; }}
-                            />
+                            {problem.company === "Developer Student Community" ? (
+                                <span className={`${poppins.className} text-black font-bold text-lg select-none`}>&lt;&gt;</span>
+                            ) : (
+                                <img
+                                    src={problem.logo}
+                                    alt={problem.company}
+                                    className="w-full h-full object-contain p-2"
+                                    onError={(e) => { (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${problem.company}&background=random`; }}
+                                />
+                            )}
                         </div>
                         <div>
                             {problem.company !== "Developer Student Community" && (
@@ -546,12 +553,16 @@ export default function ProblemStatementsClient({ submissionStats }: { submissio
 
                                         <div className="flex items-center gap-4 p-4 bg-black/40 rounded-2xl border border-white/5 w-fit shadow-inner">
                                             <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center shrink-0 overflow-hidden">
-                                                <img
-                                                    src={selectedProblem.logo}
-                                                    className={`w-full h-full ${selectedProblem.company === "Developer Student Community" ? "object-cover" : "object-contain p-1.5"}`}
-                                                    alt={selectedProblem.company}
-                                                    onError={(e) => { (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${selectedProblem.company}&background=random`; }}
-                                                />
+                                                {selectedProblem.company === "Developer Student Community" ? (
+                                                    <span className={`${poppins.className} text-black font-bold text-base select-none`}>&lt;&gt;</span>
+                                                ) : (
+                                                    <img
+                                                        src={selectedProblem.logo}
+                                                        className="w-full h-full object-contain p-1.5"
+                                                        alt={selectedProblem.company}
+                                                        onError={(e) => { (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${selectedProblem.company}&background=random`; }}
+                                                    />
+                                                )}
                                             </div>
                                             <div>
                                                 {selectedProblem.company !== "Developer Student Community" && (

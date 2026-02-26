@@ -147,8 +147,7 @@ export default function Home() {
             <FadeIn delay={0.2} className="mt-16 text-center max-w-4xl mx-auto">
               <SectionTitle title="Where Innovation Meets Execution" />
               <p className="text-lg text-white/70 leading-relaxed -mt-4">
-                Blueprints 2026 is not just a hackathon; it's a launchpad for the next generation of developers.
-                We bring together the brightest minds to solve real-world problems across domains like
+Blueprints 2026 goes beyond a typical hackathon — it serves as a launchpad for the next generation of innovators. It brings together driven minds to tackle real-world challenges across domains such as
                 <span className="text-blue-400"> Machine Learning</span>,
                 <span className="text-blue-400"> Blockchain</span>,
                 <span className="text-purple-400"> Agentic AI</span>, and
@@ -233,8 +232,18 @@ export default function Home() {
                   <p className="text-white/50 text-xs">Freshworks</p>
                 </div>
               </div>
-
               {/* Judge 3 */}
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center space-y-4 hover:border-white/20 transition-all duration-200">
+                <img src="/sudarshan.jpeg" alt="Sudarshan" className="w-24 h-24 rounded-full object-cover border border-white/20" />
+                <div>
+                  <h3 className="text-white font-semibold text-lg">Sudarshan</h3>
+                  <p className="text-white/60 text-sm">Senior Software Engineer</p>
+                  <p className="text-white/50 text-xs">NG</p>
+                </div>
+              </div>
+
+
+              {/* Judge 4 */}
               <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center space-y-4 hover:border-white/20 transition-all duration-200">
                 <img src="/adhina.jpeg" alt="Adityavignesh V" className="w-24 h-24 rounded-full object-cover border border-white/20" />
                 <div>
@@ -362,7 +371,7 @@ export default function Home() {
                 },
                 {
                   q: "Is there a registration fee?",
-                  a: "No registration fee is required for participation in Round 1 and Round 2. A registration fee shall apply exclusively to teams shortlisted for the Final Round."
+                  a: "A registration fee will be collected only from the teams shortlisted for the Grand Finale."
                 },
                 {
                   q: "How does the selection process work?",
