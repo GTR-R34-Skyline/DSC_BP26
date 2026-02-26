@@ -353,10 +353,6 @@ export default function Home() {
             <Accordion
               items={[
                 {
-                  q: "Who can participate in Blueprints 2026?",
-                  a: "All college students from 1st to 4th year are eligible to participate. Students from other colleges are also welcome."
-                },
-                {
                   q: "What is the team size?",
                   a: "Each team must consist of 4 to 6 participants. Solo or smaller teams are not allowed."
                 },
