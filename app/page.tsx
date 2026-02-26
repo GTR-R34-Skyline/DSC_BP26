@@ -76,7 +76,7 @@ export default function Home() {
             <FadeIn delay={0.8} direction="up" className="pointer-events-none px-2 mb-6 md:mb-0">
               <p className="text-lg md:text-2xl lg:text-3xl text-white/80 drop-shadow-md leading-relaxed max-w-3xl mx-auto font-light">
                 Innovate. Build. Disrupt. <br />
-                <span className="text-white/50 text-sm md:text-xl mt-2 block sm:inline">National-Level Intercollegiate Innovation & Product Development Bootcamp</span>
+                <span className="text-white/50 text-sm md:text-xl mt-2 block sm:inline">National-Level Intercollegiate Product Hackathon</span>
               </p>
             </FadeIn>
 
@@ -150,6 +150,7 @@ export default function Home() {
                 Blueprints 2026 is not just a hackathon; it's a launchpad for the next generation of developers.
                 We bring together the brightest minds to solve real-world problems across domains like
                 <span className="text-blue-400"> Machine Learning</span>,
+                <span className="text-blue-400"> Blockchain</span>,
                 <span className="text-purple-400"> Agentic AI</span>, and
                 <span className="text-pink-400"> IoT</span>.
               </p>
@@ -228,7 +229,7 @@ export default function Home() {
                 <img src="/ganeshg.jpeg" alt="Ganesh G" className="w-24 h-24 rounded-full object-cover border border-white/20" />
                 <div>
                   <h3 className="text-white font-semibold text-lg">Ganesh G</h3>
-                  <p className="text-white/60 text-sm">Software Developer Engineer</p>
+                  <p className="text-white/60 text-sm">Senior Software Developer Engineer</p>
                   <p className="text-white/50 text-xs">Freshworks</p>
                 </div>
               </div>
@@ -330,7 +331,7 @@ export default function Home() {
               </div>
               <PulseGlow>
                 <a
-                  href="mailto:dsc@svce.ac.in"
+                  href="mailto:gdscsvce@svce.ac.in"
                   className="inline-flex items-center gap-2 px-8 py-4 text-lg font-bold text-black bg-white hover:bg-gray-200 rounded-full transition-all duration-300 hover:scale-105"
                 >
                   Become a Partner
@@ -365,7 +366,7 @@ export default function Home() {
                 },
                 {
                   q: "Is there a registration fee?",
-                  a: "No registration fee is required for participation in Round 1. A registration fee shall apply exclusively to teams shortlisted for Round 2 and the Final Round."
+                  a: "No registration fee is required for participation in Round 1 and Round 2. A registration fee shall apply exclusively to teams shortlisted for the Final Round."
                 },
                 {
                   q: "How does the selection process work?",
@@ -373,7 +374,7 @@ export default function Home() {
                 },
                 {
                   q: "What domains do the problem statements cover?",
-                  a: "Problem statements span multiple domains including Machine Learning, Cyber Security, IoT, and related technology areas."
+                  a: "Problem statements span multiple domains including Machine Learning, Agentic AI, Blockchain,IoT, and related technology areas."
                 },
                 {
                   q: "Can participants from different colleges form a team?",
@@ -388,7 +389,7 @@ export default function Home() {
         <ScrollAnchor id="contact" />
         <section className="relative py-20 px-4 md:px-8 bg-gradient-to-b from-black to-blue-950/20">
           <div className="w-full max-w-4xl mx-auto text-center z-10">
-            <SectionTitle title="Get in Touch" subtitle="[CONTACT US]" />
+            <SectionTitle title="Get in Touch" />
 
             <p className="text-xl text-white/70 mb-12 max-w-2xl mx-auto">
               Have questions? Reach out to us directly. We're here to help!
@@ -405,15 +406,6 @@ export default function Home() {
                 </a>
               </div>
 
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-colors group">
-                <div className="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-6 text-purple-400 group-hover:scale-110 transition-transform">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-2">Call Us</h3>
-                <a href="tel:+918015920905" className="text-white/70 hover:text-purple-400 transition-colors text-lg">
-                  +91 80159 20905
-                </a>
-              </div>
             </div>
 
             <div className="mt-16 pt-8 border-t border-white/10">
