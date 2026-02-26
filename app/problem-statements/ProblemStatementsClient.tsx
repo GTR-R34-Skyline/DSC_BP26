@@ -14,189 +14,341 @@ const problemStatements = [
         company: "Clustrex",
         logo: "/logos/clustrex_logo.jpeg",
         shortDescription: "AI-powered triage assistant acting as a 'First Line of Defense' to optimize ophthalmologist time in rural screening camps.",
-        overview: "In India, diabetic retinopathy (DR) is a leading cause of avoidable blindness. Rural eye screening camps serve hundreds of patients daily with limited specialist availability. The critical bottleneck is time: ophthalmologists waste hours screening healthy eyes, leaving less time for patients who need urgent intervention. This challenge seeks an AI solution to act as a 'First Line of Defense,' filtering the patient queue to optimize the doctor's time.",
+        overview: "Diabetic Retinopathy (DR) is a leading cause of preventable blindness in India. Rural eye camps screen hundreds of patients daily with limited specialist availability. The core bottleneck is time — ophthalmologists must manually filter mostly healthy cases before reaching severe ones. The intelligence must lie in an AI-powered triage layer that acts as the first line of defense, prioritizing high-risk patients while maintaining clinical trust and safety.",
         problemStatement: [
-            "Design an AI-powered triage assistant that analyzes retinal (fundus) images to estimate Diabetic Retinopathy severity.",
-            "The system must function as a high-volume filter, identifying which patients need specialist attention ('Refer') and which are safe to send home ('Monitor'), ensuring no severe cases are missed."
+            "Design an AI-powered screening assistant that analyzes retinal (fundus) images and classifies Diabetic Retinopathy severity.",
+            "The system must:
+• Classify images into standard clinical DR stages
+• Identify patients requiring urgent referral
+• Safely filter low-risk cases
+• Provide explainable reasoning for each prediction"
         ],
         keyChallenges: [
-            "The 'Trust Gap': Doctors are skeptical of 'Black Box' AI. The system must explain why it made a decision (e.g., heatmaps, lesion detection).",
-            "Field Conditions: The model must be robust against image quality issues typical of mobile camps (uneven lighting, mild blur, noise).",
-            "Throughput: The system must render a decision quickly to prevent queue pile-up."
+	    "Trust & Explainability: Doctors must understand why a decision was made (e.g., heatmaps, lesion localization).",
+            "Field Robustness: The model must handle real-world noise: blur, uneven lighting, low contrast.",
+            "Throughput: Predictions must render quickly to avoid queue congestion.",
+            "Safety Framing: Interface must clearly state: 'Screening Support – Non-Diagnostic.'"
         ],
         baselineRequirements: [
             "Core Classification: Automatically analyze retinal images and classify them into standard clinical severity stages.",
             "Actionable Triage: Map the severity score to strict recommendations.",
             "Explainability: Provide a visual or textual rationale for the prediction to aid doctor verification.",
             "Safety Protocol: The interface must explicitly state 'Screening Support – Non-Diagnostic.'"
-        ],
-        expectedOutcome: "A functional prototype that takes a fundus image as input and displays a Severity Score, a Triage Action, and an Explanation Layer.",
-        gradient: "from-purple-600/20 via-purple-900/40 to-black",
-        colorRef: "border-purple-500/50"
+        ]
     },
     {
         id: 2,
-        title: "Neuro-Adaptive Workflow: The In-IDE Skill Synthesizer",
-        domain: "AI",
-        company: "Asking India",
-        logo: "https://ui-avatars.com/api/?name=Asking+India&background=random",
-        shortDescription: "A 'Just-in-Time' Learning Engine that detects cognitive friction and injects contextual micro-skills inside the IDE.",
-        overview: "Corporate training has a near-zero ROI because it is disconnected from daily work. Modern developers suffer from constant context switching — leaving their IDE to search for answers, breaking their 'Flow State.' This challenge seeks to build a 'Just-in-Time' Learning Engine that acts as an intelligent layer between the developer and their code, injecting micro-skills exactly when a knowledge gap is detected.",
-        problemStatement: [
-            "Develop an intelligent IDE plugin (VS Code/JetBrains) that monitors a developer's real-time coding behavior to detect 'Cognitive Friction.'",
-            "When struggle is detected (e.g., repeated refactoring, idle time, compilation errors), dynamically generate and present a Micro-Learning Module tailored to unblock them without leaving the editor."
-        ],
-        keyChallenges: [
-            "Struggle Detection: Accurately distinguishing between thinking time and struggling time using behavioral metrics.",
-            "Contextual Relevance: Understanding code intent (e.g., implementing a React Hook) to provide useful help.",
-            "Privacy & Performance: Efficient local processing without lagging the IDE."
-        ],
-        baselineRequirements: [
-            "IDE Extension: Functional plugin reading active editor state and AST.",
-            "Friction Metrics: Scoring system using Error Frequency, Deletion Rate, Documentation Search patterns.",
-            "Dynamic Content: Concise interactive snippet/explanation generation.",
-            "Dashboard: Summary of 'Struggle Areas' for self-review."
-        ],
-        expectedOutcome: "A polished IDE extension where the judge codes a buggy function and the system automatically identifies the missing concept and offers a correction without breaking flow.",
-        gradient: "from-purple-600/20 via-purple-900/40 to-black",
-        colorRef: "border-purple-500/50"
-    },
-    {
-        id: 3,
         title: "AI Agent for Intake and Sales Enablement",
         domain: "Agentic AI",
         company: "Revinova",
         logo: "/logos/revinova-logo.png",
         shortDescription: "End-to-End Agentic Sales Orchestrator capable of autonomous qualification and action execution.",
-        overview: "Sales teams lose valuable opportunities because inbound leads are not guided to the right product quickly. Manual qualification is inconsistent, and scheduling meetings involves tedious back-and-forth. This challenge focuses on building an End-to-End AI Agent that demonstrates autonomous decision-making, context awareness, and safe action execution.",
+        overview: "Modern buyers rarely move in straight lines. They explore, compare, hesitate, and signal intent indirectly. Traditional sales bots rely on rigid qualification checklists, but real-world selling requires contextual understanding and pacing.The intelligence must lie in an adaptive agent that reconstructs buyer intent from incomplete conversational signals and delays hard sales actions until readiness is evident.",
         problemStatement: [
-            "Design an Agentic Sales Orchestrator acting as the first point of contact.",
-            "Autonomously capture lead details, evaluate them against explicit qualification criteria, and orchestrate next steps — either booking meetings or educating leads using a controlled knowledge base."
+            "Design an Agentic Sales Consultant that serves as the first point of contact for inbound leads.",
+            "Instead of using static qualification filters, the agent must:
+• Infer Buyer Intent State (Exploring, Comparing, Decision-Ready)
+• Maintain contextual memory across turns
+• Delay qualification and scheduling until intent confidence crosses a defined threshold
+• Provide value-aligned content before attempting to close
+The system must demonstrate reasoning beyond simple keyword triggers."
         ],
         keyChallenges: [
-            "Agentic Decision Making: Decide when enough information is gathered.",
-            "Controlled Generation: Strict retrieval from provided Knowledge Base to prevent hallucinations.",
-            "Tool Orchestration: Trigger external actions reliably without breaking conversation.",
-            "Context Retention: Maintain structured conversation state."
+            "Intent Ambiguity: Interpreting vague or mixed signals without relying on rigid keyword rules.",
+            "Adaptive Pacing: Suppressing premature scheduling behavior.",
+            "Intent Confidence Modeling: Maintaining a dynamic intent score across conversation turns.",
+            "Controlled Knowledge Retrieval: Ensuring recommendations come strictly from the approved Knowledge Base.",
+	    "Citation Accuracy: If a video/spec sheet is recommended, it must genuinely match the user’s need.",
+	    "Context Retention: Remembering earlier signals and evolving user position."
         ],
-        baselineRequirements: [
-            "Natural Intake & Qualification: Extract Name, Company, Role, Use Case mapped to explicit criteria.",
-            "Criteria-Driven Routing: Perform autonomous followups or provide KB resources.",
-            "Knowledge Retrieval: Recommend 2–5 product spec links/videos from provided sources.",
-            "Lead Log: Maintain structured interaction state."
-        ],
-        expectedOutcome: "A fully functioning Sales Agent (Web Interface) capable of end-to-end qualification, recommendation, and meeting scheduling without human intervention.",
-        gradient: "from-purple-600/20 via-purple-900/40 to-black",
-        colorRef: "border-purple-500/50"
-    },
-    {
-        id: 4,
-        title: "Digital Pulse: The Contextual Cultural Intelligence Engine",
-        domain: "Data Analytics",
-        company: "VIU",
-        logo: "/logos/viuott_logo.jpeg",
-        shortDescription: "Contextual analytics platform reconstructing viral narratives and identifying cultural shifts.",
-        overview: "Modern social media amplifies popularity over significance. Researchers miss subtle early-stage cultural shifts. This challenge focuses on building a dual-purpose intelligence engine capable of analyzing both viral currents and nascent signals.",
-        problemStatement: [
-            "Design a Contextual Analytics Platform to ingest structured/unstructured social data.",
-            "Reconstruct the Viral Narrative and identify, rank, and visualize dominant trends."
-        ],
-        keyChallenges: [
-            "Contextual Ingestion: Normalize diverse datasets (CSV, JSON, streams).",
-            "Metric Reconstruction: Calculate Virality and Impact accurately.",
-            "Cluster Identification: Group fragmented unstructured text into coherent topics."
-        ],
-        baselineRequirements: [
-            "Data Pipeline: Parse and index uploaded datasets.",
-            "Viral Ranking Engine: Score based on Volume, Likes, Shares, Comments.",
-            "Hype Dashboard: Surface top-performing trends.",
-            "Drill-Down Capability: Inspect posts contributing to trends."
-        ],
-        expectedOutcome: "A deployed tool generating a 'State of the Conversation' report instantly from raw uploads.",
-        gradient: "from-purple-600/20 via-purple-900/40 to-black",
-        colorRef: "border-purple-500/50"
-    },
-    {
-        id: 5,
-        title: "Gridlock-Breaker: AI-Coordinated Adaptive Traffic Orchestration",
-        domain: "IoT",
-        company: "VIU",
-        logo: "/logos/viuott_logo.jpeg",
-        shortDescription: "City-wide orchestration engine transforming static traffic signals into synchronized intelligent networks.",
-        overview: "Urban traffic in Indian metropolitan areas is chaotic and reactive. This challenge seeks a City-Wide Orchestration Engine that transforms traffic signals into synchronized intelligent systems optimizing flow.",
-        problemStatement: [
-            "Design an AI-Driven Traffic Control Plane coordinating multiple intersections.",
-            "Use simulation (SUMO/CityFlow/custom engine) to ingest real-time density and dynamically adjust signal phases."
-        ],
-        keyChallenges: [
-            "Green Wave Logic: Coordinate adjacent signals.",
-            "Heterogeneous Flow: Handle mixed vehicle types.",
-            "Emergency Priority: Create green corridors instantly."
-        ],
-        baselineRequirements: [
-            "Simulation Environment: Multi-intersection grid model.",
-            "Adaptive Logic: Queue-based timing adjustments.",
-            "Emergency Override: Ambulance Agent zero-wait feature.",
-            "Fail-Safe: Fallback safety mode."
-        ],
-        expectedOutcome: "Side-by-side simulation showing 20%+ reduction in average wait time compared to fixed timers.",
-        gradient: "from-purple-600/20 via-purple-900/40 to-black",
-        colorRef: "border-purple-500/50"
-    },
-    {
-        id: 6,
-        title: "Credit-Vision: Inclusive Scoring & Trust Protocols",
-        domain: "ML",
-        company: "Credit Vision",
-        logo: "https://ui-avatars.com/api/?name=Credit+Vision&background=random",
-        shortDescription: "Real-time alternative credit scoring engine for the credit invisible using Explainable AI.",
-        overview: "Many in emerging economies remain 'Credit Invisible' due to lack of formal history. Traditional models are static and exclusionary.",
-        problemStatement: [
-            "Design a Real-Time Alternative Credit Scoring Engine ingesting non-traditional financial signals.",
-            "Fuse structured and alternative data to generate a holistic risk assessment using Explainable AI."
-        ],
-        keyChallenges: [
-            "Data Fusion: Merge structured bureau data with alternative signals.",
-            "Explainability: Output causal factors behind scores.",
-            "Cold Start: Accurate assessment without historical loans."
-        ],
-        baselineRequirements: [
-            "Multi-Source Ingestion: Cash flow, utility payments, digital metadata.",
-            "Hybrid Scoring Logic: ML weighting alternative data dynamically.",
-            "Explainability Layer: Breakdown of contributing factors.",
-            "Performance: Near real-time evaluation."
-        ],
-        expectedOutcome: "A deployed system generating mathematically justified Risk Scores for users with zero formal credit history.",
-        gradient: "from-purple-600/20 via-purple-900/40 to-black",
-        colorRef: "border-purple-500/50"
-    },
-    {
-        id: 8,
-        title: "Lifecycle-Ledger: IoT Digital Product Passports",
-        domain: "IoT",
-        company: "Kloud Katalyst",
-        logo: "/logos/kloud_katalyst_logo.jpeg",
-        shortDescription: "IoT-enabled Digital Product Passport providing a tamper-resistant lifecycle identity for electronics.",
-        overview: "Electronic waste is accelerated by opacity; devices are discarded due to unknown internal health and repair history. This challenge builds a Digital Product Passport system — a Living Identity for electronics.",
-        problemStatement: [
-            "Design an IoT-Enabled Digital Passport System where each device is represented by a dynamic asset that updates automatically based on lifecycle telemetry.",
-            "Allow authorized service centers to log repairs and enable recyclers to query verified health status to determine resale value."
-        ],
-        keyChallenges: [
-            "Dynamic Metadata: Updating blockchain record from IoT telemetry without spamming network.",
-            "Access Control: Restrict repair signing to authorized shops.",
-            "Offline Inspection: NFC-based verification even without battery/network."
-        ],
-        baselineRequirements: [
-            "Dynamic Asset Standard: Metadata reflecting physical health changes.",
-            "Repair Signing: Cryptographic workflow for technician signatures.",
-            "Telemetry Bridge: IoT agent anchoring health checkpoints to ledger.",
-            "Valuation Logic: Resale value estimation module."
-        ],
-        expectedOutcome: "A deployed system where scanning a device shows a verified history timeline and automatically calculates its refurbished grade.",
-        gradient: "from-purple-600/20 via-purple-900/40 to-black",
-        colorRef: "border-purple-500/50"
-    }
+baselineRequirements: [
+    "Intent Tracking Model: Classify users into Exploring (educational resources), Comparing (spec sheets and differentiation), or Decision-Ready (trigger scheduling).",
+    "Knowledge Retrieval Control: Retrieve resources strictly from provided KB (CSV/PDF). No hallucinated content. Every recommendation must include traceable citation.",
+    "Tool Orchestration: Trigger Calendly only when intent threshold is met.",
+    "Structured Lead Log: Maintain intent score progression, detected signals, recommended content, and triggered actions.",
+    "Evaluation Safeguards: Use ambiguous transcripts to test inference depth beyond keyword matching. Ensure all recommended content is citation-verified for semantic relevance."
+] 
+},
+{
+    id: 3,
+    title: "Digital Pulse: The Contextual Cultural Intelligence Engine",
+    domain: "Data Analytics",
+    company: "VIU",
+    logo: "/logos/viuott_logo.jpeg",
+    shortDescription: "Contextual analytics platform reconstructing viral narratives and identifying cultural shifts.",
+    overview: "Modern platforms amplify popularity, not significance. Viral content dominates dashboards, while early-stage cultural signals remain buried in low-engagement noise. This challenge focuses on building a dual-mode analytics engine that reconstructs dominant viral narratives while also detecting subtle, emerging cultural shifts before they achieve mass engagement.",
+    problemStatement: [
+        "Design a Contextual Analytics Platform capable of ingesting structured or unstructured social datasets and reconstructing the 'Viral Narrative' of a defined timeframe or topic.",
+        "Normalize uploaded social data (CSV/JSON).",
+        "Compute engagement-based virality rankings.",
+        "Identify dominant clusters and themes.",
+        "Visualize high-impact conversations.",
+        "Provide drill-down transparency."
+    ],
+    keyChallenges: [
+        "Contextual Ingestion: Normalizing heterogeneous datasets for unified analysis.",
+        "Virality Reconstruction: Accurately calculating engagement-based influence.",
+        "Cluster Identification: Grouping fragmented text into coherent topics.",
+        "Visualization Clarity: Presenting ranked trends in an interpretable dashboard.",
+        "Avoiding Naive Sorting: Moving beyond simple descending order of likes/shares toward weighted influence modeling."
+    ],
+    baselineRequirements: [
+        "Data Pipeline: Parse and index uploaded dataset.",
+        "Viral Ranking Engine: Implement scoring logic based on engagement metrics and rank trends using weighted popularity formula.",
+        "Hype Dashboard: Visualize top-performing topics, sentiment spikes, and volume growth.",
+        "Drill-Down View: Inspect posts contributing to each ranked trend.",
+        "Predictive Framing: Include a lightweight forecasting mechanism to predict which high-engagement topics are likely to sustain growth."
+    ]
+},
+{
+    id: 4,
+    title: "Gridlock-Breaker: AI-Coordinated Adaptive Traffic Orchestration",
+    domain: "IoT",
+    company: "VIU",
+    logo: "/logos/viuott_logo.jpeg",
+    shortDescription: "City-wide orchestration engine transforming static traffic signals into synchronized intelligent networks.",
+    overview: "Urban traffic in Indian metros operates under static timers and manual intervention. These systems are reactive — responding only after congestion forms. This challenge demands a synchronized, city-wide orchestration engine that proactively optimizes traffic flow across an interconnected grid. The objective is flow optimization, not just congestion response.",
+    problemStatement: [
+        "Design an AI-Driven Traffic Control Plane capable of coordinating multiple intersections simultaneously using a validated traffic simulation environment.",
+        "Ingest real-time density and queue data.",
+        "Dynamically adjust signal phases (Green/Red durations).",
+        "Coordinate adjacent signals for continuous traffic flow.",
+        "Reduce overall waiting time and maximize throughput at grid level."
+    ],
+    keyChallenges: [
+        "Green Wave Coordination: Synchronize adjacent intersections so vehicle platoons encounter consecutive green signals.",
+        "Heterogeneous Traffic Handling: Manage mixed vehicle dynamics (cars, buses, bikes) with varying acceleration and spacing behaviors.",
+        "Emergency Preemption: Instantly clear corridors for ambulances or fire trucks without causing secondary congestion.",
+        "Real-Time Adaptation: React to live queue conditions instead of relying solely on historical averages.",
+        "Fail-Safe Control: Automatically revert to safety mode if sensor data fails.",
+        "Simulation Integrity: Avoid unrealistic physics that artificially inflate AI performance."
+    ],
+    baselineRequirements: [
+        "Validated Simulation Environment: Use industry-standard simulators (e.g., SUMO, CityFlow). Custom engines must justify physics realism.",
+        "Adaptive Signal Logic: Adjust signal timing based on live queue length and demonstrate measurable improvement over fixed timers.",
+        "Emergency Override: Simulated Ambulance Agent must trigger a green corridor with demonstrated zero-wait passage.",
+        "Fail-Safe Mode: If sensor data is lost, revert to predefined safety timing configuration.",
+        "Comparative Benchmark: Provide side-by-side simulation (Scenario A: Fixed Timer vs Scenario B: AI Model) with minimum 20% reduction in average wait time."
+    ]
+},
+{
+    id: 5,
+    title: "Credit-Vision: Inclusive Scoring & Trust Protocols",
+    domain: "ML",
+    company: "Developer Student Community",
+    logo: "/DSC_logo.png",
+    shortDescription: "Real-time alternative credit scoring engine for the credit invisible using Explainable AI.",
+    overview: "Millions in emerging economies remain 'Credit Invisible' due to lack of formal credit history despite responsible financial behavior. Traditional credit models are static, bureau-dependent, and exclusionary. This challenge requires building a real-time, regulator-ready scoring engine that evaluates alternative financial behavior signals while remaining transparent, explainable, and mathematically justified.",
+    problemStatement: [
+        "Design a Real-Time Alternative Credit Scoring Engine capable of ingesting non-traditional financial signals and generating a Holistic Risk Score.",
+        "Fuse traditional bureau data with alternative financial indicators.",
+        "Handle zero-credit-history (Cold Start) applicants effectively.",
+        "Produce transparent and explainable risk outputs.",
+        "Support near real-time credit decision-making."
+    ],
+    keyChallenges: [
+        "Data Fusion: Combine bureau data with cash-flow trends, repayment history, and digital transaction metadata.",
+        "Explainability: Provide interpretable reasoning behind every risk score.",
+        "Cold Start Modeling: Accurately assess applicants with no prior loan history.",
+        "Bias & Overfitting Control: Prevent artificial tuning using synthetic or over-optimized datasets.",
+        "Real-Time Performance: Enable instant-finance and micro-lending use cases."
+    ],
+    baselineRequirements: [
+        "Standardized Dataset: Use provided anonymized dataset to prevent synthetic overfitting.",
+        "Multi-Source Ingestion: Parse structured and alternative signals into a unified financial profile.",
+        "Hybrid Scoring Logic: Dynamically weight alternative signals when bureau data is absent and output calibrated probability of default.",
+        "Explainability Layer: Break down risk score into contributing factors with interpretable feature impact visualization.",
+        "Performance Constraint: Generate risk score in near real-time."
+    ]
+},
+{
+    id: 6,
+    title: "The Silent Perimeter: Directional Intrusion System",
+    domain: "IoT",
+    company: "Developer Student Community",
+    logo: "/DSC_logo.png",
+    shortDescription: "High-precision laser-based directional intrusion detection using timing sequence intelligence.",
+    overview: "In high-security environments, a basic tripwire is insufficient. It reacts to noise such as falling debris, animals, or authorized personnel. A military-grade perimeter must distinguish direction and intent. The hardware sensors are simple; the intelligence lies in high-precision timing analysis at the command center. The system must operate at ultra-low latency and ensure reliable data transmission under real-world constraints.",
+    problemStatement: [
+        "Design a laser-based directional tripwire system using two Light Dependent Resistors (LDRs) spaced 10cm apart.",
+        "Detect beam interruptions at high temporal resolution.",
+        "Transmit sensor data reliably to a laptop.",
+        "Enable real-time monitoring and directional analysis using timing sequence logic."
+    ],
+    keyChallenges: [
+        "Ultra-Low Latency Detection: Polling every 50ms is insufficient; fast-moving objects can cross 10cm between reads.",
+        "Ambient Noise Rejection: Prevent false triggers due to lighting fluctuations.",
+        "Reliable Data Transmission: Avoid inefficient raw string streaming at high speed.",
+        "Signal Integrity: Prevent corrupted packets during rapid transmission.",
+        "Directional Intelligence: Infer movement direction using precise interruption sequence timing."
+    ],
+    baselineRequirements: [
+        "High-Speed Sensing: Mandatory polling interval < 10ms OR interrupt-based beam break detection.",
+        "Binary Packet Transmission: Transmit compact binary packets instead of raw strings.",
+        "Packet Structure: Include Sensor A value, Sensor B value, timestamp, and checksum for integrity validation.",
+        "Checksum Verification: Laptop must validate packet integrity before processing.",
+        "Threshold Detection: Laptop flags 'BEAM BROKEN' when sensor value drops below calibrated threshold.",
+        "Hardware Setup: Rigid dual-laser alignment with 10cm fixed spacing and vibration-stable mounting."
+    ]
+},
+{
+    id: 7,
+    title: "Digital Evidence Integrity System",
+    domain: "Blockchain",
+    company: "Developer Student Community",
+    logo: "/DSC_logo.png",
+    shortDescription: "End-to-end blockchain-backed system ensuring cryptographic immutability and transparent chain-of-custody for legal evidence.",
+    overview: "Digital evidence is central to modern litigation, yet credibility is frequently challenged due to tampering risks and undocumented custody transfers. This challenge requires building an end-to-end blockchain-backed evidence integrity system that guarantees authenticity, structured custody management, and verifiable audit trails. Every action performed on evidence must be traceable, role-bound, and tamper-evident.",
+    problemStatement: [
+        "Design a Blockchain-Based Evidence Registry acting as a secure digital vault and custody ledger.",
+        "Generate a cryptographic hash for every uploaded file.",
+        "Anchor the hash onto a blockchain ledger.",
+        "Record custody transfers between authorized roles.",
+        "Provide a transparent, chronological audit trail.",
+        "Enable integrity verification at any time with tamper detection."
+    ],
+    keyChallenges: [
+        "Evidence Integrity Verification: Ensure even single-bit file modification results in hash mismatch detection.",
+        "Chain-of-Custody Transparency: Maintain immutable, timestamped records of every custody transfer.",
+        "Role Simulation: Simulate Law Enforcement Officer, Forensic Analyst, Prosecutor, Defense Attorney, and Court Clerk roles.",
+        "Secure Access Tracking: Enforce role-based permissions while logging every access attempt.",
+        "Tamper Evident Design: Guarantee immediate detection of unauthorized alterations."
+    ],
+    baselineRequirements: [
+        "Hash Anchoring: Upload file → Generate SHA-256 hash → Store hash and metadata on blockchain.",
+        "Custody Lifecycle Tracking: Transfer evidence between authorized roles while recording transfer time, sender, receiver, and reason.",
+        "Timeline View: Visual chronological history displaying timestamps and role transitions.",
+        "Verification Tool: Re-upload file → Recalculate hash → Compare with blockchain entry → Flag 'Integrity Compromised' on mismatch.",
+        "Structured Evidence Log: Maintain Evidence ID, original hash, current custodian, full custody chain, and verification status."
+    ]
+},
+{
+    id: 8,
+    title: "Autonomous Machine Economy",
+    domain: "Blockchain",
+    company: "Developer Student Community",
+    logo: "/DSC_logo.png",
+    shortDescription: "Blockchain-powered machine-to-machine payment ecosystem with autonomous service consumption and smart contract settlement.",
+    overview: "As IoT ecosystems expand, devices increasingly transact without human intervention. However, there is no standardized infrastructure enabling secure and trust-minimized machine-to-machine payments. This challenge requires building a blockchain-powered Autonomous Machine Economy where devices independently consume services, measure usage, calculate costs, and execute real-time payments via smart contracts.",
+    problemStatement: [
+        "Design a blockchain-based system where devices establish verified digital identities.",
+        "Enable devices to request and provide services autonomously.",
+        "Record measurable service usage in a verifiable manner.",
+        "Automatically calculate service costs based on deterministic pricing logic.",
+        "Execute on-chain payments ensuring transparent and tamper-resistant billing."
+    ],
+    keyChallenges: [
+        "Device Identity: Assign unique cryptographic identity and wallet per device.",
+        "Micropayments: Efficiently handle small, frequent transactions without excessive fees.",
+        "Usage Verification: Ensure trusted and tamper-resistant measurement of service consumption.",
+        "Real-Time Billing: Implement deterministic pricing using smart contracts.",
+        "Atomic Settlement: Guarantee that usage confirmation and payment execution occur together."
+    ],
+    baselineRequirements: [
+        "Device Registration: Register at least two devices with unique blockchain identities.",
+        "Usage Simulation: Simulate measurable service units consumed between devices.",
+        "Smart Contract Billing: Calculate cost dynamically using formula (usage × rate).",
+        "Automatic Payment Execution: Trigger on-chain transfer upon usage confirmation.",
+        "Monitoring Dashboard: Display device balances, usage records, and transaction history.",
+        "Structured Ledger Log: Maintain records including device IDs, units consumed, cost, timestamp, and transaction status."
+    ]
+},
+{
+    id: 9,
+    title: "The Autonomous Research Orchestrator: Intelligent Drug Repurposing Platform",
+    domain: "AI/ML",
+    company: "Developer Student Community",
+    logo: "/DSC_logo.png",
+    shortDescription: "Multi-domain AI research engine synthesizing clinical, patent, regulatory, and market intelligence for drug repurposing.",
+    overview: "In pharmaceutical innovation, identifying repurposing opportunities for approved molecules requires navigating fragmented ecosystems including regulatory filings, clinical trials, patent landscapes, scientific publications, and market intelligence. Traditional platforms retrieve documents; this system must orchestrate retrieval, reasoning, and structured synthesis across domains. The intelligence lies in the orchestration layer that coordinates modular research workflows and produces traceable innovation insights.",
+    problemStatement: [
+        "Design an intelligent research platform that accepts a molecule name as input.",
+        "Autonomously orchestrate multi-domain investigation workflows.",
+        "Retrieve structured and unstructured data in real time.",
+        "Synthesize cross-domain insights into a unified analytical perspective.",
+        "Generate a traceable innovation opportunity report with verifiable sources."
+    ],
+    keyChallenges: [
+        "Research Fragmentation: Integrate structured data (patents, market trends) with unstructured data (scientific literature, regulatory narratives).",
+        "Task Orchestration: Coordinate modular research tasks (clinical, patent, market, regulatory) without relying on a monolithic prompt.",
+        "Traceability: Ensure every synthesized insight references its original source.",
+        "Context Continuity: Maintain memory across research stages for coherent cross-domain reasoning.",
+        "Data Heterogeneity: Handle APIs, PDFs, and text datasets without analytical inconsistency."
+    ],
+    baselineRequirements: [
+        "Query Decomposition: Accept molecule-level input and break into domain-specific subtasks (Clinical Analysis, Patent Review, Market Assessment, Regulatory Scan).",
+        "Multi-Source Retrieval: Retrieve and analyze data from at least two independent sources (API, simulated dataset, or public database).",
+        "Contextual Synthesis: Integrate domain findings into a unified cross-domain insight framework.",
+        "Source Citation: Provide clear traceable references for all reported findings.",
+        "Structured Reporting: Generate a formatted innovation opportunity report summarizing unmet needs, clinical pipeline status, patent expiry landscape, market potential, and strategic viability."
+    ]
+},
+{
+    id: 10,
+    title: "The Code Insight Engine: AI-Driven Developer Intelligence System",
+    domain: "AI/ML",
+    company: "Developer Student Community",
+    logo: "/DSC_logo.png",
+    shortDescription: "AI-powered development analytics engine connecting business intent to code impact with explainable performance intelligence.",
+    overview: "Modern software teams rely on subjective effort estimation and performance evaluation. Raw commits and ticket counts fail to capture requirement intent, architectural impact, or evolving delivery complexity. This challenge requires building a continuous intelligence layer that maps business requirements to implementation changes, estimates functional effort, and translates development signals into measurable, explainable impact insights.",
+    problemStatement: [
+        "Design an intelligent development analytics system that accepts business requirements and evolving code activity as inputs.",
+        "Map requirement intent to actual implementation changes.",
+        "Estimate development effort based on functional complexity.",
+        "Generate objective contribution insights from observable development signals.",
+        "Produce transparent, explainable performance indicators."
+    ],
+    keyChallenges: [
+        "Requirement-Code Alignment: Link business requirement documents and change requests to actual code modifications.",
+        "Effort Estimation Logic: Estimate effort based on functional complexity rather than commit volume.",
+        "Impact Differentiation: Distinguish high-impact architectural work from routine updates.",
+        "Workload & Overtime Detection: Identify overload, imbalance, and sustained overtime patterns.",
+        "Bias Reduction: Provide explainable metrics reducing subjective evaluation.",
+        "Technical-to-Business Translation: Convert engineering activity into manager-friendly summaries.",
+        "Knowledge Continuity Detection: Identify contributors with concentrated system expertise."
+    ],
+    baselineRequirements: [
+        "Project Intake: Accept requirement documents, ingest commits/tasks/timelines, and identify roles or ownership.",
+        "Requirement–Code Mapping: Associate implemented changes with requirement fulfillment and interpret change impact.",
+        "Effort Estimation: Estimate planned functionality effort and dynamically update as development progresses.",
+        "Developer Intelligence Metrics: Generate efficiency metrics, workload distribution, overtime contribution, performance trends, and contribution impact over time.",
+        "Impact Interpretation: Translate technical changes into managerial contribution summaries.",
+        "Transparency Indicators: Provide explainable scoring models for recognition or growth assessment.",
+        "Knowledge Risk Detection: Highlight expertise concentration and flag continuity risks if key contributors exit.",
+        "Activity Log: Maintain structured project and contribution tracking records."
+    ]
+},
+
+{
+    id: 11,
+    title: "The Self-Healing Supply Chain: Intelligent BOM Shock Predictor",
+    domain: "AI/ML",
+    company: "Developer Student Community",
+    logo: "/DSC_logo.png",
+    shortDescription: "ML-powered predictive engine detecting supply shocks and recommending technically compliant substitute components.",
+    overview: "In advanced manufacturing, a single microchip or specialty alloy buried deep within a Bill of Materials (BOM) can halt an entire production line. Engineers currently react by manually scanning datasheets for substitutes — a slow and high-risk process. This challenge requires building a predictive intelligence engine that detects supply shocks early and computationally evaluates technical equivalency to recommend safe, compliant substitute components.",
+    problemStatement: [
+        "Design an ML-driven system that ingests a structured Bill of Materials (BOM).",
+        "Monitor external supply risk signals and predict component-level shortages.",
+        "Compute functional equivalency across technical specifications.",
+        "Recommend viable and compliant substitute components.",
+        "Transition procurement from reactive crisis handling to predictive substitution."
+    ],
+    keyChallenges: [
+        "N-Tier Risk Mapping: Map external disruptions (e.g., supplier shutdowns) to deeply nested BOM components.",
+        "Technical Parameter Matching: Interpret functional constraints such as tolerance ranges, voltage limits, and material properties.",
+        "Data Normalization: Convert unstructured datasheets and fragmented supplier data into structured, queryable formats.",
+        "Similarity Scoring Logic: Build an ML-based equivalency model rather than simple keyword matching.",
+        "Hierarchical Dependency Modeling: Maintain relational links across multi-level BOM structures."
+    ],
+    baselineRequirements: [
+        "BOM Ingestion: Accept structured BOM (JSON/CSV) and store hierarchical relationships in a relational database.",
+        "Risk Alerting: Process simulated supply shock feed and flag impacted components precisely.",
+        "ML Equivalency Engine: Parse technical specifications, compute functional equivalency scores, and recommend top substitute parts.",
+        "Database Normalization: Store supplier data, parameters, and component metadata in structured format.",
+        "Substitution Interface: Provide dashboard where user inputs failing component ID and receives ranked substitute parts with compatibility scores."
+    ]
+}
 ];
 
 
@@ -453,34 +605,24 @@ export default function ProblemStatementsClient({ submissionStats }: { submissio
                                         </div>
                                     </section>
 
-                                    <section>
-                                        <div className="flex items-center gap-4 mb-6">
-                                            <div className="h-[1px] flex-1 bg-white/10" />
-                                            <h4 className="text-[11px] uppercase tracking-[0.25em] text-white/40 font-black">Baseline Requirements</h4>
-                                            <div className="h-[1px] flex-1 bg-white/10" />
-                                        </div>
-                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                            {selectedProblem.baselineRequirements.map((r, i) => (
-                                                <div key={i} className="flex gap-3 text-sm text-white/60 leading-relaxed">
-                                                    <div className={`w-1.5 h-1.5 rounded-full mt-2 shrink-0 bg-white/20`} />
-                                                    <span>{r}</span>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </section>
+<section>
+    <div className="flex items-center gap-4 mb-6">
+        <div className="h-[1px] flex-1 bg-white/10" />
+        <h4 className="text-[11px] uppercase tracking-[0.25em] text-white/40 font-black">
+            Baseline Requirements
+        </h4>
+        <div className="h-[1px] flex-1 bg-white/10" />
+    </div>
 
-                                    <section className={`p-6 rounded-2xl bg-gradient-to-br ${selectedProblem.gradient} border ${selectedProblem.colorRef} flex flex-col md:flex-row gap-6 items-center`}>
-                                        <div className="w-16 h-16 rounded-full bg-black/40 flex items-center justify-center shrink-0 border border-white/10">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="white" strokeOpacity="0.8" strokeWidth="2" />
-                                                <path d="M8 12L11 15L16 9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                            </svg>
-                                        </div>
-                                        <div>
-                                            <h4 className="text-[11px] uppercase tracking-[0.25em] text-white/40 font-black mb-2">Expected Outcome</h4>
-                                            <p className="text-white text-base md:text-lg font-medium leading-relaxed drop-shadow-sm">{selectedProblem.expectedOutcome}</p>
-                                        </div>
-                                    </section>
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {selectedProblem.baselineRequirements.map((r, i) => (
+            <div key={i} className="flex gap-3 text-sm text-white/60 leading-relaxed">
+                <div className="w-1.5 h-1.5 rounded-full mt-2 shrink-0 bg-white/20" />
+                <span>{r}</span>
+            </div>
+        ))}
+    </div>
+</section>
                                 </div>
                             </div>
                         </motion.div>
