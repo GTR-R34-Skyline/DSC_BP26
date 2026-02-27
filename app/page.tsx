@@ -380,10 +380,6 @@ Blueprints 2026 goes beyond a typical hackathon — it serves as a launchpad for
                 {
                   q: "What domains do the problem statements cover?",
                   a: "Problem statements span multiple domains including Machine Learning, Agentic AI, Blockchain,IoT, and related technology areas."
-                },
-                {
-                  q: "Can participants from different colleges form a team?",
-                  a: "No, cross-college teams are not allowed."
                 }
               ]}
             />
