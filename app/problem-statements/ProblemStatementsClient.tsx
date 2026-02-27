@@ -398,12 +398,12 @@ function ProblemCard({
       ref={cardRef}
       style={{ scale }}
       onClick={onClick}
-      className={`sticky top-24 mb-16 w-full rounded-3xl overflow-hidden cursor-pointer group bg-gradient-to-b from-white/5 to-black border ${style.border} hover:shadow-2xl transition-all duration-300 md:h-72`}
+      className={`sticky top-24 mb-16 w-full rounded-3xl overflow-hidden cursor-pointer group bg-gradient-to-b from-white/5 to-black border ${style.border} hover:shadow-2xl transition-all duration-300 min-h-[22rem] md:h-72`}
     >
-      <div className="p-8 md:p-10 h-full flex flex-col md:flex-row gap-8 items-start relative z-10 bg-black/40 backdrop-blur-sm">
+      <div className="p-6 md:p-10 h-full flex flex-col md:flex-row gap-6 md:gap-8 items-start relative z-10 bg-black/40 backdrop-blur-sm">
 
         {/* LEFT SIDE */}
-        <div className="w-full md:w-[260px] shrink-0 flex flex-col justify-between h-full space-y-6">
+        <div className="w-full md:w-[260px] shrink-0 flex flex-col justify-between h-full space-y-4 md:space-y-6">
 
           <div className="flex items-center gap-4">
             {problem.company === "Developer Student Community" ? (
@@ -434,11 +434,11 @@ function ProblemCard({
         </div>
 
         {/* RIGHT SIDE */}
-        <div className="flex-1 flex flex-col justify-center">
+        <div className="flex-1 flex flex-col justify-center h-auto md:h-full mt-4 md:mt-0">
           <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4 leading-tight">
             {problem.title}
           </h3>
-          <p className="text-white/60 text-base md:text-lg leading-relaxed max-w-3xl">
+          <p className="text-white/60 text-sm md:text-lg leading-relaxed max-w-3xl line-clamp-4 md:line-clamp-none">
             {problem.shortDescription}
           </p>
         </div>
@@ -513,7 +513,7 @@ export default function ProblemStatementsClient({ submissionStats }: any) {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 20 }}
                 transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                className={`relative w-full max-w-5xl max-h-[85vh] bg-[#0a0a0a] border ${style.border} rounded-3xl overflow-hidden shadow-2xl flex`}
+                className={`relative w-[95%] md:w-full max-w-5xl max-h-[90vh] md:max-h-[85vh] bg-[#0a0a0a] border ${style.border} rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row`}
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* CLOSE */}
@@ -525,7 +525,7 @@ export default function ProblemStatementsClient({ submissionStats }: any) {
                 </button>
 
                 {/* LEFT PANEL */}
-                <div className="w-2/5 p-10 border-r border-white/10 flex flex-col gap-8 relative overflow-hidden shrink-0">
+                <div className="w-full md:w-2/5 p-6 md:p-10 border-b md:border-b-0 md:border-r border-white/10 flex flex-col gap-6 md:gap-8 relative shrink-0 overflow-y-auto md:overflow-hidden md:h-full max-h-[40vh] md:max-h-full">
                   <div className={`absolute top-0 left-0 w-full h-1 ${style.accent} opacity-60`} />
 
                   <div className="flex items-center gap-4">
@@ -553,14 +553,14 @@ export default function ProblemStatementsClient({ submissionStats }: any) {
                     </div>
                   </div>
 
-                  <h2 className="text-4xl font-black leading-tight text-white">
+                  <h2 className="text-2xl md:text-4xl font-black leading-tight text-white">
                     {selectedProblem.title}
                   </h2>
                 </div>
 
                 {/* RIGHT PANEL */}
-                <div className="w-3/5 p-10 overflow-y-auto">
-                  <div className="space-y-10">
+                <div className="w-full md:w-3/5 p-6 md:p-10 overflow-y-auto flex-1">
+                  <div className="space-y-8 md:space-y-10">
 
                     <section>
                       <div className="flex items-center gap-4 mb-4">
