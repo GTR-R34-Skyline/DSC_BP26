@@ -22,8 +22,7 @@ export default function AnimatedCounter({
 }: AnimatedCounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const motionValue = useMotionValue(from);
-  const inView = useInView(ref, { once: false, margin: "-10px" }); // margin adjusted to trigger slightly earlier/later
-
+  const inView = useInView(ref, { once: false, margin: "-10px" }); 
   const springValue = useSpring(motionValue, {
     duration: duration * 1000, 
     bounce: 0,
