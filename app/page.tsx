@@ -371,7 +371,7 @@ Blueprints 2026 goes beyond a typical hackathon — it serves as a launchpad for
                 },
                 {
                   q: "Is there a registration fee?",
-                  a: "A registration fee will be collected only from the teams shortlisted for the Grand Finale."
+                  a: "A registration fee of ₹450 will be collected only from the teams shortlisted for the Grand Finale."
                 },
                 {
                   q: "How does the selection process work?",
