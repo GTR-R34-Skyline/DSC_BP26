@@ -119,32 +119,56 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Event Overview / Stats Section */}
-        <section className="relative py-20 border-y border-white/10 bg-black/50 backdrop-blur-sm">
-          <div className="max-w-7xl mx-auto px-4">
-            {/* Stats - Sequentially Animated */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 text-center">
-              <FadeIn delay={0.1} className="space-y-2" viewport={{ once: false }}>
-                <div className="text-4xl md:text-6xl font-bold text-blue-500 flex justify-center">
-                  <AnimatedCounter to={24} suffix="h" />
-                </div>
-                <p className="text-white/60 uppercase tracking-widest text-sm">Duration</p>
-              </FadeIn>
-              <FadeIn delay={0.3} className="space-y-2" viewport={{ once: false }}>
-                <div className="text-4xl md:text-6xl font-bold text-purple-500 flex justify-center">
-                  <AnimatedCounter to={500} suffix="+" />
-                </div>
-                <p className="text-white/60 uppercase tracking-widest text-sm">Participants</p>
-              </FadeIn>
-              <FadeIn delay={0.7} className="space-y-2" viewport={{ once: false }}>
-                <div className="text-4xl md:text-6xl font-bold text-green-500 flex justify-center">
-                  <AnimatedCounter prefix="₹" to={50} suffix="k+" />
-                </div>
-                <p className="text-white/60 uppercase tracking-widest text-sm">Prize Pool</p>
-              </FadeIn>
-            </div>
+<section className="relative py-20 border-y border-white/10 bg-black/50 backdrop-blur-sm">
+  <div className="max-w-7xl mx-auto px-4">
+    
+    {/* Stats - Sequentially Animated */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 text-center">
 
-            <FadeIn delay={0.2} className="mt-16 text-center max-w-4xl mx-auto">
+      {/* Duration */}
+      <FadeIn delay={0.1} className="space-y-2" viewport={{ once: false }}>
+        <div className="text-4xl md:text-6xl font-bold text-blue-500 flex justify-center">
+          <AnimatedCounter to={24} suffix="h" />
+        </div>
+        <p className="text-white/60 uppercase tracking-widest text-sm">
+          Hackathon Duration
+        </p>
+      </FadeIn>
+
+      {/* Participants */}
+      <FadeIn delay={0.3} className="space-y-2" viewport={{ once: false }}>
+        <div className="text-4xl md:text-6xl font-bold text-purple-500 flex justify-center">
+          <AnimatedCounter to={500} suffix="+" />
+        </div>
+        <p className="text-white/60 uppercase tracking-widest text-sm">
+          Builders Participating
+        </p>
+      </FadeIn>
+
+      {/* Prize Pool */}
+      <FadeIn delay={0.5} className="space-y-2" viewport={{ once: false }}>
+        <div className="text-4xl md:text-6xl font-bold text-green-500 flex justify-center">
+          <AnimatedCounter prefix="₹" to={50} suffix="k+" />
+        </div>
+        <p className="text-white/60 uppercase tracking-widest text-sm">
+          Total Prize Pool
+        </p>
+      </FadeIn>
+
+      {/* n8n Pro Access */}
+      <FadeIn delay={0.7} className="space-y-2" viewport={{ once: false }}>
+        <div className="text-4xl md:text-6xl font-bold text-orange-500 flex justify-center">
+          n8n Pro
+        </div>
+        <p className="text-white/60 uppercase tracking-widest text-sm">
+          Exclusive Finalist Benefit
+        </p>
+      </FadeIn>
+
+    </div>
+  </div>
+</section>
+        <FadeIn delay={0.2} className="mt-16 text-center max-w-4xl mx-auto">
               <SectionTitle title="Where Innovation Meets Execution" />
               <p className="text-lg text-white/70 leading-relaxed -mt-4">
 Blueprints 2026 goes beyond a typical hackathon — it serves as a launchpad for the next generation of innovators. It brings together driven minds to tackle real-world challenges across domains such as
