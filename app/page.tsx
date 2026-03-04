@@ -14,18 +14,10 @@ import ScrollAnchor from "@/components/ScrollAnchor";
 
 import Chatbot from "@/components/Chatbot";
 import { IconArrowUpRight, IconBrandLinkedin, IconBrandInstagram, IconDownload, IconEye } from "@tabler/icons-react";
-// Removed unused Navbar imports
 import AppNavbar from "@/components/Navbar";
 import Blueprints2025Carousel from "@/components/Blueprints2025Carousel";
 
-// ... (keep navItems if used, or remove if unused, but page has its own definitions sometimes. checking...)
-// The page.tsx had a local navItems definition which is now redundant if we rely on AppNavbar.
-
 export default function Home() {
-  // Mobile menu state handled by AppNavbar internally now, or if passed, it's fine.
-  // Removing unused form state logic
-
-
   return (
     <ClickSpark
       sparkColor='#fff'
@@ -50,19 +42,13 @@ export default function Home() {
 
         <AppNavbar />
 
-
-
         {/* Hero Section */}
         <section id="home" className="relative min-h-[90svh] flex items-center justify-center pt-24 md:pt-20">
-          {/* Background Layer (Clipped) */}
-          <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
-            {/* Add decorative elements here if any specific to hero, otherwise this acts as the safe boundary */}
-          </div>
+          <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none" />
 
-          {/* Content Layer (visible, no clip) */}
           <div className="relative text-center z-10 px-4 w-full max-w-6xl mx-auto flex flex-col items-center">
 
-            {/* Title - Typewriter Animation - FIXED FOR MOBILE */}
+            {/* Title */}
             <h1
               className="text-[1.8rem] sm:text-3xl md:text-5xl lg:text-7xl xl:text-9xl font-bold mb-4 md:mb-6 drop-shadow-2xl tracking-tighter max-w-full break-words leading-tight"
               style={{ fontFamily: 'var(--font-anonymous-pro)' }}
@@ -72,7 +58,7 @@ export default function Home() {
               </span>
             </h1>
 
-            {/* Subtitle & Description - Staggered Fade Up */}
+            {/* Subtitle */}
             <FadeIn delay={0.8} direction="up" className="pointer-events-none px-2 mb-6 md:mb-0">
               <p className="text-lg md:text-2xl lg:text-3xl text-white/80 drop-shadow-md leading-relaxed max-w-3xl mx-auto font-light">
                 Innovate. Build. Disrupt. <br />
@@ -80,9 +66,8 @@ export default function Home() {
               </p>
             </FadeIn>
 
-            {/* Buttons - Staggered Fade Up */}
+            {/* Buttons */}
             <FadeIn delay={1.0} className="mt-4 md:mt-10 flex flex-col md:flex-row items-center justify-center gap-3 md:gap-4 w-full px-4 pointer-events-auto">
-              {/* Primary CTA: Register Now (Mobile First) */}
               <PulseGlow delay={1.5} className="w-full md:w-auto order-1 md:order-3">
                 <a
                   href="https://docs.google.com/forms/d/e/1FAIpQLSdxjNTYRklXSOkXOXKWBi63Qb-aSaOLi_DcDuUK0vQcxQjZcw/viewform"
@@ -95,7 +80,6 @@ export default function Home() {
                 </a>
               </PulseGlow>
 
-              {/* Secondary CTAs */}
               <a
                 href="/problem-statements"
                 className="w-full md:w-auto justify-center order-2 md:order-1 px-8 py-3 md:py-4 text-base md:text-lg font-bold text-white bg-white/5 hover:bg-white/10 border border-white/20 rounded-full transition-all duration-300 hover:scale-105 flex items-center gap-2 backdrop-blur-sm"
@@ -119,73 +103,61 @@ export default function Home() {
           </div>
         </section>
 
-<section className="relative py-20 border-y border-white/10 bg-black/50 backdrop-blur-sm">
-  <div className="max-w-7xl mx-auto px-4">
-    
-    {/* Stats - Sequentially Animated */}
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 text-center">
+        {/* Stats Section */}
+        <section className="relative py-20 border-y border-white/10 bg-black/50 backdrop-blur-sm">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 text-center">
 
-      {/* Duration */}
-      <FadeIn delay={0.1} className="space-y-2" viewport={{ once: false }}>
-        <div className="text-4xl md:text-6xl font-bold text-blue-500 flex justify-center">
-          <AnimatedCounter to={24} suffix="h" />
-        </div>
-        <p className="text-white/60 uppercase tracking-widest text-sm">
-          Hackathon Duration
-        </p>
-      </FadeIn>
+              <FadeIn delay={0.1} className="space-y-2" viewport={{ once: false }}>
+                <div className="text-4xl md:text-6xl font-bold text-blue-500 flex justify-center">
+                  <AnimatedCounter to={24} suffix="h" />
+                </div>
+                <p className="text-white/60 uppercase tracking-widest text-sm">Hackathon Duration</p>
+              </FadeIn>
 
-      {/* Participants */}
-      <FadeIn delay={0.3} className="space-y-2" viewport={{ once: false }}>
-        <div className="text-4xl md:text-6xl font-bold text-purple-500 flex justify-center">
-          <AnimatedCounter to={500} suffix="+" />
-        </div>
-        <p className="text-white/60 uppercase tracking-widest text-sm">
-          Builders Participating
-        </p>
-      </FadeIn>
+              <FadeIn delay={0.3} className="space-y-2" viewport={{ once: false }}>
+                <div className="text-4xl md:text-6xl font-bold text-purple-500 flex justify-center">
+                  <AnimatedCounter to={500} suffix="+" />
+                </div>
+                <p className="text-white/60 uppercase tracking-widest text-sm">Builders Participating</p>
+              </FadeIn>
 
-      {/* Prize Pool */}
-      <FadeIn delay={0.5} className="space-y-2" viewport={{ once: false }}>
-        <div className="text-4xl md:text-6xl font-bold text-green-500 flex justify-center">
-          <AnimatedCounter prefix="₹" to={50} suffix="k+" />
-        </div>
-        <p className="text-white/60 uppercase tracking-widest text-sm">
-          Total Prize Pool
-        </p>
-      </FadeIn>
+              <FadeIn delay={0.5} className="space-y-2" viewport={{ once: false }}>
+                <div className="text-4xl md:text-6xl font-bold text-green-500 flex justify-center">
+                  <AnimatedCounter prefix="₹" to={50} suffix="k+" />
+                </div>
+                <p className="text-white/60 uppercase tracking-widest text-sm">Total Prize Pool</p>
+              </FadeIn>
 
-      {/* n8n Pro Access */}
-      <FadeIn delay={0.7} className="space-y-2" viewport={{ once: false }}>
-        <div className="text-4xl md:text-6xl font-bold text-orange-500 flex justify-center">
-          n8n Pro
-        </div>
-        <p className="text-white/60 uppercase tracking-widest text-sm">
-          Exclusive Finalist Benefit
-        </p>
-      </FadeIn>
+              <FadeIn delay={0.7} className="space-y-2" viewport={{ once: false }}>
+                <div className="text-4xl md:text-6xl font-bold text-orange-500 flex justify-center">
+                  n8n Pro
+                </div>
+                <p className="text-white/60 uppercase tracking-widest text-sm">Exclusive Finalist Benefit</p>
+              </FadeIn>
 
-    </div>
-  </div>
-</section>
-        <FadeIn delay={0.2} className="mt-16 text-center max-w-4xl mx-auto">
-              <SectionTitle title="Where Innovation Meets Execution" />
-              <p className="text-lg text-white/70 leading-relaxed -mt-4">
-Blueprints 2026 goes beyond a typical hackathon — it serves as a launchpad for the next generation of innovators. It brings together driven minds to tackle real-world challenges across domains such as
-                <span className="text-blue-400"> Machine Learning</span>,
-                <span className="text-blue-400"> Blockchain</span>,
-                <span className="text-purple-400"> Agentic AI</span>, and
-                <span className="text-pink-400"> IoT</span>.
-              </p>
-            </FadeIn>
+            </div>
           </div>
         </section>
 
-        {/* Aim Section - Redesigned */}
+        {/* Innovation Section */}
+        <section className="relative py-20 px-4">
+          <FadeIn delay={0.2} className="mt-16 text-center max-w-4xl mx-auto">
+            <SectionTitle title="Where Innovation Meets Execution" />
+            <p className="text-lg text-white/70 leading-relaxed -mt-4">
+              Blueprints 2026 goes beyond a typical hackathon — it serves as a launchpad for the next generation of innovators. It brings together driven minds to tackle real-world challenges across domains such as
+              <span className="text-blue-400"> Machine Learning</span>,
+              <span className="text-blue-400"> Blockchain</span>,
+              <span className="text-purple-400"> Agentic AI</span>, and
+              <span className="text-pink-400"> IoT</span>.
+            </p>
+          </FadeIn>
+        </section>
+
+        {/* Aim Section */}
         <section className="relative py-32 px-4 bg-gradient-to-b from-black/20 to-purple-900/10 backdrop-blur-sm">
           <div className="max-w-7xl mx-auto text-center">
             <FadeIn>
-              {/* Custom Title for Aim to preserve specific styling */}
               <h2 className="text-white mb-12 tracking-tight drop-shadow-2xl font-bold">
                 <span className="block text-3xl md:text-4xl mb-2 text-white/80">The Aim of</span>
                 <span className="block text-6xl md:text-8xl text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 animate-gradient-x leading-none pb-4">
@@ -235,9 +207,7 @@ Blueprints 2026 goes beyond a typical hackathon — it serves as a launchpad for
           <FadeIn>
             <SectionTitle title="Judging Panel" subtitle="Evaluation" />
 
-            {/* Judges Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {/* Judge 1 */}
               <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center space-y-4 hover:border-white/20 transition-all duration-200">
                 <img src="/rajaraman.jpeg" alt="Rajaraman Swaminathan" className="w-24 h-24 rounded-full object-cover border border-white/20" />
                 <div>
@@ -247,7 +217,6 @@ Blueprints 2026 goes beyond a typical hackathon — it serves as a launchpad for
                 </div>
               </div>
 
-              {/* Judge 2 */}
               <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center space-y-4 hover:border-white/20 transition-all duration-200">
                 <img src="/ganeshg.jpeg" alt="Ganesh G" className="w-24 h-24 rounded-full object-cover border border-white/20" />
                 <div>
@@ -256,7 +225,7 @@ Blueprints 2026 goes beyond a typical hackathon — it serves as a launchpad for
                   <p className="text-white/50 text-xs">Freshworks</p>
                 </div>
               </div>
-              {/* Judge 3 */}
+
               <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center space-y-4 hover:border-white/20 transition-all duration-200">
                 <img src="/sudarshan.jpeg" alt="Sudarshan" className="w-24 h-24 rounded-full object-cover border border-white/20" />
                 <div>
@@ -266,8 +235,6 @@ Blueprints 2026 goes beyond a typical hackathon — it serves as a launchpad for
                 </div>
               </div>
 
-
-              {/* Judge 4 */}
               <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center space-y-4 hover:border-white/20 transition-all duration-200">
                 <img src="/adhina.jpeg" alt="Adityavignesh V" className="w-24 h-24 rounded-full object-cover border border-white/20" />
                 <div>
@@ -286,7 +253,7 @@ Blueprints 2026 goes beyond a typical hackathon — it serves as a launchpad for
           <Blueprints2025Carousel />
         </div>
 
-        {/* Partners Section - Renamed id to sponsors to match navbar */}
+        {/* Sponsors Section */}
         <ScrollAnchor id="sponsors" />
         <section className="relative py-20 px-4 max-w-4xl mx-auto text-center">
           <FadeIn>
@@ -294,7 +261,6 @@ Blueprints 2026 goes beyond a typical hackathon — it serves as a launchpad for
           </FadeIn>
 
           <FadeIn className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center justify-center">
-            {/* Venue Partner */}
             <div className="flex flex-col items-center space-y-4">
               <p className="text-white/60 tracking-widest uppercase text-sm font-bold">Venue Partner</p>
               <a
@@ -304,18 +270,11 @@ Blueprints 2026 goes beyond a typical hackathon — it serves as a launchpad for
                 className="group transition-transform hover:scale-105"
               >
                 <div className="bg-white rounded-3xl py-4 px-8 md:px-12 shadow-lg flex items-center justify-center">
-                  {/* Replaced img with standard img for now, converting to next/image requires size knowledge which I don't have yet. Can be future optimization task. */}
-                  <img
-                    src="/sponsor-yuniq-v3.png"
-                    alt="Venue Partner"
-                    loading="lazy"
-                    className="h-40 md:h-52 w-auto object-contain"
-                  />
+                  <img src="/sponsor-yuniq-v3.png" alt="Venue Partner" loading="lazy" className="h-40 md:h-52 w-auto object-contain" />
                 </div>
               </a>
             </div>
 
-            {/* Food Partner */}
             <div className="flex flex-col items-center space-y-4">
               <p className="text-white/60 tracking-widest uppercase text-sm font-bold">Automation & Workflow Partner</p>
               <a
@@ -325,13 +284,7 @@ Blueprints 2026 goes beyond a typical hackathon — it serves as a launchpad for
                 className="group transition-transform hover:scale-105"
               >
                 <div className="bg-white rounded-3xl py-4 px-8 md:px-12 shadow-lg flex items-center justify-center">
-                  {/* Replaced img with standard img for now, converting to next/image requires size knowledge which I don't have yet. Can be future optimization task. */}
-                  <img
-                    src="/sponsor-n8n.png"
-                    alt="Automation & Workflow Partner"
-                    loading="lazy"
-                    className="h-40 md:h-52 w-auto object-contain"
-                  />
+                  <img src="/sponsor-n8n.png" alt="Automation & Workflow Partner" loading="lazy" className="h-40 md:h-52 w-auto object-contain" />
                 </div>
               </a>
             </div>
@@ -403,107 +356,96 @@ Blueprints 2026 goes beyond a typical hackathon — it serves as a launchpad for
                 },
                 {
                   q: "What domains do the problem statements cover?",
-                  a: "Problem statements span multiple domains including Machine Learning, Agentic AI, Blockchain,IoT, and related technology areas."
+                  a: "Problem statements span multiple domains including Machine Learning, Agentic AI, Blockchain, IoT, and related technology areas."
                 }
               ]}
             />
           </FadeIn>
         </section>
-{/* Contact Section */}
-<ScrollAnchor id="contact" />
-<section className="relative py-20 px-4 md:px-8 bg-gradient-to-b from-black to-blue-950/20">
-  <div className="w-full max-w-4xl mx-auto text-center z-10">
-    <SectionTitle title="Get in Touch" />
 
-    <p className="text-xl text-white/70 mb-12 max-w-2xl mx-auto">
-      Have questions? Reach out to us directly. We're here to help!
-    </p>
+        {/* Contact Section */}
+        <ScrollAnchor id="contact" />
+        <section className="relative py-20 px-4 md:px-8 bg-gradient-to-b from-black to-blue-950/20">
+          <div className="w-full max-w-4xl mx-auto text-center z-10">
+            <SectionTitle title="Get in Touch" />
 
-    {/* Centered Email Card */}
-    <div className="flex justify-center">
-      <div className="w-full max-w-md bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-colors group text-center">
-        
-        <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-6 text-blue-400 group-hover:scale-110 transition-transform">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="32"
-            height="32"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <rect width="20" height="16" x="2" y="4" rx="2" />
-            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-          </svg>
-        </div>
+            <p className="text-xl text-white/70 mb-12 max-w-2xl mx-auto">
+              Have questions? Reach out to us directly. We're here to help!
+            </p>
 
-        <h3 className="text-xl font-bold text-white mb-2">
-          Email Us
-        </h3>
+            <div className="flex justify-center">
+              <div className="w-full max-w-md bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-colors group text-center">
+                <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-6 text-blue-400 group-hover:scale-110 transition-transform">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <rect width="20" height="16" x="2" y="4" rx="2" />
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                  </svg>
+                </div>
 
-        <a
-          href="mailto:gdscsvce@svce.ac.in"
-          className="block text-white/70 hover:text-blue-400 transition-colors text-lg"
-        >
-          gdscsvce@svce.ac.in
-        </a>
+                <h3 className="text-xl font-bold text-white mb-2">Email Us</h3>
+                <a
+                  href="mailto:gdscsvce@svce.ac.in"
+                  className="block text-white/70 hover:text-blue-400 transition-colors text-lg"
+                >
+                  gdscsvce@svce.ac.in
+                </a>
+              </div>
+            </div>
 
-      </div>
-    </div>
+            <div className="mt-16 pt-8 border-t border-white/10">
+              <p className="text-white/60 mb-4">Visit our Community Website</p>
+              <a
+                href="https://developer-student-community.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-400 hover:text-blue-300 transition-colors font-medium border-b border-blue-400/50 hover:border-blue-300 pb-1"
+              >
+                developer-student-community.vercel.app
+              </a>
+            </div>
 
-    {/* Website Link */}
-    <div className="mt-16 pt-8 border-t border-white/10">
-      <p className="text-white/60 mb-4">
-        Visit our Community Website
-      </p>
-      <a
-        href="https://developer-student-community.vercel.app/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-blue-400 hover:text-blue-300 transition-colors font-medium border-b border-blue-400/50 hover:border-blue-300 pb-1"
-      >
-        developer-student-community.vercel.app
-      </a>
-    </div>
+            <div className="flex justify-center gap-6 mt-12">
+              <a
+                href="https://www.linkedin.com/company/svce-developer-student-community/posts/?feedView=all"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 rounded-full bg-white/10 hover:bg-blue-600 backdrop-blur-sm border border-white/20 flex items-center justify-center transition-all duration-200 hover:scale-110 hover:shadow-lg"
+                aria-label="LinkedIn"
+              >
+                <IconBrandLinkedin size={24} className="text-white" />
+              </a>
 
-    {/* Social Icons */}
-    <div className="flex justify-center gap-6 mt-12">
-      <a
-        href="https://www.linkedin.com/company/svce-developer-student-community/posts/?feedView=all"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="w-12 h-12 rounded-full bg-white/10 hover:bg-blue-600 backdrop-blur-sm border border-white/20 flex items-center justify-center transition-all duration-200 hover:scale-110 hover:shadow-lg"
-        aria-label="LinkedIn"
-      >
-        <IconBrandLinkedin size={24} className="text-white" />
-      </a>
+              <a
+                href="https://www.instagram.com/gdscsvce/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 rounded-full bg-white/10 hover:bg-gradient-to-br hover:from-purple-600 hover:via-pink-600 hover:to-orange-500 backdrop-blur-sm border border-white/20 flex items-center justify-center transition-all duration-200 hover:scale-110 hover:shadow-lg"
+                aria-label="Instagram"
+              >
+                <IconBrandInstagram size={24} className="text-white" />
+              </a>
+            </div>
 
-      <a
-        href="https://www.instagram.com/gdscsvce/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="w-12 h-12 rounded-full bg-white/10 hover:bg-gradient-to-br hover:from-purple-600 hover:via-pink-600 hover:to-orange-500 backdrop-blur-sm border border-white/20 flex items-center justify-center transition-all duration-200 hover:scale-110 hover:shadow-lg"
-        aria-label="Instagram"
-      >
-        <IconBrandInstagram size={24} className="text-white" />
-      </a>
-    </div>
-
-    {/* Admin Login */}
-    <div className="mt-8">
-      <a
-        href="/login"
-        className="text-white/30 hover:text-white/50 text-sm transition-colors"
-      >
-        Admin Login
-      </a>
-    </div>
-
-  </div>
-</section>
+            <div className="mt-8">
+              <a
+                href="/login"
+                className="text-white/30 hover:text-white/50 text-sm transition-colors"
+              >
+                Admin Login
+              </a>
+            </div>
+          </div>
+        </section>
 
         {/* Chatbot */}
         <Chatbot />
