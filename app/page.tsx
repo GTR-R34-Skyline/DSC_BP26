@@ -291,7 +291,7 @@ export default function Home() {
             <div className="flex flex-col items-center space-y-4">
               <p className="text-white/60 tracking-widest uppercase text-sm font-bold">Feedback Partner</p>
               <a
-                href="http://askingindia.com/"
+                href="https://askingindia.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group transition-transform hover:scale-105"
