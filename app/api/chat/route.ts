@@ -29,7 +29,7 @@ PARTICIPATION RULES:
 - Fee of ₹450 applies ONLY for teams that qualify for the Grand Finale
 ROUNDS:
 - Round 1: Initial screening (no fee)
-- Round 2: Top 50 teams (no fee)
+- Round 2: Top 35 teams (no fee)
 - Grand Finale: Final event (fee applicable only for finalists)
 
 VENUE:
