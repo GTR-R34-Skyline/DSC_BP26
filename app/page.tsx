@@ -352,7 +352,7 @@ export default function Home() {
                 },
                 {
                   q: "How does the selection process work?",
-                  a: "All registered teams participate in Round 1. The top 50 teams will be shortlisted for Round 2, followed by the Grand Finale."
+                  a: "All registered teams participate in Round 1. The top 35 teams will be shortlisted for Round 2, followed by the Grand Finale."
                 },
                 {
                   q: "What domains do the problem statements cover?",
