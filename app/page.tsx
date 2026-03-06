@@ -288,6 +288,19 @@ export default function Home() {
                 </div>
               </a>
             </div>
+            <div className="flex flex-col items-center space-y-4">
+              <p className="text-white/60 tracking-widest uppercase text-sm font-bold">Feedback Partner</p>
+              <a
+                href="http://askingindia.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group transition-transform hover:scale-105"
+              >
+                <div className="bg-white rounded-3xl py-4 px-8 md:px-12 shadow-lg flex items-center justify-center">
+                  <img src="/sponsor-askingindia.jpeg" alt="Feedback Partner" loading="lazy" className="h-40 md:h-52 w-auto object-contain" />
+                </div>
+              </a>
+            </div>
           </FadeIn>
         </section>
 
