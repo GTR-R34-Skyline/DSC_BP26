@@ -21,9 +21,16 @@ export default async function JudgingPage() {
         .select('submission_id, total_score, judge_email')
 
     const judgedSubmissionIds = new Set(allScores?.map(s => s.submission_id))
-
     const scoreMap = new Map()
     allScores?.forEach(s => scoreMap.set(s.submission_id, s.total_score))
+
+    // Sort submissions by score (descending), then by name
+    const sortedSubmissions = [...(submissions || [])].sort((a, b) => {
+        const scoreA = scoreMap.get(a.id) || -1
+        const scoreB = scoreMap.get(b.id) || -1
+        if (scoreB !== scoreA) return scoreB - scoreA
+        return a.team_name.localeCompare(b.team_name)
+    })
 
     return (
         <div className="space-y-6">
@@ -35,7 +42,7 @@ export default async function JudgingPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {submissions?.map((team) => {
+                {sortedSubmissions?.map((team) => {
                     const isJudged = judgedSubmissionIds.has(team.id)
 
                     return (
