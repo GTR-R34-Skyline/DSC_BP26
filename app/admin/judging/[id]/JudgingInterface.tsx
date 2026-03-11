@@ -81,26 +81,44 @@ export default function JudgingInterface({ team, userEmail, alreadyJudged, initi
         const supabase = createClient()
 
         try {
-            // 1. Upsert into judging_scores
-            const { error: scoreError } = await supabase
-                .from('judging_scores')
-                .upsert({
-                    submission_id: team.id,
-                    judge_email: userEmail,
-                    design: scores.design,
-                    ps_breakdown: scores.ps_breakdown,
-                    proposed_solution: scores.proposed_solution,
-                    technical_architecture: scores.technical_architecture,
-                    development_life_cycle: scores.development_life_cycle,
-                    feasibility_analysis: scores.feasibility_analysis,
-                    total_score: totalScore,
-                    outcome: outcome,
-                    comments: comments
-                }, {
-                    onConflict: 'submission_id,judge_email'
-                })
+            // 1. Save to judging_scores
+            let scoreResult
+            if (isEditing) {
+                // UPDATE existing record
+                scoreResult = await supabase
+                    .from('judging_scores')
+                    .update({
+                        design: scores.design,
+                        ps_breakdown: scores.ps_breakdown,
+                        proposed_solution: scores.proposed_solution,
+                        technical_architecture: scores.technical_architecture,
+                        development_life_cycle: scores.development_life_cycle,
+                        feasibility_analysis: scores.feasibility_analysis,
+                        total_score: totalScore,
+                        outcome: outcome,
+                        comments: comments
+                    })
+                    .match({ submission_id: team.id, judge_email: userEmail })
+            } else {
+                // INSERT new record
+                scoreResult = await supabase
+                    .from('judging_scores')
+                    .insert({
+                        submission_id: team.id,
+                        judge_email: userEmail,
+                        design: scores.design,
+                        ps_breakdown: scores.ps_breakdown,
+                        proposed_solution: scores.proposed_solution,
+                        technical_architecture: scores.technical_architecture,
+                        development_life_cycle: scores.development_life_cycle,
+                        feasibility_analysis: scores.feasibility_analysis,
+                        total_score: totalScore,
+                        outcome: outcome,
+                        comments: comments
+                    })
+            }
 
-            if (scoreError) throw scoreError
+            if (scoreResult.error) throw scoreResult.error
 
             // 2. Insert into audit_logs
             const { error: logError } = await supabase
