@@ -17,25 +17,39 @@ export async function POST(req: Request) {
             comments
         } = body
 
-        // 1. Get service account from environment variable
+        // 1. Get service account from environment variable or local file
+        let credentials
         const serviceAccountVar = process.env.GOOGLE_SERVICE_ACCOUNT
-        if (!serviceAccountVar) {
-            console.error("GOOGLE_SERVICE_ACCOUNT environment variable is missing")
-            return NextResponse.json({ error: "Service account not configured" }, { status: 500 })
+        
+        if (serviceAccountVar) {
+            try {
+                credentials = JSON.parse(serviceAccountVar)
+            } catch (e) {
+                console.error("Failed to parse GOOGLE_SERVICE_ACCOUNT JSON")
+                return NextResponse.json({ error: "Invalid service account format" }, { status: 500 })
+            }
+        } else {
+            // Fallback to local service_account.json
+            try {
+                const fs = require('fs')
+                const path = require('path')
+                const saPath = path.join(process.cwd(), 'service_account.json')
+                if (fs.existsSync(saPath)) {
+                    credentials = JSON.parse(fs.readFileSync(saPath, 'utf8'))
+                } else {
+                    console.error("GOOGLE_SERVICE_ACCOUNT missing and service_account.json not found")
+                    return NextResponse.json({ error: "Service account not configured" }, { status: 500 })
+                }
+            } catch (e) {
+                console.error("Error reading service_account.json:", e)
+                return NextResponse.json({ error: "Failed to read service account" }, { status: 500 })
+            }
         }
 
-        const spreadsheetId = process.env.GOOGLE_SHEET_ID
+        const spreadsheetId = process.env.GOOGLE_SHEET_ID || '1nJKRhKlNmDYZgp9NhZ4dudksx-sm6qKbkNe9nT2rn2w'
         if (!spreadsheetId) {
             console.error("GOOGLE_SHEET_ID environment variable is missing")
             return NextResponse.json({ error: "Spreadsheet ID not configured" }, { status: 500 })
-        }
-
-        let credentials
-        try {
-            credentials = JSON.parse(serviceAccountVar)
-        } catch (e) {
-            console.error("Failed to parse GOOGLE_SERVICE_ACCOUNT JSON")
-            return NextResponse.json({ error: "Invalid service account format" }, { status: 500 })
         }
 
         // 2. Authenticate
@@ -74,8 +88,11 @@ export async function POST(req: Request) {
         })
 
         return NextResponse.json({ ok: true })
-    } catch (error) {
+    } catch (error: any) {
         console.error('Spreadsheet Sync Error:', error)
-        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
+        return NextResponse.json({ 
+            error: 'Internal Server Error', 
+            details: error.message || 'Unknown error' 
+        }, { status: 500 })
     }
 }
