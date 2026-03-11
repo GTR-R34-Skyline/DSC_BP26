@@ -25,13 +25,12 @@ export default async function JudgingDetail({ params }: PageProps) {
         redirect('/admin/judging')
     }
 
-    // Check if already judged by this user
+    // Check if already judged by ANY judge
     const { data: existingScore } = await supabase
         .from('judging_scores')
-        .select('total_score')
+        .select('total_score, judge_email')
         .eq('submission_id', id)
-        .eq('judge_email', userEmail)
-        .single()
+        .maybeSingle()
 
     return (
         <div className="h-[calc(100vh-8rem)]">
@@ -43,8 +42,9 @@ export default async function JudgingDetail({ params }: PageProps) {
                     <p className="text-zinc-400 mt-1">{team.problem_statement}</p>
                 </div>
                 {existingScore ? (
-                    <div className="bg-emerald-500/10 text-emerald-400 px-4 py-2 rounded-xl border border-emerald-500/20 font-bold">
-                        Already Judged - Score: {existingScore.total_score}/100
+                    <div className="bg-emerald-500/10 text-emerald-400 px-4 py-2 rounded-xl border border-emerald-500/20 font-bold flex flex-col items-end">
+                        <span>Already Judged - Score: {existingScore.total_score}/100</span>
+                        <span className="text-xs font-medium opacity-70">By: {existingScore.judge_email}</span>
                     </div>
                 ) : null}
             </div>
