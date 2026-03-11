@@ -50,13 +50,16 @@ export default function JudgingInterface({ team, userEmail, alreadyJudged }: Jud
     const [submitting, setSubmitting] = useState(false)
 
     const [scores, setScores] = useState({
-        approach: 0,
-        novelty: 0,
-        technicality: 0,
-        business_model: 0,
-        feasibility: 0,
-        wow_factor: 0
+        design: 0,
+        ps_breakdown: 0,
+        proposed_solution: 0,
+        technical_architecture: 0,
+        development_life_cycle: 0,
+        feasibility_analysis: 0
     })
+
+    const [outcome, setOutcome] = useState<'Selected' | 'Not Selected'>('Not Selected')
+    const [comments, setComments] = useState('')
 
     const totalScore = (Object.values(scores) as number[]).reduce((a, b) => a + b, 0)
 
@@ -81,13 +84,15 @@ export default function JudgingInterface({ team, userEmail, alreadyJudged }: Jud
                 .insert({
                     submission_id: team.id,
                     judge_email: userEmail,
-                    approach: scores.approach,
-                    novelty: scores.novelty,
-                    technicality: scores.technicality,
-                    business_model: scores.business_model,
-                    feasibility: scores.feasibility,
-                    wow_factor: scores.wow_factor,
-                    total_score: totalScore
+                    design: scores.design,
+                    ps_breakdown: scores.ps_breakdown,
+                    proposed_solution: scores.proposed_solution,
+                    technical_architecture: scores.technical_architecture,
+                    development_life_cycle: scores.development_life_cycle,
+                    feasibility_analysis: scores.feasibility_analysis,
+                    total_score: totalScore,
+                    outcome: outcome,
+                    comments: comments
                 })
 
             if (scoreError) throw scoreError
@@ -98,10 +103,33 @@ export default function JudgingInterface({ team, userEmail, alreadyJudged }: Jud
                 .insert({
                     judge_email: userEmail,
                     team_name: team.team_name,
-                    action: `Scored ${totalScore}/100`
+                    action: `Scored ${totalScore}/60 - ${outcome}`
                 })
 
             if (logError) console.error("Audit log error:", logError)
+
+            // 3. Sync with Spreadsheet
+            try {
+                await fetch('/api/sync-spreadsheet', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        teamName: team.team_name,
+                        design: scores.design,
+                        psBreakdown: scores.ps_breakdown,
+                        proposedSolution: scores.proposed_solution,
+                        technicalArchitecture: scores.technical_architecture,
+                        developmentLifeCycle: scores.development_life_cycle,
+                        feasibilityAnalysis: scores.feasibility_analysis,
+                        total: totalScore,
+                        outcome: outcome,
+                        comments: comments
+                    })
+                })
+            } catch (syncError) {
+                console.error("Spreadsheet sync error:", syncError)
+                // We don't block the UI if sync fails, but we log it
+            }
 
             // Redirect back on success
             router.push('/admin/judging')
@@ -150,19 +178,19 @@ export default function JudgingInterface({ team, userEmail, alreadyJudged }: Jud
             <div className="w-full lg:w-96 rounded-2xl border border-zinc-800 bg-zinc-900 overflow-hidden flex flex-col">
                 <div className="px-6 py-4 bg-zinc-800/50 border-b border-zinc-800">
                     <h2 className="text-lg font-bold text-white">Evaluation Form</h2>
-                    <p className="text-zinc-400 text-sm mt-1">Score each criteria from 0 to 10.</p>
+                    <p className="text-zinc-400 text-sm mt-1">Score each criteria from 0 to 10. Total: 60.</p>
                 </div>
 
                 <form onSubmit={handleSubmit} className="p-6 flex-1 overflow-y-auto space-y-6 flex flex-col">
 
                     <div className="space-y-4 flex-1">
                         {[
-                            { id: 'approach', label: 'Approach / Relevance', max: 20 },
-                            { id: 'novelty', label: 'Novelty / Innovation', max: 20 },
-                            { id: 'technicality', label: 'Technicality', max: 20 },
-                            { id: 'business_model', label: 'Business Model', max: 20 },
-                            { id: 'feasibility', label: 'Feasibility', max: 10 },
-                            { id: 'wow_factor', label: 'Wow Factor', max: 10 }
+                            { id: 'design', label: 'Design (10)', max: 10 },
+                            { id: 'ps_breakdown', label: 'PS Breakdown (10)', max: 10 },
+                            { id: 'proposed_solution', label: 'Proposed Solution (10)', max: 10 },
+                            { id: 'technical_architecture', label: 'Technical Architecture (10)', max: 10 },
+                            { id: 'development_life_cycle', label: 'Development Life Cycle (10)', max: 10 },
+                            { id: 'feasibility_analysis', label: 'Feasibility Analysis (10)', max: 10 }
                         ].map((criteria) => (
                             <div key={criteria.id} className="flex items-center justify-between gap-4">
                                 <label className="text-zinc-300 font-medium text-sm flex-1">
@@ -178,16 +206,39 @@ export default function JudgingInterface({ team, userEmail, alreadyJudged }: Jud
                                         onChange={(e) => handleScoreChange(criteria.id as keyof typeof scores, e.target.value, criteria.max)}
                                         className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-white text-right focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all disabled:opacity-50"
                                     />
-                                    <div className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 text-sm pointer-events-none opacity-0">/{criteria.max}</div>
                                 </div>
                             </div>
                         ))}
+
+                        <div className="pt-4 space-y-2">
+                            <label className="text-zinc-300 font-medium text-sm">Outcome</label>
+                            <select
+                                value={outcome}
+                                onChange={(e) => setOutcome(e.target.value as any)}
+                                disabled={alreadyJudged}
+                                className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all disabled:opacity-50"
+                            >
+                                <option value="Not Selected">Not Selected</option>
+                                <option value="Selected">Selected</option>
+                            </select>
+                        </div>
+
+                        <div className="space-y-2">
+                            <label className="text-zinc-300 font-medium text-sm">Comments</label>
+                            <textarea
+                                value={comments}
+                                onChange={(e) => setComments(e.target.value)}
+                                disabled={alreadyJudged}
+                                placeholder="Add your evaluation comments here..."
+                                className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-white text-sm min-h-[100px] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all disabled:opacity-50 resize-none"
+                            />
+                        </div>
                     </div>
 
                     <div className="pt-6 border-t border-zinc-800 mt-auto">
                         <div className="flex items-center justify-between mb-6">
                             <span className="text-lg font-bold text-white">Total Score</span>
-                            <span className="text-2xl font-black text-emerald-400">{totalScore} <span className="text-sm font-medium text-emerald-500/50">/ 100</span></span>
+                            <span className="text-2xl font-black text-emerald-400">{totalScore} <span className="text-sm font-medium text-emerald-500/50">/ 60</span></span>
                         </div>
 
                         <button
