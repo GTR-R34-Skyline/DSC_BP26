@@ -28,7 +28,7 @@ export default async function JudgingDetail({ params }: PageProps) {
     // Check if already judged by ANY judge
     const { data: existingScore } = await supabase
         .from('judging_scores')
-        .select('total_score, judge_email')
+        .select('*')
         .eq('submission_id', id)
         .maybeSingle()
 
@@ -53,6 +53,7 @@ export default async function JudgingDetail({ params }: PageProps) {
                 team={team}
                 userEmail={userEmail}
                 alreadyJudged={!!existingScore}
+                initialData={existingScore}
             />
         </div>
     )

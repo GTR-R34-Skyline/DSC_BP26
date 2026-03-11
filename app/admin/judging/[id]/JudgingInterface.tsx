@@ -16,6 +16,7 @@ interface JudgingInterfaceProps {
     team: Team
     userEmail: string
     alreadyJudged: boolean
+    initialData?: any
 }
 
 const getEmbedUrl = (url: string) => {
@@ -45,25 +46,27 @@ const getEmbedUrl = (url: string) => {
     return url // fallback
 }
 
-export default function JudgingInterface({ team, userEmail, alreadyJudged }: JudgingInterfaceProps) {
+export default function JudgingInterface({ team, userEmail, alreadyJudged, initialData }: JudgingInterfaceProps) {
     const router = useRouter()
     const [submitting, setSubmitting] = useState(false)
+    const [isEditing, setIsEditing] = useState(false)
 
     const [scores, setScores] = useState({
-        design: 0,
-        ps_breakdown: 0,
-        proposed_solution: 0,
-        technical_architecture: 0,
-        development_life_cycle: 0,
-        feasibility_analysis: 0
+        design: initialData?.design || 0,
+        ps_breakdown: initialData?.ps_breakdown || 0,
+        proposed_solution: initialData?.proposed_solution || 0,
+        technical_architecture: initialData?.technical_architecture || 0,
+        development_life_cycle: initialData?.development_life_cycle || 0,
+        feasibility_analysis: initialData?.feasibility_analysis || 0
     })
 
-    const [outcome, setOutcome] = useState<'Selected' | 'Not Selected'>('Not Selected')
-    const [comments, setComments] = useState('')
+    const [outcome, setOutcome] = useState<'Selected' | 'Not Selected'>(initialData?.outcome || 'Not Selected')
+    const [comments, setComments] = useState(initialData?.comments || '')
 
     const totalScore = (Object.values(scores) as number[]).reduce((a, b) => a + b, 0)
 
     const handleScoreChange = (criteria: keyof typeof scores, value: string, max: number) => {
+        if (alreadyJudged && !isEditing) return
         const num = parseInt(value) || 0
         if (num >= 0 && num <= max) {
             setScores((prev) => ({ ...prev, [criteria]: num }))
@@ -72,16 +75,16 @@ export default function JudgingInterface({ team, userEmail, alreadyJudged }: Jud
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
-        if (alreadyJudged) return
+        if (alreadyJudged && !isEditing) return
 
         setSubmitting(true)
         const supabase = createClient()
 
         try {
-            // 1. Insert into judging_scores
+            // 1. Upsert into judging_scores
             const { error: scoreError } = await supabase
                 .from('judging_scores')
-                .insert({
+                .upsert({
                     submission_id: team.id,
                     judge_email: userEmail,
                     design: scores.design,
@@ -93,6 +96,8 @@ export default function JudgingInterface({ team, userEmail, alreadyJudged }: Jud
                     total_score: totalScore,
                     outcome: outcome,
                     comments: comments
+                }, {
+                    onConflict: 'submission_id,judge_email'
                 })
 
             if (scoreError) throw scoreError
@@ -103,7 +108,7 @@ export default function JudgingInterface({ team, userEmail, alreadyJudged }: Jud
                 .insert({
                     judge_email: userEmail,
                     team_name: team.team_name,
-                    action: `Scored ${totalScore}/60 - ${outcome}`
+                    action: `${isEditing ? 'Updated' : 'Scored'} ${totalScore}/60 - ${outcome}`
                 })
 
             if (logError) console.error("Audit log error:", logError)
@@ -207,7 +212,7 @@ export default function JudgingInterface({ team, userEmail, alreadyJudged }: Jud
                                         type="number"
                                         min="0"
                                         max={criteria.max}
-                                        disabled={alreadyJudged}
+                                        disabled={alreadyJudged && !isEditing}
                                         value={scores[criteria.id as keyof typeof scores]}
                                         onChange={(e) => handleScoreChange(criteria.id as keyof typeof scores, e.target.value, criteria.max)}
                                         className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-white text-right focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all disabled:opacity-50"
@@ -221,7 +226,7 @@ export default function JudgingInterface({ team, userEmail, alreadyJudged }: Jud
                             <select
                                 value={outcome}
                                 onChange={(e) => setOutcome(e.target.value as any)}
-                                disabled={alreadyJudged}
+                                disabled={alreadyJudged && !isEditing}
                                 className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all disabled:opacity-50"
                             >
                                 <option value="Not Selected">Not Selected</option>
@@ -234,7 +239,7 @@ export default function JudgingInterface({ team, userEmail, alreadyJudged }: Jud
                             <textarea
                                 value={comments}
                                 onChange={(e) => setComments(e.target.value)}
-                                disabled={alreadyJudged}
+                                disabled={alreadyJudged && !isEditing}
                                 placeholder="Add your evaluation comments here..."
                                 className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-white text-sm min-h-[100px] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all disabled:opacity-50 resize-none"
                             />
@@ -249,17 +254,29 @@ export default function JudgingInterface({ team, userEmail, alreadyJudged }: Jud
 
                         <button
                             type="submit"
-                            disabled={alreadyJudged || submitting}
+                            disabled={(alreadyJudged && !isEditing) || submitting}
                             className="w-full flex justify-center items-center py-3.5 px-4 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             {submitting ? (
                                 <Loader2 className="w-5 h-5 animate-spin" />
-                            ) : alreadyJudged ? (
+                            ) : alreadyJudged && !isEditing ? (
                                 'Evaluation Completed'
+                            ) : isEditing ? (
+                                'Update Evaluation'
                             ) : (
                                 'Submit Evaluation'
                             )}
                         </button>
+
+                        {alreadyJudged && !isEditing && (
+                            <button
+                                type="button"
+                                onClick={() => setIsEditing(true)}
+                                className="w-full mt-3 py-3.5 px-4 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-bold transition-colors"
+                            >
+                                Edit Evaluation
+                            </button>
+                        )}
                         <button
                             type="button"
                             onClick={() => router.push('/admin/judging')}
