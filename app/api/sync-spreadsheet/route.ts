@@ -47,6 +47,8 @@ export async function POST(req: Request) {
         }
 
         const spreadsheetId = process.env.GOOGLE_SHEET_ID || '1nJKRhKlNmDYZgp9NhZ4dudksx-sm6qKbkNe9nT2rn2w'
+        console.log(`[Spreadsheet Sync] Using Spreadsheet ID: ${spreadsheetId}`)
+        
         if (!spreadsheetId) {
             console.error("GOOGLE_SHEET_ID environment variable is missing")
             return NextResponse.json({ error: "Spreadsheet ID not configured" }, { status: 500 })
@@ -61,7 +63,7 @@ export async function POST(req: Request) {
         const sheets = google.sheets({ version: 'v4', auth })
 
         // 3. Prepare the row data
-        // Team Name | Design (10) | PS Breakedown | Proposed Solution | Technical Architecture | Development Life Cycle | Feasilibity Analsis | Total | Outcome | Comments
+        // Team Name | Design (10) | PS Breakedown | Proposed Solution | Technical Architecture | Development Life Cycle | Feasilibity Analsis | Total | Outcome | Comments | Timestamp
         const values = [
             [
                 teamName,
@@ -73,26 +75,43 @@ export async function POST(req: Request) {
                 feasibilityAnalysis,
                 total,
                 outcome,
-                comments
+                comments,
+                new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
             ]
         ]
 
         // 4. Append to spreadsheet
-        await sheets.spreadsheets.values.append({
-            spreadsheetId,
-            range: 'Sheet1!A:J',
-            valueInputOption: 'USER_ENTERED',
-            requestBody: {
-                values,
-            },
-        })
+        try {
+            await sheets.spreadsheets.values.append({
+                spreadsheetId,
+                range: 'Sheet1!A:K',
+                valueInputOption: 'USER_ENTERED',
+                requestBody: {
+                    values,
+                },
+            })
+            console.log("[Spreadsheet Sync] Successfully appended to Sheet1")
+        } catch (appendError: any) {
+            console.error(`[Spreadsheet Sync] Error appending to Sheet1: ${appendError.message}. Trying generic range A:K.`)
+            // Fallback: try appending to the first sheet without specifying name
+            await sheets.spreadsheets.values.append({
+                spreadsheetId,
+                range: 'A:K',
+                valueInputOption: 'USER_ENTERED',
+                requestBody: {
+                    values,
+                },
+            })
+            console.log("[Spreadsheet Sync] Successfully appended using generic range A:K")
+        }
 
         return NextResponse.json({ ok: true })
     } catch (error: any) {
         console.error('Spreadsheet Sync Error:', error)
         return NextResponse.json({ 
             error: 'Internal Server Error', 
-            details: error.message || 'Unknown error' 
+            details: error.message || 'Unknown error',
+            code: (error as any).code || 'No code'
         }, { status: 500 })
     }
 }
