@@ -15,16 +15,15 @@ export default async function JudgingPage() {
         .select('id, team_name, problem_statement, ppt_link')
         .order('created_at', { ascending: false })
 
-    // Fetch scores by the current judge
-    const { data: myScores, error: scoresError } = await supabase
+    // Fetch scores by ANY judge
+    const { data: allScores, error: scoresError } = await supabase
         .from('judging_scores')
-        .select('submission_id, total_score')
-        .eq('judge_email', userEmail)
+        .select('submission_id, total_score, judge_email')
 
-    const judgedSubmissionIds = new Set(myScores?.map(s => s.submission_id))
+    const judgedSubmissionIds = new Set(allScores?.map(s => s.submission_id))
 
     const scoreMap = new Map()
-    myScores?.forEach(s => scoreMap.set(s.submission_id, s.total_score))
+    allScores?.forEach(s => scoreMap.set(s.submission_id, s.total_score))
 
     return (
         <div className="space-y-6">
@@ -51,9 +50,14 @@ export default async function JudgingPage() {
                                         {team.team_name}
                                     </h3>
                                     {isJudged ? (
-                                        <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs border border-emerald-500/20 font-medium">
-                                            <CheckCircle className="w-3.5 h-3.5" />
-                                            Judged (Score: {scoreMap.get(team.id)})
+                                        <div className="flex flex-col items-end gap-1">
+                                            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs border border-emerald-500/20 font-medium">
+                                                <CheckCircle className="w-3.5 h-3.5" />
+                                                Judged (Score: {scoreMap.get(team.id)})
+                                            </div>
+                                            <span className="text-[10px] text-zinc-500 font-medium truncate max-w-[120px]">
+                                                {allScores?.find(s => s.submission_id === team.id)?.judge_email}
+                                            </span>
                                         </div>
                                     ) : (
                                         <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-orange-500/10 text-orange-400 text-xs border border-orange-500/20 font-medium">
