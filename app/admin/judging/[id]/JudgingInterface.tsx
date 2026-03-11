@@ -21,8 +21,23 @@ interface JudgingInterfaceProps {
 const getEmbedUrl = (url: string) => {
     if (!url) return ''
     try {
-        if (url.includes('docs.google.com/presentation')) {
-            return url.replace(/\/edit.*$/, '/embed?start=false&loop=false&delayms=3000').replace(/\/view.*$/, '/embed?start=false&loop=false&delayms=3000')
+        const trimmedUrl = url.trim()
+
+        // Handle Google Slides
+        const slidesMatch = trimmedUrl.match(/docs\.google\.com\/presentation\/d\/([a-zA-Z0-9-_]+)/)
+        if (slidesMatch && slidesMatch[1]) {
+            return `https://docs.google.com/presentation/d/${slidesMatch[1]}/embed?start=false&loop=false&delayms=3000`
+        }
+
+        // Handle Google Drive Files (PDF, etc.)
+        const driveMatch = trimmedUrl.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9-_]+)/)
+        if (driveMatch && driveMatch[1]) {
+            return `https://drive.google.com/file/d/${driveMatch[1]}/preview`
+        }
+
+        // Handle already published or embedded links
+        if (trimmedUrl.includes('/embed') || trimmedUrl.includes('/pub') || trimmedUrl.includes('/preview')) {
+            return trimmedUrl
         }
     } catch (e) {
         console.error("Invalid URL format", e)
@@ -43,12 +58,12 @@ export default function JudgingInterface({ team, userEmail, alreadyJudged }: Jud
         wow_factor: 0
     })
 
-    const totalScore = Object.values(scores).reduce((a, b) => a + b, 0)
+    const totalScore = (Object.values(scores) as number[]).reduce((a, b) => a + b, 0)
 
     const handleScoreChange = (criteria: keyof typeof scores, value: string, max: number) => {
         const num = parseInt(value) || 0
         if (num >= 0 && num <= max) {
-            setScores(prev => ({ ...prev, [criteria]: num }))
+            setScores((prev) => ({ ...prev, [criteria]: num }))
         }
     }
 

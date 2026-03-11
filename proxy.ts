@@ -4,6 +4,9 @@ import { NextResponse, type NextRequest } from 'next/server'
 const ALLOWED_ADMIN_EMAILS = [
     '2023cs0488@svce.ac.in',
     '2023cs0466@svce.ac.in',
+    '2023cs0485@svce.ac.in',
+    '2023cs0963@svce.ac.in',
+    '2023cs0753@svce.ac.in',
 ]
 
 export async function proxy(request: NextRequest) {
