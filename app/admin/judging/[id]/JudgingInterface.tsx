@@ -110,7 +110,7 @@ export default function JudgingInterface({ team, userEmail, alreadyJudged }: Jud
 
             // 3. Sync with Spreadsheet
             try {
-                await fetch('/api/sync-spreadsheet', {
+                const response = await fetch('/api/sync-spreadsheet', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -126,12 +126,18 @@ export default function JudgingInterface({ team, userEmail, alreadyJudged }: Jud
                         comments: comments
                     })
                 })
+                
+                if (!response.ok) {
+                    const errorData = await response.json()
+                    console.error("Spreadsheet sync failed with status:", response.status, errorData)
+                    alert(`Submission saved in database, but failed for Google Sheets: ${errorData.details || errorData.error || 'Unknown error'}`)
+                }
             } catch (syncError) {
-                console.error("Spreadsheet sync error:", syncError)
-                // We don't block the UI if sync fails, but we log it
+                console.error("Spreadsheet sync network error:", syncError)
+                alert("Submission saved in database, but failed to connect to the spreadsheet sync service.")
             }
 
-            // Redirect back on success
+            // Redirect back on success (or partial success)
             router.push('/admin/judging')
             router.refresh()
         } catch (err) {
