@@ -84,7 +84,7 @@ export default function Home() {
       className="w-full md:w-auto justify-center px-8 py-4 text-lg font-bold text-black bg-white hover:bg-gray-200 border border-transparent rounded-full transition-all duration-300 hover:scale-105 flex items-center gap-2 shadow-[0_0_20px_rgba(255,255,255,0.3)]"
     >
       <IconDownload size={20} />
-      Round 1 Results
+      Round 1 Results.
     </a>
   </PulseGlow>
 
