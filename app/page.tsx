@@ -1,6 +1,5 @@
 "use client";
 
-
 import DarkVeil from "@/components/DarkVeil";
 import ClickSpark from "@/components/ClickSpark";
 import FadeIn from "@/components/FadeIn";
