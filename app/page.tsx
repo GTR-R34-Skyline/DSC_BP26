@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+
 import DarkVeil from "@/components/DarkVeil";
 import ClickSpark from "@/components/ClickSpark";
 import FadeIn from "@/components/FadeIn";
@@ -92,7 +92,11 @@ export default function Home() {
 
 <FadeIn delay={1.2}>
   <CountdownTimer />
-</FadeIn>       {/* Stats Section */}
+</FadeIn>
+          </div>
+        </section>
+
+        {/* Stats Section */}
         <section className="relative py-20 border-y border-white/10 bg-black/50 backdrop-blur-sm">
           <div className="max-w-7xl mx-auto px-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 text-center">
