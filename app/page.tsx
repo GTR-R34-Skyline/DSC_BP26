@@ -66,44 +66,33 @@ export default function Home() {
               </p>
             </FadeIn>
 
-            {/* Buttons */}
-            <FadeIn delay={1.0} className="mt-4 md:mt-10 flex flex-col md:flex-row items-center justify-center gap-3 md:gap-4 w-full px-4 pointer-events-auto">
-              <PulseGlow delay={1.5} className="w-full md:w-auto order-1 md:order-3">
-                <a
-                  href="https://docs.google.com/forms/d/e/1FAIpQLSdxjNTYRklXSOkXOXKWBi63Qb-aSaOLi_DcDuUK0vQcxQjZcw/viewform"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full md:w-auto justify-center px-8 py-4 text-lg font-bold text-black bg-white hover:bg-gray-200 border border-transparent rounded-full transition-all duration-300 hover:scale-105 flex items-center gap-2 shadow-[0_0_20px_rgba(255,255,255,0.3)]"
-                >
-                  Register Now
-                  <IconArrowUpRight size={20} />
-                </a>
-              </PulseGlow>
+   {/* Buttons */}
+<FadeIn delay={1.0} className="mt-4 md:mt-10 flex flex-col md:flex-row items-center justify-center gap-3 md:gap-4 w-full px-4 pointer-events-auto">
 
-              <a
-                href="/problem-statements"
-                className="w-full md:w-auto justify-center order-2 md:order-1 px-8 py-3 md:py-4 text-base md:text-lg font-bold text-white bg-white/5 hover:bg-white/10 border border-white/20 rounded-full transition-all duration-300 hover:scale-105 flex items-center gap-2 backdrop-blur-sm"
-              >
-                <IconEye size={20} />
-                View Problem Statements
-              </a>
-              <a
-                href="/Shortlisted Teams Blueprints 2026.pdf"
-                download="Shortlisted Teams Blueprints 2026.pdf"
-                className="w-full md:w-auto justify-center order-3 md:order-2 px-8 py-3 md:py-4 text-base md:text-lg font-bold text-white/70 hover:text-white bg-transparent hover:bg-white/5 border border-white/10 hover:border-white/20 rounded-full transition-all duration-300 flex items-center gap-2 backdrop-blur-sm"
-              >
-                <IconDownload size={20} />
-                Round 1 Results
-              </a>
-            </FadeIn>
+  <a
+    href="/problem-statements"
+    className="w-full md:w-auto justify-center order-1 px-8 py-3 md:py-4 text-base md:text-lg font-bold text-white bg-white/5 hover:bg-white/10 border border-white/20 rounded-full transition-all duration-300 hover:scale-105 flex items-center gap-2 backdrop-blur-sm"
+  >
+    <IconEye size={20} />
+    View Problem Statements
+  </a>
 
-            <FadeIn delay={1.2}>
-              <CountdownTimer />
-            </FadeIn>
-          </div>
-        </section>
+  <PulseGlow delay={1.5} className="w-full md:w-auto order-2">
+    <a
+      href="/Shortlisted Teams Blueprints 2026.pdf"
+      download="Shortlisted Teams Blueprints 2026.pdf"
+      className="w-full md:w-auto justify-center px-8 py-4 text-lg font-bold text-black bg-white hover:bg-gray-200 border border-transparent rounded-full transition-all duration-300 hover:scale-105 flex items-center gap-2 shadow-[0_0_20px_rgba(255,255,255,0.3)]"
+    >
+      <IconDownload size={20} />
+      Round 1 Results
+    </a>
+  </PulseGlow>
 
-        {/* Stats Section */}
+</FadeIn>
+
+<FadeIn delay={1.2}>
+  <CountdownTimer />
+</FadeIn>       {/* Stats Section */}
         <section className="relative py-20 border-y border-white/10 bg-black/50 backdrop-blur-sm">
           <div className="max-w-7xl mx-auto px-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 text-center">
