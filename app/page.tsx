@@ -88,12 +88,12 @@ export default function Home() {
                 View Problem Statements
               </a>
               <a
-                href="/Copy of PPT Template_1.pptx"
-                download="Blueprints_2026_Template.pptx"
+                href="/Shortlisted Teams Blueprints 2026.pdf"
+                download="Shortlisted Teams Blueprints 2026.pdf"
                 className="w-full md:w-auto justify-center order-3 md:order-2 px-8 py-3 md:py-4 text-base md:text-lg font-bold text-white/70 hover:text-white bg-transparent hover:bg-white/5 border border-white/10 hover:border-white/20 rounded-full transition-all duration-300 flex items-center gap-2 backdrop-blur-sm"
               >
                 <IconDownload size={20} />
-                Download Template
+                Round 1 Results
               </a>
             </FadeIn>
 
