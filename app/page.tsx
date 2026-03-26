@@ -198,7 +198,6 @@ export default function Home() {
         <section className="relative py-20 px-4 text-center bg-black/40 border-t border-white/5">
           <FadeIn>
             <SectionTitle title="Judging Panel" subtitle="Evaluation" />
-
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-16">
               <a href="https://www.linkedin.com/in/gurusiva/" target="_blank" rel="noopener noreferrer" className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center space-y-4 hover:border-white/20 hover:scale-[1.02] transition-all duration-200 group">
                 <img src="/guruprakash.jpg" alt="Guruprakash Sivabalan" className="w-24 h-24 rounded-full object-cover object-top border border-white/20" />
@@ -244,68 +243,69 @@ export default function Home() {
                   <p className="text-white/50 text-xs text-balance">1CloudHub</p>
                 </div>
               </a>
-
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center space-y-4 hover:border-white/20 transition-all duration-200">
-                <img src="/sudarshan.jpeg" alt="Sudarshan" className="w-24 h-24 rounded-full object-cover border border-white/20" />
-                <div className="text-center">
-                  <h3 className="text-white font-semibold text-lg">Sudarshan</h3>
-                  <p className="text-white/60 text-sm">Senior Software Engineer</p>
-                  <p className="text-white/50 text-xs">NG</p>
-                </div>
-              </div>
             </div>
 
             <SectionTitle title="Industry Connect Panel" subtitle="" />
-            <div className="flex flex-wrap justify-center gap-6 max-w-6xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4 max-w-[90rem] mx-auto px-2 md:px-6">
               {/* Mathangi A */}
-              <a href="https://www.linkedin.com/in/mathangi-ananth/" target="_blank" rel="noopener noreferrer" className="w-full sm:w-[calc(50%-1.5rem)] md:w-[calc(33.333%-1.5rem)] lg:w-[calc(20%-1.5rem)] bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center space-y-4 hover:border-white/20 hover:scale-[1.02] transition-all duration-200 group">
-                <img src="/Mathangi.jpeg" alt="Mathangi A" className="w-24 h-24 rounded-full object-cover border border-white/20" />
+              <a href="https://www.linkedin.com/in/mathangi-ananth/" target="_blank" rel="noopener noreferrer" className="bg-white/5 border border-white/10 rounded-2xl p-4 lg:p-6 flex flex-col items-center space-y-4 hover:border-white/20 hover:scale-[1.02] transition-all duration-200 group">
+                <img src="/Mathangi.jpeg" alt="Mathangi A" className="w-20 h-20 lg:w-24 lg:h-24 rounded-full object-cover border border-white/20" />
                 <div className="text-center">
-                  <h3 className="text-white font-semibold text-lg flex items-center justify-center gap-1">Mathangi A <IconBrandLinkedin size={16} className="text-blue-400 opacity-50 group-hover:opacity-100" /></h3>
-                  <p className="text-white/60 text-sm mt-1">Manager</p>
-                  <p className="text-white/50 text-xs">DoorDash</p>
+                  <h3 className="text-white font-semibold text-base lg:text-lg flex flex-wrap items-center justify-center gap-1">Mathangi A <IconBrandLinkedin size={16} className="text-blue-400 opacity-50 group-hover:opacity-100" /></h3>
+                  <p className="text-white/60 text-xs lg:text-sm mt-1">Manager</p>
+                  <p className="text-white/50 text-[10px] lg:text-xs">DoorDash</p>
                 </div>
               </a>
 
               {/* Akshay Kumar */}
-              <a href="https://www.linkedin.com/in/akshay-kumar-636693aa/" target="_blank" rel="noopener noreferrer" className="w-full sm:w-[calc(50%-1.5rem)] md:w-[calc(33.333%-1.5rem)] lg:w-[calc(20%-1.5rem)] bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center space-y-4 hover:border-white/20 hover:scale-[1.02] transition-all duration-200 group">
-                <img src="/Akshaykumar.jpeg" alt="Akshay Kumar" className="w-24 h-24 rounded-full object-cover border border-white/20" />
+              <a href="https://www.linkedin.com/in/akshay-kumar-636693aa/" target="_blank" rel="noopener noreferrer" className="bg-white/5 border border-white/10 rounded-2xl p-4 lg:p-6 flex flex-col items-center space-y-4 hover:border-white/20 hover:scale-[1.02] transition-all duration-200 group">
+                <img src="/Akshaykumar.jpeg" alt="Akshay Kumar" className="w-20 h-20 lg:w-24 lg:h-24 rounded-full object-cover border border-white/20" />
                 <div className="text-center">
-                  <h3 className="text-white font-semibold text-lg flex items-center justify-center gap-1">Akshay Kumar <IconBrandLinkedin size={16} className="text-blue-400 opacity-50 group-hover:opacity-100" /></h3>
-                  <p className="text-white/60 text-sm mt-1">JS & Python Developer</p>
-                  <p className="text-white/50 text-xs">TigerAnalytics</p>
+                  <h3 className="text-white font-semibold text-base lg:text-lg flex flex-wrap items-center justify-center gap-1">Akshay Kumar <IconBrandLinkedin size={16} className="text-blue-400 opacity-50 group-hover:opacity-100" /></h3>
+                  <p className="text-white/60 text-xs lg:text-sm mt-1">JS & Python Developer</p>
+                  <p className="text-white/50 text-[10px] lg:text-xs">TigerAnalytics</p>
                 </div>
               </a>
 
               {/* Janani V */}
-              <a href="http://linkedin.com/in/janani-venk/" target="_blank" rel="noopener noreferrer" className="w-full sm:w-[calc(50%-1.5rem)] md:w-[calc(33.333%-1.5rem)] lg:w-[calc(20%-1.5rem)] bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center space-y-4 hover:border-white/20 hover:scale-[1.02] transition-all duration-200 group">
-                <img src="/Janani.jpg" alt="Janani V" className="w-24 h-24 rounded-full object-cover border border-white/20" />
+              <a href="http://linkedin.com/in/janani-venk/" target="_blank" rel="noopener noreferrer" className="bg-white/5 border border-white/10 rounded-2xl p-4 lg:p-6 flex flex-col items-center space-y-4 hover:border-white/20 hover:scale-[1.02] transition-all duration-200 group">
+                <img src="/Janani.jpg" alt="Janani V" className="w-20 h-20 lg:w-24 lg:h-24 rounded-full object-cover border border-white/20" />
                 <div className="text-center">
-                  <h3 className="text-white font-semibold text-lg flex items-center justify-center gap-1">Janani V <IconBrandLinkedin size={16} className="text-blue-400 opacity-50 group-hover:opacity-100" /></h3>
-                  <p className="text-white/60 text-sm mt-1">MEng AI</p>
-                  <p className="text-white/50 text-xs">UCLA</p>
+                  <h3 className="text-white font-semibold text-base lg:text-lg flex flex-wrap items-center justify-center gap-1">Janani V <IconBrandLinkedin size={16} className="text-blue-400 opacity-50 group-hover:opacity-100" /></h3>
+                  <p className="text-white/60 text-xs lg:text-sm mt-1">MEng AI</p>
+                  <p className="text-white/50 text-[10px] lg:text-xs">UCLA</p>
                 </div>
               </a>
 
-              {/* Murari Rajagopalan */}
-              <a href="https://www.linkedin.com/in/murarir/" target="_blank" rel="noopener noreferrer" className="w-full sm:w-[calc(50%-1.5rem)] md:w-[calc(33.333%-1.5rem)] lg:w-[calc(20%-1.5rem)] bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center space-y-4 hover:border-white/20 hover:scale-[1.02] transition-all duration-200 group">
-                <img src="/Murari.jpeg" alt="Murari Rajagopalan" className="w-24 h-24 rounded-full object-cover border border-white/20" />
+              {/* Murari R */}
+              <a href="https://www.linkedin.com/in/murarir/" target="_blank" rel="noopener noreferrer" className="bg-white/5 border border-white/10 rounded-2xl p-4 lg:p-6 flex flex-col items-center space-y-4 hover:border-white/20 hover:scale-[1.02] transition-all duration-200 group">
+                <img src="/Murari.jpeg" alt="Murari R" className="w-20 h-20 lg:w-24 lg:h-24 rounded-full object-cover border border-white/20" />
                 <div className="text-center">
-                  <h3 className="text-white font-semibold text-lg flex flex-wrap items-center justify-center gap-1">Murari R <IconBrandLinkedin size={16} className="text-blue-400 opacity-50 group-hover:opacity-100" /></h3>
-                  <p className="text-white/60 text-sm mt-1">Director, Carrier Operations</p>
-                  <p className="text-white/50 text-xs">Viu</p>
+                  <h3 className="text-white font-semibold text-base lg:text-lg flex flex-wrap items-center justify-center gap-1">Murari R <IconBrandLinkedin size={16} className="text-blue-400 opacity-50 group-hover:opacity-100" /></h3>
+                  <p className="text-white/60 text-xs lg:text-sm mt-1">Director, Carrier Operations</p>
+                  <p className="text-white/50 text-[10px] lg:text-xs">Viu</p>
                 </div>
               </a>
 
               {/* Krishnan Rajagopal */}
-              <a href="https://www.linkedin.com/in/krishnanrajagopal/" target="_blank" rel="noopener noreferrer" className="w-full sm:w-[calc(50%-1.5rem)] md:w-[calc(33.333%-1.5rem)] lg:w-[calc(20%-1.5rem)] bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center space-y-4 hover:border-white/20 hover:scale-[1.02] transition-all duration-200 group">
-                <img src="/Krishnan.jpeg" alt="Krishnan Rajagopal" className="w-24 h-24 rounded-full object-cover border border-white/20" />
+              <a href="https://www.linkedin.com/in/krishnanrajagopal/" target="_blank" rel="noopener noreferrer" className="bg-white/5 border border-white/10 rounded-2xl p-4 lg:p-6 flex flex-col items-center space-y-4 hover:border-white/20 hover:scale-[1.02] transition-all duration-200 group">
+                <img src="/Krishnan.jpeg" alt="Krishnan Rajagopal" className="w-20 h-20 lg:w-24 lg:h-24 rounded-full object-cover border border-white/20" />
                 <div className="text-center">
-                  <h3 className="text-white font-semibold text-lg flex flex-wrap items-center justify-center gap-1">Krishnan Rajagopal <IconBrandLinkedin size={16} className="text-blue-400 opacity-50 group-hover:opacity-100" /></h3>
-                  <p className="text-white/60 text-sm mt-1">Chief Executive Officer</p>
-                  <p className="text-white/50 text-xs">NavaSys Technologies</p>
+                  <h3 className="text-white font-semibold text-base lg:text-lg flex flex-wrap items-center justify-center gap-1">Krishnan Rajagopal <IconBrandLinkedin size={16} className="text-blue-400 opacity-50 group-hover:opacity-100" /></h3>
+                  <p className="text-white/60 text-xs lg:text-sm mt-1">Chief Executive Officer</p>
+                  <p className="text-white/50 text-[10px] lg:text-xs">NavaSys Technologies</p>
                 </div>
               </a>
+
+              {/* Sudarshan */}
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-4 lg:p-6 flex flex-col items-center space-y-4 hover:border-white/20 transition-all duration-200 group">
+                <img src="/sudarshan.jpeg" alt="Sudarshan" className="w-20 h-20 lg:w-24 lg:h-24 rounded-full object-cover border border-white/20" />
+                <div className="text-center">
+                  <h3 className="text-white font-semibold text-base lg:text-lg flex flex-wrap items-center justify-center gap-1">Sudarshan</h3>
+                  <p className="text-white/60 text-xs lg:text-sm mt-1">Senior Software Engineer</p>
+                  <p className="text-white/50 text-[10px] lg:text-xs">NG</p>
+                </div>
+              </div>
             </div>
           </FadeIn>
         </section>
