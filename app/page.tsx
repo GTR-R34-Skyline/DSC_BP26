@@ -49,10 +49,10 @@ export default function Home() {
 
             {/* Title */}
             <h1
-              className="text-[1.8rem] sm:text-3xl md:text-5xl lg:text-7xl xl:text-9xl font-bold mb-4 md:mb-6 drop-shadow-2xl tracking-tighter max-w-full break-words leading-tight"
-              style={{ fontFamily: 'var(--font-anonymous-pro)' }}
+              className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 md:mb-6 drop-shadow-2xl tracking-tighter max-w-full break-words leading-tight"
+              style={{ fontFamily: 'var(--font-pixel), sans-serif', letterSpacing: '2px' }}
             >
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 animate-gradient-x inline-block pb-2">
+              <span className="text-white inline-block pb-2">
                 <TypewriterText text="BLUEPRINTS 2026" />
               </span>
             </h1>
@@ -199,42 +199,113 @@ export default function Home() {
           <FadeIn>
             <SectionTitle title="Judging Panel" subtitle="Evaluation" />
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center space-y-4 hover:border-white/20 transition-all duration-200">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-16">
+              <a href="https://www.linkedin.com/in/gurusiva/" target="_blank" rel="noopener noreferrer" className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center space-y-4 hover:border-white/20 hover:scale-[1.02] transition-all duration-200 group">
+                <img src="/guruprakash.jpg" alt="Guruprakash Sivabalan" className="w-24 h-24 rounded-full object-cover object-top border border-white/20" />
+                <div className="text-center">
+                  <h3 className="text-white font-semibold text-lg flex items-center justify-center gap-1">Guruprakash Sivabalan <IconBrandLinkedin size={16} className="text-blue-400 opacity-50 group-hover:opacity-100" /></h3>
+                  <p className="text-white/60 text-sm">CEO & Founder</p>
+                  <p className="text-white/50 text-xs">Xobin</p>
+                </div>
+              </a>
+
+              <a href="https://www.linkedin.com/in/rajaraman-swaminathan/" target="_blank" rel="noopener noreferrer" className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center space-y-4 hover:border-white/20 hover:scale-[1.02] transition-all duration-200 group">
                 <img src="/rajaraman.jpeg" alt="Rajaraman Swaminathan" className="w-24 h-24 rounded-full object-cover border border-white/20" />
-                <div>
-                  <h3 className="text-white font-semibold text-lg">Rajaraman Swaminathan</h3>
+                <div className="text-center">
+                  <h3 className="text-white font-semibold text-lg flex items-center justify-center gap-1">Rajaraman Swaminathan <IconBrandLinkedin size={16} className="text-blue-400 opacity-50 group-hover:opacity-100" /></h3>
                   <p className="text-white/60 text-sm">Product Manager</p>
                   <p className="text-white/50 text-xs">Revinova</p>
                 </div>
-              </div>
+              </a>
 
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center space-y-4 hover:border-white/20 transition-all duration-200">
+              <a href="https://www.linkedin.com/in/ganesh-g/" target="_blank" rel="noopener noreferrer" className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center space-y-4 hover:border-white/20 hover:scale-[1.02] transition-all duration-200 group">
                 <img src="/ganeshg.jpeg" alt="Ganesh G" className="w-24 h-24 rounded-full object-cover border border-white/20" />
-                <div>
-                  <h3 className="text-white font-semibold text-lg">Ganesh G</h3>
+                <div className="text-center">
+                  <h3 className="text-white font-semibold text-lg flex items-center justify-center gap-1">Ganesh G <IconBrandLinkedin size={16} className="text-blue-400 opacity-50 group-hover:opacity-100" /></h3>
                   <p className="text-white/60 text-sm">Senior Software Developer</p>
                   <p className="text-white/50 text-xs">Freshworks</p>
                 </div>
-              </div>
+              </a>
+
+              <a href="https://www.linkedin.com/in/adi4502/" target="_blank" rel="noopener noreferrer" className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center space-y-4 hover:border-white/20 hover:scale-[1.02] transition-all duration-200 group">
+                <img src="/adhina.jpeg" alt="Adityavignesh V" className="w-24 h-24 rounded-full object-cover border border-white/20" />
+                <div className="text-center">
+                  <h3 className="text-white font-semibold text-lg flex items-center justify-center gap-1">Adityavignesh V <IconBrandLinkedin size={16} className="text-blue-400 opacity-50 group-hover:opacity-100" /></h3>
+                  <p className="text-white/60 text-sm">Software Engineer</p>
+                  <p className="text-white/50 text-xs">Newgen</p>
+                </div>
+              </a>
+
+              <a href="https://www.linkedin.com/in/hakash-mp/" target="_blank" rel="noopener noreferrer" className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center space-y-4 hover:border-white/20 hover:scale-[1.02] transition-all duration-200 group">
+                <img src="/Hakash.jpeg" alt="Hakash MP" className="w-24 h-24 rounded-full object-cover border border-white/20" />
+                <div className="text-center">
+                  <h3 className="text-white font-semibold text-lg flex items-center justify-center gap-1">Hakash MP <IconBrandLinkedin size={16} className="text-blue-400 opacity-50 group-hover:opacity-100" /></h3>
+                  <p className="text-white/60 text-sm">GenAI Solution Engineer</p>
+                  <p className="text-white/50 text-xs text-balance">1CloudHub</p>
+                </div>
+              </a>
 
               <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center space-y-4 hover:border-white/20 transition-all duration-200">
                 <img src="/sudarshan.jpeg" alt="Sudarshan" className="w-24 h-24 rounded-full object-cover border border-white/20" />
-                <div>
+                <div className="text-center">
                   <h3 className="text-white font-semibold text-lg">Sudarshan</h3>
                   <p className="text-white/60 text-sm">Senior Software Engineer</p>
                   <p className="text-white/50 text-xs">NG</p>
                 </div>
               </div>
+            </div>
 
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center space-y-4 hover:border-white/20 transition-all duration-200">
-                <img src="/adhina.jpeg" alt="Adityavignesh V" className="w-24 h-24 rounded-full object-cover border border-white/20" />
-                <div>
-                  <h3 className="text-white font-semibold text-lg">Adityavignesh V</h3>
-                  <p className="text-white/60 text-sm">Software Engineer</p>
-                  <p className="text-white/50 text-xs">Newgen</p>
+            <SectionTitle title="Industry Connect Panel" subtitle="" />
+            <div className="flex flex-wrap justify-center gap-6 max-w-6xl mx-auto">
+              {/* Mathangi A */}
+              <a href="https://www.linkedin.com/in/mathangi-ananth/" target="_blank" rel="noopener noreferrer" className="w-full sm:w-[calc(50%-1.5rem)] md:w-[calc(33.333%-1.5rem)] lg:w-[calc(20%-1.5rem)] bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center space-y-4 hover:border-white/20 hover:scale-[1.02] transition-all duration-200 group">
+                <img src="/Mathangi.jpeg" alt="Mathangi A" className="w-24 h-24 rounded-full object-cover border border-white/20" />
+                <div className="text-center">
+                  <h3 className="text-white font-semibold text-lg flex items-center justify-center gap-1">Mathangi A <IconBrandLinkedin size={16} className="text-blue-400 opacity-50 group-hover:opacity-100" /></h3>
+                  <p className="text-white/60 text-sm mt-1">Manager</p>
+                  <p className="text-white/50 text-xs">DoorDash</p>
                 </div>
-              </div>
+              </a>
+
+              {/* Akshay Kumar */}
+              <a href="https://www.linkedin.com/in/akshay-kumar-636693aa/" target="_blank" rel="noopener noreferrer" className="w-full sm:w-[calc(50%-1.5rem)] md:w-[calc(33.333%-1.5rem)] lg:w-[calc(20%-1.5rem)] bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center space-y-4 hover:border-white/20 hover:scale-[1.02] transition-all duration-200 group">
+                <img src="/Akshaykumar.jpeg" alt="Akshay Kumar" className="w-24 h-24 rounded-full object-cover border border-white/20" />
+                <div className="text-center">
+                  <h3 className="text-white font-semibold text-lg flex items-center justify-center gap-1">Akshay Kumar <IconBrandLinkedin size={16} className="text-blue-400 opacity-50 group-hover:opacity-100" /></h3>
+                  <p className="text-white/60 text-sm mt-1">JS & Python Developer</p>
+                  <p className="text-white/50 text-xs">TigerAnalytics</p>
+                </div>
+              </a>
+
+              {/* Janani V */}
+              <a href="http://linkedin.com/in/janani-venk/" target="_blank" rel="noopener noreferrer" className="w-full sm:w-[calc(50%-1.5rem)] md:w-[calc(33.333%-1.5rem)] lg:w-[calc(20%-1.5rem)] bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center space-y-4 hover:border-white/20 hover:scale-[1.02] transition-all duration-200 group">
+                <img src="/Janani.jpg" alt="Janani V" className="w-24 h-24 rounded-full object-cover border border-white/20" />
+                <div className="text-center">
+                  <h3 className="text-white font-semibold text-lg flex items-center justify-center gap-1">Janani V <IconBrandLinkedin size={16} className="text-blue-400 opacity-50 group-hover:opacity-100" /></h3>
+                  <p className="text-white/60 text-sm mt-1">MEng AI</p>
+                  <p className="text-white/50 text-xs">UCLA</p>
+                </div>
+              </a>
+
+              {/* Murari Rajagopalan */}
+              <a href="https://www.linkedin.com/in/murarir/" target="_blank" rel="noopener noreferrer" className="w-full sm:w-[calc(50%-1.5rem)] md:w-[calc(33.333%-1.5rem)] lg:w-[calc(20%-1.5rem)] bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center space-y-4 hover:border-white/20 hover:scale-[1.02] transition-all duration-200 group">
+                <img src="/Murari.jpeg" alt="Murari Rajagopalan" className="w-24 h-24 rounded-full object-cover border border-white/20" />
+                <div className="text-center">
+                  <h3 className="text-white font-semibold text-lg flex flex-wrap items-center justify-center gap-1">Murari R <IconBrandLinkedin size={16} className="text-blue-400 opacity-50 group-hover:opacity-100" /></h3>
+                  <p className="text-white/60 text-sm mt-1">Director, Carrier Operations</p>
+                  <p className="text-white/50 text-xs">Viu</p>
+                </div>
+              </a>
+
+              {/* Krishnan Rajagopal */}
+              <a href="https://www.linkedin.com/in/krishnanrajagopal/" target="_blank" rel="noopener noreferrer" className="w-full sm:w-[calc(50%-1.5rem)] md:w-[calc(33.333%-1.5rem)] lg:w-[calc(20%-1.5rem)] bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center space-y-4 hover:border-white/20 hover:scale-[1.02] transition-all duration-200 group">
+                <img src="/Krishnan.jpeg" alt="Krishnan Rajagopal" className="w-24 h-24 rounded-full object-cover border border-white/20" />
+                <div className="text-center">
+                  <h3 className="text-white font-semibold text-lg flex flex-wrap items-center justify-center gap-1">Krishnan Rajagopal <IconBrandLinkedin size={16} className="text-blue-400 opacity-50 group-hover:opacity-100" /></h3>
+                  <p className="text-white/60 text-sm mt-1">Chief Executive Officer</p>
+                  <p className="text-white/50 text-xs">NavaSys Technologies</p>
+                </div>
+              </a>
             </div>
           </FadeIn>
         </section>
@@ -247,52 +318,95 @@ export default function Home() {
 
         {/* Sponsors Section */}
         <ScrollAnchor id="sponsors" />
-        <section className="relative py-20 px-4 max-w-4xl mx-auto text-center">
+        <section className="relative py-20 px-4 max-w-6xl mx-auto text-center">
           <FadeIn>
             <SectionTitle title="Sponsors & Partners" subtitle="Our Supporters" />
           </FadeIn>
 
-          <FadeIn className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center justify-center">
+          {/* Prominent Sponsors */}
+          <FadeIn className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center justify-center mb-16">
             <div className="flex flex-col items-center space-y-4">
-              <p className="text-white/60 tracking-widest uppercase text-sm font-bold">Venue Partner</p>
-              <a
-                href="https://www.google.com/maps/place/Tekclan+Software+Solutions+Pvt+Ltd/data=!4m2!3m1!1s0x0:0x1ab7093ab7f997f7?sa=X&ved=1t:2428&ictx=111"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group transition-transform hover:scale-105"
-              >
-                <div className="bg-white rounded-3xl py-4 px-8 md:px-12 shadow-lg flex items-center justify-center">
-                  <img src="/sponsor-yuniq-v3.png" alt="Venue Partner" loading="lazy" className="h-40 md:h-52 w-auto object-contain" />
+              <p className="text-blue-400 tracking-widest uppercase text-lg font-bold">Title Sponsor</p>
+              <a href="https://xobin.com/" target="_blank" rel="noopener noreferrer" className="group transition-transform hover:scale-105 w-full block">
+                <div className="bg-white rounded-[2rem] py-8 px-8 shadow-[0_0_30px_rgba(59,130,246,0.2)] flex items-center justify-center h-64 md:h-72 overflow-hidden">
+                  <img src="/logos/xobin.png" alt="XOBIN" className="max-h-full w-auto object-contain scale-[1.8] md:scale-[2]" />
                 </div>
               </a>
             </div>
 
             <div className="flex flex-col items-center space-y-4">
-              <p className="text-white/60 tracking-widest uppercase text-sm font-bold">Automation & Workflow Partner</p>
+              <p className="text-purple-400 tracking-widest uppercase text-lg font-bold">Automation & Workflow Partner</p>
               <a
                 href="https://n8n.io/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group transition-transform hover:scale-105"
+                className="group transition-transform hover:scale-105 w-full"
               >
-                <div className="bg-white rounded-3xl py-4 px-8 md:px-12 shadow-lg flex items-center justify-center">
-                  <img src="/sponsor-n8n.png" alt="Automation & Workflow Partner" loading="lazy" className="h-40 md:h-52 w-auto object-contain" />
+                <div className="bg-white rounded-[2rem] py-8 px-8 shadow-[0_0_30px_rgba(168,85,247,0.2)] flex items-center justify-center h-64 md:h-72">
+                  <img src="/sponsor-n8n.png" alt="Automation & Workflow Partner" loading="lazy" className="max-h-full w-auto object-contain" />
                 </div>
               </a>
             </div>
-            <div className="flex flex-col items-center space-y-4">
-              <p className="text-white/60 tracking-widest uppercase text-sm font-bold">Feedback Partner</p>
+          </FadeIn>
+
+          {/* Other Partners */}
+          <FadeIn className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 items-stretch justify-center">
+            
+            <div className="flex flex-col items-center space-y-3">
+              <p className="text-white/60 tracking-widest uppercase text-xs font-bold h-8 flex items-center">Venue Partner</p>
+              <a
+                href="https://www.google.com/maps/place/Tekclan+Software+Solutions+Pvt+Ltd/data=!4m2!3m1!1s0x0:0x1ab7093ab7f997f7?sa=X&ved=1t:2428&ictx=111"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group transition-transform hover:scale-105 w-full flex-grow flex"
+              >
+                <div className="bg-white rounded-2xl p-6 shadow-lg flex items-center justify-center w-full h-32">
+                  <img src="/sponsor-yuniq-v3.png" alt="Venue Partner" loading="lazy" className="max-h-full max-w-full object-contain" />
+                </div>
+              </a>
+            </div>
+
+            <div className="flex flex-col items-center space-y-3">
+              <p className="text-white/60 tracking-widest uppercase text-xs font-bold h-8 flex items-center">Silver Sponsor</p>
+              <a href="https://cityunionbank.bank.in/cub-net-banking-cub-online-banking" target="_blank" rel="noopener noreferrer" className="group transition-transform hover:scale-105 w-full flex-grow flex">
+                <div className="bg-white rounded-2xl p-6 shadow-lg flex items-center justify-center w-full h-32 overflow-hidden">
+                  <img src="/logos/CUB.jpg" alt="Cub" loading="lazy" className="max-h-full max-w-full object-contain" />
+                </div>
+              </a>
+            </div>
+
+            <div className="flex flex-col items-center space-y-3">
+              <p className="text-white/60 tracking-widest uppercase text-xs font-bold h-8 flex items-center text-center">Feedback Partner</p>
               <a
                 href="https://askingindia.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group transition-transform hover:scale-105"
+                className="group transition-transform hover:scale-105 w-full flex-grow flex"
               >
-                <div className="bg-white rounded-3xl py-4 px-8 md:px-12 shadow-lg flex items-center justify-center">
-                  <img src="/sponsor-askingindia.jpeg" alt="Feedback Partner" loading="lazy" className="h-40 md:h-52 w-auto object-contain" />
+                <div className="bg-white rounded-2xl p-6 shadow-lg flex items-center justify-center w-full h-32">
+                  <img src="/sponsor-askingindia.jpeg" alt="Feedback Partner" loading="lazy" className="max-h-full max-w-full object-contain" />
                 </div>
               </a>
             </div>
+
+            <div className="flex flex-col items-center space-y-3">
+              <p className="text-white/60 tracking-widest uppercase text-xs font-bold h-8 flex items-center">Skill Partner</p>
+              <a href="https://www.rgesindia.com/" target="_blank" rel="noopener noreferrer" className="group transition-transform hover:scale-105 w-full flex-grow flex">
+                <div className="bg-white rounded-2xl p-6 shadow-lg flex items-center justify-center w-full h-32 overflow-hidden">
+                  <img src="/logos/RGES.png" alt="Rges" loading="lazy" className="max-h-full max-w-full object-contain scale-[2.5]" />
+                </div>
+              </a>
+            </div>
+
+            <div className="flex flex-col items-center space-y-3">
+              <p className="text-white/60 tracking-widest uppercase text-xs font-bold h-8 flex items-center text-center">AI Innovation & Talent Partner</p>
+              <a href="https://calphark.com/" target="_blank" rel="noopener noreferrer" className="group transition-transform hover:scale-105 w-full flex-grow flex">
+                <div className="bg-white rounded-2xl p-6 shadow-lg flex items-center justify-center w-full h-32 overflow-hidden">
+                  <img src="/logos/Calphark.png" alt="Calphark" loading="lazy" className="max-h-full max-w-full object-contain scale-[2.5]" />
+                </div>
+              </a>
+            </div>
+
           </FadeIn>
         </section>
 

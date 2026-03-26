@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Anonymous_Pro } from "next/font/google";
+import { Geist, Geist_Mono, Anonymous_Pro, Press_Start_2P } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -18,6 +18,12 @@ const anonymousPro = Anonymous_Pro({
   variable: "--font-anonymous-pro",
 });
 
+const pixelFont = Press_Start_2P({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-pixel",
+});
+
 export const metadata: Metadata = {
   title: "Developer Student Community, SVCE",
   description: "Step into our vibrant student community, where we foster a passion for technology and development to build powerful products and create impactful stories.",
@@ -29,10 +35,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={anonymousPro.variable} suppressHydrationWarning>
+    <html lang="en" className={`${anonymousPro.variable} ${pixelFont.variable}`} suppressHydrationWarning>
       <body
         suppressHydrationWarning
-        className={`${geistSans.variable} ${geistMono.variable} ${anonymousPro.variable} ${anonymousPro.className} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${anonymousPro.variable} ${anonymousPro.className} ${pixelFont.variable} antialiased`}
       >
         {children}
       </body>
