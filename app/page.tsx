@@ -407,6 +407,24 @@ export default function Home() {
               </a>
             </div>
 
+            <div className="flex flex-col items-center space-y-3">
+              <p className="text-white/60 tracking-widest uppercase text-xs font-bold h-8 flex items-center text-center">Media Partner</p>
+              <a href="https://www.instagram.com/elevate.media.services?igsh=MTNkajZwcXZ6bjBhaQ==" target="_blank" rel="noopener noreferrer" className="group transition-transform hover:scale-105 w-full flex-grow flex">
+                <div className="bg-white rounded-2xl p-6 shadow-lg flex items-center justify-center w-full h-32 overflow-hidden">
+                  <img src="/logos/elevate_media.jpeg" alt="Elevate Media" loading="lazy" className="max-h-full max-w-full object-contain" />
+                </div>
+              </a>
+            </div>
+
+            <div className="flex flex-col items-center space-y-3">
+              <p className="text-white/60 tracking-widest uppercase text-xs font-bold h-8 flex items-center text-center">Hydration Partner</p>
+              <div className="group transition-transform hover:scale-105 w-full flex-grow flex">
+                <div className="bg-white rounded-2xl p-6 shadow-lg flex items-center justify-center w-full h-32 overflow-hidden">
+                  <img src="/logos/Sk_Enterprises.jpeg" alt="SK Enterprises" loading="lazy" className="max-h-full max-w-full object-contain scale-[1.5]" />
+                </div>
+              </div>
+            </div>
+
           </FadeIn>
         </section>
 
